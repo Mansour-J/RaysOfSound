@@ -1,5 +1,8 @@
 .directory
 
+# database
+mysql
+
 #Webstorm stuff
 .idea
 
