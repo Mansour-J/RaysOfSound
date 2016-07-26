@@ -53,15 +53,19 @@ router.get('/', function (req, res) {
 });
 
 router.post('/SubmitAudio', multer({storage: storage}).single('upl'), function(req, res) {
-  var audio_id:
+  var audio_id;
   console.log(req.body);
   console.log(req.file);
   /*TODO
 
   */
   res.redirect("/");
-}){
-
+});
+/*
+function Manage () {}
+Manage.getTest = function() {
+  return 0;
 };
+*/
 
 module.exports = router;
