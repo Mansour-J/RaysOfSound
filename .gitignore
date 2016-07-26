@@ -11,3 +11,6 @@ node_modules
 
 #Stop files ending in tilde
 *~
+
+#npm logging
+npm-debug.log
