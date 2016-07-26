@@ -11,16 +11,34 @@ var storage = multer.diskStorage({
     },
     filename: function(req, file, cb) {
       var extesion = "";
-      if(mime.extension(file.mimetype) == "mpeg"){
-        extension = "mp3"
+      if(mime.extension(file.mimetype) == "mpeg"
+        || mime.extesion(file.mimetype) == "mp3" ){
+        extension = "mp3";
+      }
+      else if(mime.extension(file.mimetype) == "mp4"){
+        extension = "m4a";
+      }
+      else if(mime.extension(file.mimetype) == "jpeg"){
+        extension = "jpg";
       }
       cb(null, Date.now() + '.' + extension);
     }
 });
 
 
-var fileFilter = function (req, file, cb) {
+var audioFilter = function (req, file, cb) {
     if (mime.extension(file.mimetype) != "mp3" /*&& mime.extension(file.mimetype) != "jpg" */) {
+        console.log("Incorrect file format");
+        cb(null, false);
+    }
+    else {
+        // To accept the file pass `true`, like so:
+        cb(null, true)
+    }
+};
+
+var imageFilter = function (req, file, cb) {
+    if (mime.extension(file.mimetype) != "jpg" && mime.extension(file.mimetype) != "gif") {
         console.log("Incorrect file format");
         cb(null, false);
     }
@@ -33,5 +51,17 @@ var fileFilter = function (req, file, cb) {
 router.get('/', function (req, res) {
   res.render(/*TODO replce*/ 'index', {title: "Uploaded"});
 });
+
+router.post('/SubmitAudio', multer({storage: storage}).single('upl'), function(req, res) {
+  var audio_id:
+  console.log(req.body);
+  console.log(req.file);
+  /*TODO
+
+  */
+  res.redirect("/");
+}){
+
+};
 
 module.exports = router;
