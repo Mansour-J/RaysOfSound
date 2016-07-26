@@ -8,3 +8,6 @@ mysql
 
 #Node_modules
 node_modules
+
+#Stop files ending in tilde
+*~
