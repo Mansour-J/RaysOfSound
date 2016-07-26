@@ -5,3 +5,6 @@
 
 #Node_modules
 node_modules
+
+#tempUploads
+uploads
