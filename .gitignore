@@ -1,7 +1,13 @@
 .directory
 
+# database
+
+
 #Webstorm stuff
 .idea
 
 #Node_modules
 node_modules
+
+#tempUploads
+uploads
