@@ -4,9 +4,9 @@ var db = require('../lib/db');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  db.Category.findAll().then(function(categories){
+    res.render('index', { title: 'Express', data: categories});
+  });
 });
-
-
 
 module.exports = router;
