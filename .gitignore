@@ -9,5 +9,11 @@
 #Node_modules
 node_modules
 
+#Stop files ending in tilde
+*~
+
+#npm logging
+npm-debug.log
+
 #tempUploads
 uploads
