@@ -1,7 +1,7 @@
 .directory
 
 # database
-mysql
+
 
 #Webstorm stuff
 .idea
@@ -14,3 +14,6 @@ node_modules
 
 #npm logging
 npm-debug.log
+
+#tempUploads
+uploads

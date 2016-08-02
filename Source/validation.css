@@ -1,0 +1,40 @@
+.error {
+    border: 1px solid #843534;
+    outline: none !important;
+}
+
+.errorMes {
+    margin-top: 5px;
+    font-size: 80%;
+    color: #843534;
+    font-weight: bold;
+}
+
+.correct {
+    border: 1px solid #2B542C;
+    outline: none !important;
+}
+
+.test {
+    float: right;
+    position: relative;
+    top: -23px !important;
+    right: 10px;
+    color: #843534;
+}
+
+.ok {
+    float: right;
+    position: relative;
+    top: -23px !important;
+    right: 10px;
+    color: #2B542C;
+
+}
+
+.baste {
+    display: none !important;
+}
+.display {
+    display: none !important;
+}
