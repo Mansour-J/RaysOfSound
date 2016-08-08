@@ -9,4 +9,10 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/test', function(req, res, next){
+	db.Category.findAll().then(function(categories){
+    res.send(categories);
+  });
+});
+
 module.exports = router;
