@@ -48,7 +48,7 @@ var imageFilter = function (req, file, cb) {
     }
 };
 
-router.get('/', function (req, res) {
+router.get('/:id/', function (req, res) {
   res.render(/*TODO replce*/ 'index', {title: "Uploaded"});
 });
 
