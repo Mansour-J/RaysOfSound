@@ -9,6 +9,9 @@ var db = require('./lib/db');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+// var manage = require('./routes/manage');
+// var item = require('./routes/item');
+// var category = require('./routes/category');
 
 var app = express();
 
@@ -26,6 +29,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+// app.use('/manage', manage);
+// app.use('/item', item);
+// app.use('/category', category);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
