@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 	
 /*  res.sendStatus(200);
   res.render('index', { title: 'Express' });*/
-  res.render('index3', { title: 'Express' });
+  res.render('index1', { title: 'Express' });
 
  // db.Category.findAll().then(function(categories){
  //   res.render('index', { title: 'Express', data: categories});
