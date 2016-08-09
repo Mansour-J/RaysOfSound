@@ -9,6 +9,8 @@ router.get('/', function(req, res, next) {
   });
 });
 
+//Comment
+
 router.get('/test', function(req, res, next){
 	db.Category.findAll().then(function(categories){
     res.send(categories);
