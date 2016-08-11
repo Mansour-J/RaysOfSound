@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 	
 /*  res.sendStatus(200);
   res.render('index', { title: 'Express' });*/
-  res.render('index1', { title: 'Express' });
+  res.render('index.ejs', { title: 'Express' });
 
  // db.Category.findAll().then(function(categories){
  //   res.render('index', { title: 'Express', data: categories});
@@ -15,12 +15,25 @@ router.get('/', function(req, res, next) {
 
 });
 
-//Comment
-
+//TET Routes
 router.get('/test', function(req, res, next){
 	db.Category.findAll().then(function(categories){
     res.send(categories);
   });
 });
+
+
+//Contact Us Routes
+router.get('/contactus', function(req, res, next){
+    res.render('contactus.ejs', { title: 'Express' });
+});
+
+
+
+//404 Routes
+router.get('*', function(req, res, next){
+    res.render('404.ejs', { title: 'Express' });
+});
+
 
 module.exports = router;
