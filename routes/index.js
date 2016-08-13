@@ -3,7 +3,7 @@ var router = express.Router();
 var db = require('../lib/db');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/maori', function(req, res, next) {
 	
 /*  res.sendStatus(200);
   res.render('index', { title: 'Express' });*/
@@ -15,12 +15,31 @@ router.get('/', function(req, res, next) {
 
 });
 
+
+
+
+/* GET home page. */
+router.get('/', function(req, res, next) {
+
+    /*  res.sendStatus(200);
+     res.render('index', { title: 'Express' });*/
+    res.render('home.ejs', { title: 'Express' });
+
+    // db.Category.findAll().then(function(categories){
+    //   res.render('index', { title: 'Express', data: categories});
+    // });
+
+});
+
+
 //TET Routes
 router.get('/test', function(req, res, next){
 	db.Category.findAll().then(function(categories){
     res.send(categories);
   });
 });
+
+
 
 
 //Contact Us Routes

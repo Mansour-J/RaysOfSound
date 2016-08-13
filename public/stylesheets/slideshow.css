@@ -1,0 +1,105 @@
+
+#slideshow {
+    width: 900px;
+    margin: 50px auto 0 auto;
+    padding: 50px 0 0 0;
+    -webkit-perspective: 800; /* triggers a 3D space */
+}
+
+figure {
+    display: inline;
+    -webkit-transform-style: preserve-3d; /* maintains 3D space */
+}
+
+#box {
+    position: relative;
+    display: block;
+    width: 900px;
+    height: 400px;
+    -webkit-transform: translateZ(-200px); /* Pushes 3D object back into place */
+    -webkit-transition: -webkit-transform 1s;  /* Enables transitions for transforms */
+}
+
+#box img {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+figcaption {
+    display: inline-block;
+    width: 70px;
+    height: 35px;
+    background: rgba(0,0,0,0.6);
+    border: 1px solid rgba(0,0,0,0.7);
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    text-align: center;
+    line-height: 35px;
+    color: #ffffff;
+    text-shadow: 1px 1px 1px #000000;
+    cursor: pointer;
+
+    position: relative;
+    top: -50px;
+    left: 150px;
+    margin: 0 30px 0 0;
+
+    -moz-transition: all 0.1s linear;
+    -o-transition: all 0.1s linear;
+    -webkit-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+
+figcaption:hover {
+    background: rgba(0,0,0,0.8);
+}
+
+#box img:nth-child(1) {
+    -webkit-transform: rotateX(0deg) translateZ(200px);
+}
+
+#box img:nth-child(2) {
+    -webkit-transform: rotateX(180deg) translateZ(200px);
+}
+
+#box img:nth-child(3) {
+    -webkit-transform: rotateX(90deg) translateZ(200px);
+}
+
+#box img:nth-child(4) {
+    -webkit-transform: rotateX(-90deg) translateZ(200px);
+}
+
+#box img:nth-child(5) {
+    -webkit-transform: rotateY(-90deg) translateZ(200px);
+}
+
+#box img:nth-child(6) {
+    -webkit-transform: rotateY(90deg) translateZ(700px);
+}
+
+#fig1:focus #box {
+    -webkit-transform: translateZ(-200px) rotateY(0deg);
+}
+
+#fig2:focus #box {
+    -webkit-transform: translateZ(-200px) rotateX(-180deg);
+}
+
+#fig3:focus #box {
+    -webkit-transform: translateZ(-200px) rotateX(-90deg);
+}
+
+#fig4:focus #box {
+    -webkit-transform: translateZ(-200px) rotateX(90deg);
+}
+
+#fig5:focus #box {
+    -webkit-transform: translateZ(-450px) rotateY(90deg);
+}
+
+#fig6:focus #box {
+    -webkit-transform: translateZ(-450px) rotateY(-90deg);
+}
