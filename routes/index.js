@@ -20,15 +20,9 @@ router.get('/maori', function(req, res, next) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-
-    /*  res.sendStatus(200);
-     res.render('index', { title: 'Express' });*/
-    res.render('home.ejs', { title: 'Express' });
-
-    // db.Category.findAll().then(function(categories){
-    //   res.render('index', { title: 'Express', data: categories});
-    // });
-
+    db.Category.findAll().then(function(categories){
+      res.render('partials/pages/navbar.ejs', { title: 'Express', data: categories});
+    });
 });
 
 
