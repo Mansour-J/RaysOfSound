@@ -11,14 +11,15 @@
     "bootstrap": "^3.3.7",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
+    "ejs": "^2.5.1",
     "express": "~4.13.4",
     "jade": "~1.11.0",
     "mime-types": "~2.1.11",
     "morgan": "~1.7.0",
+    "multer": "~1.1.0",
     "pg": "^6.0.3",
     "pg-hstore": "^2.3.2",
     "sequelize": "^3.23.6",
-    "multer": "~1.1.0",
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
@@ -26,5 +27,4 @@
     "mocha": "^3.0.2",
     "supertest": "^2.0.0"
   }
-
 }
