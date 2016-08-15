@@ -114,7 +114,9 @@ form#contact_form {
 
 
 
-
+.modal-backdrop{
+    display: none !important;
+}
 
 
 
