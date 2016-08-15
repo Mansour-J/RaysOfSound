@@ -16,8 +16,6 @@ router.get('/maori', function(req, res, next) {
 });
 
 
-
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
@@ -40,19 +38,15 @@ router.get('/test', function(req, res, next){
 });
 
 
-
-
 //Contact Us Routes
 router.get('/contactus', function(req, res, next){
     res.render('contactus.ejs', { title: 'Express' });
 });
 
 
-
-//404 Routes
+//404 Routes MUST BE LAST
 router.get('*', function(req, res, next){
     res.render('404.ejs', { title: 'Express' });
 });
-
 
 module.exports = router;
