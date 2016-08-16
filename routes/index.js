@@ -50,10 +50,13 @@ router.get('/individual', function(req, res, next){
 });
 
 
-//Individual Route
+//Contact Us Routes
 router.get('/individual', function(req, res, next){
     res.render('IndividualItem.ejs', { title: 'Express' });
 });
+
+
+
 
 router.get('*', function(req, res, next){
     res.render('404.ejs', { title: 'Express' });
