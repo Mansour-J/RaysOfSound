@@ -44,8 +44,24 @@ router.get('/individual', function(req, res, next){
 
 
 
+
+
+
+
+
+//Individual Item Route
+router.get('/additem', function(req, res, next){
+    db.Category.findAll().then(function(categories){
+        res.render('addItem.ejs', { title: 'Express', data:categories });
+    });
+});
+
+
+
 //404 Routes
 router.get('*', function(req, res, next){
+    res.statusCode = 404;
+    // res.send('None shall pass');
     res.render('404.ejs', { title: 'Express' });
 });
 

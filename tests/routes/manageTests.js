@@ -9,7 +9,7 @@ var router = app.Router()
 
 var Manage = require("./../../routes/manage.js");
 
-describe('GET /', function() {
+describe('GET /manage', function() {
   it('load manage page', function() {
 
     request(app)
