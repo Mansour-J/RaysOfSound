@@ -1,6 +1,7 @@
 var express = require('express');
 var multer = require('multer');
 var mime = require('mime-types');
+var db = require('../lib/db');
 var router = express.Router();
 
 //TODO
@@ -51,6 +52,27 @@ var imageFilter = function (req, file, cb) {
 // router.get('/:id/', function (req, res) {
 //   res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
 // });
+
+router.get('/createItem/', function (req, res) {
+
+  res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
+});
+
+router.post('/createItem/', function (req, res) {
+  var id;
+  console.log(req.body);
+
+  db.Item.create({
+    category_id: req.body.category,
+    item_name: req.body.name,
+    description: req.body.description,
+    // user_id:
+
+  }).then(function (item) {
+    res.redirect(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
+  })
+  // res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
+});
 
 router.get('/:id/edit/', function (req, res) {
   res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
