@@ -1,0 +1,50 @@
+<div class="navbar-header" style="padding-left: 20px;">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+            aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="http://localhost:3000/"><i class="fa fa-graduation-cap" aria-hidden="true"  style="padding-right: 5px;"></i>Rays of sound</a>
+    <ul class="nav navbar-nav foo">
+        <li><a href="http://localhost:3000/">Home</a></li>
+        <li><a href="http://localhost:3000/maori">Maori</a></li>
+        <li><a href="http://localhost:3000/aboutus">About</a></li>
+        <li><a href="http://localhost:3000/contactus">Contact</a></li>
+    </ul>
+</div>
+
+<div class="container">
+
+    <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            <% for (var i = 0; i < data.length; i++) { %>
+                <li><a href="<%= data[i].id %>/view"> <%= data[i].title %> </a> </li>
+            <% } %>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <div class="navBtnContainer">
+            <button type="button" class="btn btn-default" href="#" data-toggle="modal" data-target="#login-modal"><span style="margin-right:5px; font-size:120%;" class="ion ion-person"></span>Login</a>
+            </div>
+        </ul>
+    </div>
+</div>
+
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="loginmodal-container">
+            <h1>Login to Your Account</h1><br>
+                <form>
+                    <input type="text" name="user" placeholder="Username">
+                    <input type="password" name="pass" placeholder="Password">
+                    <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+                </form>
+                    
+            <div class="login-help">
+                <a href="#">Register</a> - <a href="#">Forgot Password</a>
+            </div>
+        </div>
+    </div>
+</div>

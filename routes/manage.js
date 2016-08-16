@@ -48,8 +48,20 @@ var imageFilter = function (req, file, cb) {
     }
 };
 
-router.get('/:id/', function (req, res) {
-  res.render(/*TODO replce*/ 'index', {title: "Uploaded"});
+// router.get('/:id/', function (req, res) {
+//   res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
+// });
+
+router.get('/:id/edit/', function (req, res) {
+  res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
+});
+
+router.post('/:id/edit/', function (req, res) {
+  res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
+});
+
+router.get('/:id/destroy/', function (req, res) {
+  res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
 });
 
 router.post('/SubmitAudio', multer({storage: storage}).single('upl'), function(req, res) {

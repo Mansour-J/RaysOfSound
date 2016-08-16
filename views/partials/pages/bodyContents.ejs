@@ -44,10 +44,10 @@
                                     class="sr-only">Toggle Dropdown</span></button>
 
                         <ul class="dropdown-menu" style="width: 100% !important;">
-                            <li><a href="#">Edit</a></li>
+                            <li><a href='/manage/<%= 3 %>/edit'>Edit</a></li> <!-- TODO replace '3' with item.id -->
 
                             <li role="separator" class="divider"></li>
-                            <li><a href="#">Delete this item</a></li>
+                            <li><a href="/manage/<%= 3 %>/destroy">Delete this item</a></li> <!-- TODO replace '3' with item.id -->
                         </ul>
                     </div>
                     </p>
