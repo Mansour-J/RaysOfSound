@@ -44,13 +44,15 @@ router.get('/contactus', function(req, res, next){
 });
 
 
-//Contact Us Routes
+//Individual Item Route
 router.get('/individual', function(req, res, next){
     res.render('IndividualItem.ejs', { title: 'Express' });
 });
 
 
 
+
+//404 Routes
 router.get('*', function(req, res, next){
     res.render('404.ejs', { title: 'Express' });
 });
