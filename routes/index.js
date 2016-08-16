@@ -4,25 +4,17 @@ var db = require('../lib/db');
 
 /* GET home page. */
 router.get('/maori', function(req, res, next) {
-
-  res.render('index.ejs', { title: 'Express' });
-
- // db.Category.findAll().then(function(categories){
- //   res.render('index', { title: 'Express', data: categories});
- // });
-
+ db.Category.findAll().then(function(categories){
+   res.render('index.ejs', { title: 'Express' , data: categories});
+ });
 });
 
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-
-    res.render('home.ejs', { title: 'Express' });
-
-    // db.Category.findAll().then(function(categories){
-    //   res.render('index', { title: 'Express', data: categories});
-    // });
-
+    db.Category.findAll().then(function(categories){
+      res.render('home.ejs', { title: 'Express', data: categories});
+    });
 });
 
 
