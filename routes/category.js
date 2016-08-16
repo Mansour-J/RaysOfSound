@@ -1,10 +1,12 @@
 var express = require('express');
 var router = express.Router();
-//var db = require('../lib/db');
+var db = require('../lib/db');
 
 router.get('/', function(req, res, next) {
 
-  res.render('category.ejs'/*TODO replace with categoy page*/, { title: 'Express' });
+    db.Category.findAll().then(function(categories){
+        res.render('category.ejs'/*TODO replace with categoy page*/, { title: 'Express', data: categories});
+    });
 
 
 });
