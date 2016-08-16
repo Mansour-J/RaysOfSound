@@ -51,7 +51,9 @@ router.get('/individual', function(req, res, next){
 
 //Individual Item Route
 router.get('/additem', function(req, res, next){
-    res.render('addItem.ejs', { title: 'Express' });
+    db.Category.findAll().then(function(categories){
+        res.render('addItem.ejs', { title: 'Express', data:categories });
+    });
 });
 
 
