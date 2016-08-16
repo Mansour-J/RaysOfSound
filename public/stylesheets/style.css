@@ -143,11 +143,9 @@ form#contact_form {
     }
 
 }
-<<<<<<< HEAD
-
-.individualPost{
+.individualPost {
     padding: 50px;
-=======
+}
 /************************** JOSH MODAL ****************************/
 
 @import url(http://fonts.googleapis.com/css?family=Roboto);
@@ -248,5 +246,4 @@ form#contact_form {
 
 .login-help{
   font-size: 12px;
->>>>>>> f89dd63dde9c85f10413fe6974a8eda24cf607c3
 }
