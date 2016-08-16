@@ -44,6 +44,18 @@ router.get('/individual', function(req, res, next){
 
 
 
+
+
+
+
+
+//Individual Item Route
+router.get('/additem', function(req, res, next){
+    res.render('addItem.ejs', { title: 'Express' });
+});
+
+
+
 //404 Routes
 router.get('*', function(req, res, next){
     res.render('404.ejs', { title: 'Express' });
