@@ -21,7 +21,7 @@ router.get('/maori', function(req, res, next) {
 /* GET home page. */
 router.get('/', function(req, res, next) {
     db.Category.findAll().then(function(categories){
-      res.render('partials/pages/navbar.ejs', { title: 'Express', data: categories});
+      res.render('home.ejs', { title: 'Express', data: categories});
     });
 });
 

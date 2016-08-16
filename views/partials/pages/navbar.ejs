@@ -12,8 +12,16 @@
         <li><a href="http://localhost:3000/maori">Maori</a></li>
         <li><a href="http://localhost:3000/aboutus">About</a></li>
         <li><a href="http://localhost:3000/contactus">Contact</a></li>
-        <% for (var i = 0; i < data.length; i++) %>
-            <li> <%=data[i].title%> </li>
-
     </ul>
+</div>
+
+<div class="container">
+
+    <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            <% for (var i = 0; i < data.length; i++) { %>
+                <li><a href="<%= data[i].id %>/view"> <%= data[i].title %> </a> </li>
+            <% } %>
+        </ul>
+    </div>
 </div>
