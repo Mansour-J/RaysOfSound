@@ -4,25 +4,17 @@ var db = require('../lib/db');
 
 /* GET home page. */
 router.get('/maori', function(req, res, next) {
-
-  res.render('index.ejs', { title: 'Express' });
-
- // db.Category.findAll().then(function(categories){
- //   res.render('index', { title: 'Express', data: categories});
- // });
-
+ db.Category.findAll().then(function(categories){
+   res.render('index.ejs', { title: 'Express' , data: categories});
+ });
 });
 
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-
-    res.render('home.ejs', { title: 'Express' });
-
-    // db.Category.findAll().then(function(categories){
-    //   res.render('index', { title: 'Express', data: categories});
-    // });
-
+    db.Category.findAll().then(function(categories){
+      res.render('home.ejs', { title: 'Express', data: categories});
+    });
 });
 
 
@@ -44,7 +36,15 @@ router.get('/contactus', function(req, res, next){
 });
 
 
-//404 Routes MUST BE LAST
+//Individual Item Route
+router.get('/individual', function(req, res, next){
+    res.render('IndividualItem.ejs', { title: 'Express' });
+});
+
+
+
+
+//404 Routes
 router.get('*', function(req, res, next){
     res.statusCode = 404;
     // res.send('None shall pass');
