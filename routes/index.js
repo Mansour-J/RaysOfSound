@@ -4,9 +4,7 @@ var db = require('../lib/db');
 
 /* GET home page. */
 router.get('/maori', function(req, res, next) {
-	
-/*  res.sendStatus(200);
-  res.render('index', { title: 'Express' });*/
+
   res.render('index.ejs', { title: 'Express' });
 
  // db.Category.findAll().then(function(categories){
@@ -19,8 +17,6 @@ router.get('/maori', function(req, res, next) {
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-    /*  res.sendStatus(200);
-     res.render('index', { title: 'Express' });*/
     res.render('home.ejs', { title: 'Express' });
 
     // db.Category.findAll().then(function(categories){
@@ -37,6 +33,10 @@ router.get('/test', function(req, res, next){
   });
 });
 
+//About Us Routes
+router.get('/aboutus', function(req, res, next){
+    res.render('contactus.ejs', { title: 'Express' });
+});
 
 //Contact Us Routes
 router.get('/contactus', function(req, res, next){
