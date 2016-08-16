@@ -17,6 +17,7 @@ time, mark, audio, video {
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
+    font-family: 'Source Sans Pro', sans-serif !important;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -141,6 +142,9 @@ form#contact_form {
         padding-left: 13px;
     }
 
+}
+.individualPost {
+    padding: 50px;
 }
 /************************** JOSH MODAL ****************************/
 

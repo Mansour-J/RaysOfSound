@@ -10,12 +10,13 @@
 
 <!-- Static navbar -->
 <nav class="navbar navbar-default navbar-static-top">
-    <% include partials/pages/navbar.ejs data %>
+
+    <% include partials/pages/topNav.ejs %>
 </nav>
 
 
 <div class="raysContainer">
-    <% include partials/pages/bodyContents.ejs %>
+    <% include IndividualItem.ejs %>
 </div> <!-- /container -->
 
 
@@ -23,9 +24,7 @@
     <% include partials/pages/footer.ejs %>
 </div> <!-- /container -->
 
-    <% include partials/pages/scripts.ejs %>
+<% include partials/pages/scripts.ejs %>
 
 </body>
 </html>
-
-
