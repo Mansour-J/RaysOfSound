@@ -60,6 +60,8 @@ router.get('/additem', function(req, res, next){
 
 //404 Routes
 router.get('*', function(req, res, next){
+    res.statusCode = 404;
+    // res.send('None shall pass');
     res.render('404.ejs', { title: 'Express' });
 });
 
