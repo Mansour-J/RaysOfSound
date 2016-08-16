@@ -53,10 +53,15 @@ var imageFilter = function (req, file, cb) {
 //   res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
 // });
 
-router.get('/createItem/', function (req, res) {
 
-  res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
+
+router.get('/createItem/', function (req, res) {
+  db.Category.findAll().then(function(categories){
+  res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded", data: categories});
+})
 });
+
+
 
 router.post('/createItem/', function (req, res) {
   var id;
@@ -74,17 +79,39 @@ router.post('/createItem/', function (req, res) {
   // res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
 });
 
+
+
 router.get('/:id/edit/', function (req, res) {
-  res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
+  var loggedIn;
+
+  db.Item.findAll({
+    where: {
+      id: req.params.id
+    }
+  }).then(function (items){
+    db.Category.findAll().then(function(categories){
+      res.render(/*TODO replce*/ 'index.ejs', {
+        title: "Uploaded", 
+        data: categories
+      });
+    });
+  });
+  // res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
 });
+
+
 
 router.post('/:id/edit/', function (req, res) {
   res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
 });
 
+
+
 router.get('/:id/destroy/', function (req, res) {
   res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
 });
+
+
 
 router.post('/SubmitAudio', multer({storage: storage}).single('upl'), function(req, res) {
   var audio_id;
