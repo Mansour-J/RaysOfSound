@@ -4,14 +4,9 @@ var db = require('../lib/db');
 
 /* GET home page. */
 router.get('/maori', function(req, res, next) {
-	
-/*  res.sendStatus(200);
-  res.render('index', { title: 'Express' });*/
-  res.render('index.ejs', { title: 'Express' });
-
- // db.Category.findAll().then(function(categories){
- //   res.render('index', { title: 'Express', data: categories});
- // });
+ db.Category.findAll().then(function(categories){
+   res.render('index.ejs', { title: 'Express' , data: categories});
+ });
 
 });
 
