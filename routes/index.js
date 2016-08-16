@@ -49,7 +49,14 @@ router.get('/individual', function(req, res, next){
     res.render('IndividualItem.ejs', { title: 'Express' });
 });
 
-//404 Routes MUST BE LAST
+
+//Individual Route
+router.get('/individual', function(req, res, next){
+    res.render('IndividualItem.ejs', { title: 'Express' });
+});
+
+
+
 router.get('*', function(req, res, next){
     res.render('404.ejs', { title: 'Express' });
 });
