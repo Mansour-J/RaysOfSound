@@ -13,21 +13,9 @@ router.get('/maori', function(req, res, next) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-<<<<<<< HEAD
-
-    /*  res.sendStatus(200);
-     res.render('index', { title: 'Express' });*/
-    res.render('home.ejs', { title: 'Express' });
-
-
-    // db.Category.findAll().then(function(categories){
-    //   res.render('index', { title: 'Express', data: categories});
-    // });
-=======
     db.Category.findAll().then(function(categories){
       res.render('home.ejs', { title: 'Express', data: categories});
     });
->>>>>>> 98d83db513fe7ae78cef6f56b4aec4ce370d46e6
 });
 
 
