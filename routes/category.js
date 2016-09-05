@@ -12,8 +12,15 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/:id/view', function(req, res, next) {
-	
-  res.render('category.ejs'/*TODO replace with categoy page*/, { title: 'Express' });
+    var id = req.params.id;
+    sequelize.query("SELECT * FROM Items WHERE item_id='id' " +
+        "INNER JOIN Audio ON Items.item_id=Audio.item_id",
+        { type: sequelize.QueryTypes.SELECT})
+        .then(function (items) {
+            res.render('category.ejs', { title: 'Express', data: items});
+        })
+
+
 
 
 });
