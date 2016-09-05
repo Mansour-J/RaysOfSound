@@ -44,10 +44,10 @@
                                     class="sr-only">Toggle Dropdown</span></button>
 
                         <ul class="dropdown-menu" style="width: 100% !important;">
-                            <li><a href="#">Edit</a></li>
+                            <li><a href='/manage/<%= 3 %>/edit'>Edit</a></li> <!-- TODO replace '3' with item.id -->
 
                             <li role="separator" class="divider"></li>
-                            <li><a href="#">Delete this item</a></li>
+                            <li><a href="/manage/<%= 3 %>/destroy">Delete this item</a></li> <!-- TODO replace '3' with item.id -->
                         </ul>
                     </div>
                     </p>
@@ -60,28 +60,26 @@
 
 
         <!-----------------------------------  ITEMS START  ------------------------------------------------->
+
+<% for (var i = 0; i < data.length; i++) { %>
+                <li><a href="<%= data[i].id %>/view"> <%= data[i].title %> </a> </li>
+            
+
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-top: 30px;">
 
             <div class="thumbnail">
-                <img src="images/Deirdre_Gardiner.jpg" alt="Deirdre_Gardiner Image">
+                <img src="images/data[i].image" alt="Deirdre_Gardiner Image">
                 <div class="caption">
-                    <span class="thumbnailTitle" style="font-size: 20px; display: block;">Te Papa Wira</span>
+                    <span class="thumbnailTitle" style="font-size: 20px; display: block;"><% data[i].title %></span>
 
                     <span class="label label-info"><a href="#"
-                                                      style="color: white;">MAOR.LAN.3699.B/6</a></span>
+                                                      style="color: white;"><% data[i].location %></a></span>
 
                     <p style="margin: 10px 0px 10px 0px;">
-                        Ko ngā kōrero nā Makere Rogers
-                        Ko ngā pikitia nā Bob Kerr,
-                        Ko ngā kōrero nā Makere Rogers
-                        Ko ngā pikitia nā Bob Kerr,
-                        Ko ngā kōrero nā Makere Rogers
-                        Ko ngā pikitia nā Bob Kerr,
-                        Ko ngā kōrero nā Makere Rogers
-                        Ko ngā pikitia nā Bob Kerr
+                        <% data[i].description %>
                     </p>
                     <audio style="width: 100%;" controls="controls" preload="metadata">
-                        <source src="maori/audio/3699_6_TePapaWira.m4a" type="audio/mp4" ;
+                        <source src="<% data[i].audio" type="audio/mp4" ;
                                 codecs="avc1.42E01E, mp4a.40.2"
                         ' />
                         No HTML5 audio playback capabilities.
@@ -109,229 +107,10 @@
                 </div>
             </div>
         </div>
+
+
+        <% } %>
         <!-----------------------------------  ITEMS END  -**------------------------------------------------>
-
-
-
-
-
-        <!-----------------------------------  ITEMS START  ------------------------------------------------->
-        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-top: 30px;">
-
-            <div class="thumbnail">
-                <img src="images/Deirdre_Gardiner.jpg" alt="Deirdre_Gardiner Image">
-                <div class="caption">
-                    <span class="thumbnailTitle" style="font-size: 20px; display: block;">Te Papa Wira</span>
-
-                    <span class="label label-info"><a href="#"
-                                                      style="color: white;">MAOR.LAN.3699.B/6</a></span>
-
-                    <p style="margin: 10px 0px 10px 0px;">
-                        Ko ngā kōrero nā Makere Rogers
-                        Ko ngā pikitia nā Bob Kerr,
-                        Ko ngā kōrero nā Makere Rogers
-                        Ko ngā pikitia nā Bob Kerr,
-                        Ko ngā kōrero nā Makere Rogers
-                        Ko ngā pikitia nā Bob Kerr,
-                        Ko ngā kōrero nā Makere Rogers
-                        Ko ngā pikitia nā Bob Kerr
-                    </p>
-                    <audio style="width: 100%;" controls="controls" preload="metadata">
-                        <source src="maori/audio/3699_6_TePapaWira.m4a" type="audio/mp4" ;
-                                codecs="avc1.42E01E, mp4a.40.2"
-                        ' />
-                        No HTML5 audio playback capabilities.
-                    </audio>
-                    &nbsp;
-                    <br>
-                    <p>
-                    <div class="btn-group" style="width: 100% !important;">
-
-                        <button type="button" class="btn btn-warning" style="width: 88% !important;">Submit
-                        </button>
-                        <button style="width: 10% !important;" type="button"
-                                class="btn btn-warning dropdown-toggle" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false"><span class="caret"></span> <span
-                                    class="sr-only">Toggle Dropdown</span></button>
-
-                        <ul class="dropdown-menu" style="width: 100% !important;">
-                            <li><a href="#">Edit</a></li>
-
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Delete this item</a></li>
-                        </ul>
-                    </div>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!-----------------------------------  ITEMS END  -**------------------------------------------------>
-
-
-
-
-
-        <!-----------------------------------  ITEMS START  ------------------------------------------------->
-        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-top: 30px;">
-
-            <div class="thumbnail">
-                <img src="images/Deirdre_Gardiner.jpg" alt="Deirdre_Gardiner Image">
-                <div class="caption">
-                    <span class="thumbnailTitle" style="font-size: 20px; display: block;">Te Papa Wira</span>
-
-                    <span class="label label-info"><a href="#"
-                                                      style="color: white;">MAOR.LAN.3699.B/6</a></span>
-
-                    <p style="margin: 10px 0px 10px 0px;">
-                        Ko ngā kōrero nā Makere Rogers
-                        Ko ngā pikitia nā Bob Kerr,
-                        Ko ngā kōrero nā Makere Rogers
-                        Ko ngā pikitia nā Bob Kerr,
-                        Ko ngā kōrero nā Makere Rogers
-                        Ko ngā pikitia nā Bob Kerr,
-                        Ko ngā kōrero nā Makere Rogers
-                        Ko ngā pikitia nā Bob Kerr
-                    </p>
-                    <audio style="width: 100%;" controls="controls" preload="metadata">
-                        <source src="maori/audio/3699_6_TePapaWira.m4a" type="audio/mp4" ;
-                                codecs="avc1.42E01E, mp4a.40.2"
-                        ' />
-                        No HTML5 audio playback capabilities.
-                    </audio>
-                    &nbsp;
-                    <br>
-                    <p>
-                    <div class="btn-group" style="width: 100% !important;">
-
-                        <button type="button" class="btn btn-warning" style="width: 88% !important;">Submit
-                        </button>
-                        <button style="width: 10% !important;" type="button"
-                                class="btn btn-warning dropdown-toggle" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false"><span class="caret"></span> <span
-                                    class="sr-only">Toggle Dropdown</span></button>
-
-                        <ul class="dropdown-menu" style="width: 100% !important;">
-                            <li><a href="#">Edit</a></li>
-
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Delete this item</a></li>
-                        </ul>
-                    </div>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!-----------------------------------  ITEMS END  -**------------------------------------------------>
-
-
-
-        <!-----------------------------------  ITEMS START  ------------------------------------------------->
-        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-top: 30px;">
-
-            <div class="thumbnail">
-                <img src="images/Deirdre_Gardiner.jpg" alt="Deirdre_Gardiner Image">
-                <div class="caption">
-                    <span class="thumbnailTitle" style="font-size: 20px; display: block;">Te Papa Wira</span>
-
-                    <span class="label label-info"><a href="#"
-                                                      style="color: white;">MAOR.LAN.3699.B/6</a></span>
-
-                    <p style="margin: 10px 0px 10px 0px;">
-                        Ko ngā kōrero nā Makere Rogers
-                        Ko ngā pikitia nā Bob Kerr,
-                        Ko ngā kōrero nā Makere Rogers
-                        Ko ngā pikitia nā Bob Kerr,
-                        Ko ngā kōrero nā Makere Rogers
-                        Ko ngā pikitia nā Bob Kerr,
-                        Ko ngā kōrero nā Makere Rogers
-                        Ko ngā pikitia nā Bob Kerr
-                    </p>
-                    <audio style="width: 100%;" controls="controls" preload="metadata">
-                        <source src="maori/audio/3699_6_TePapaWira.m4a" type="audio/mp4" ;
-                                codecs="avc1.42E01E, mp4a.40.2"
-                        ' />
-                        No HTML5 audio playback capabilities.
-                    </audio>
-                    &nbsp;
-                    <br>
-                    <p>
-                    <div class="btn-group" style="width: 100% !important;">
-
-                        <button type="button" class="btn btn-warning" style="width: 88% !important;">Submit
-                        </button>
-                        <button style="width: 10% !important;" type="button"
-                                class="btn btn-warning dropdown-toggle" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false"><span class="caret"></span> <span
-                                    class="sr-only">Toggle Dropdown</span></button>
-
-                        <ul class="dropdown-menu" style="width: 100% !important;">
-                            <li><a href="#">Edit</a></li>
-
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Delete this item</a></li>
-                        </ul>
-                    </div>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!-----------------------------------  ITEMS END  -**------------------------------------------------>
-
-
-
-
-        <!-----------------------------------  ITEMS START  ------------------------------------------------->
-        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-top: 30px;">
-
-            <div class="thumbnail">
-                <img src="images/Deirdre_Gardiner.jpg" alt="Deirdre_Gardiner Image">
-                <div class="caption">
-                    <span class="thumbnailTitle" style="font-size: 20px; display: block;">Te Papa Wira</span>
-
-                    <span class="label label-info"><a href="#"
-                                                      style="color: white;">MAOR.LAN.3699.B/6</a></span>
-
-                    <p style="margin: 10px 0px 10px 0px;">
-                        Ko ngā kōrero nā Makere Rogers
-                        Ko ngā pikitia nā Bob Kerr,
-                        Ko ngā kōrero nā Makere Rogers
-                        Ko ngā pikitia nā Bob Kerr,
-                        Ko ngā kōrero nā Makere Rogers
-                        Ko ngā pikitia nā Bob Kerr,
-                        Ko ngā kōrero nā Makere Rogers
-                        Ko ngā pikitia nā Bob Kerr
-                    </p>
-                    <audio style="width: 100%;" controls="controls" preload="metadata">
-                        <source src="maori/audio/3699_6_TePapaWira.m4a" type="audio/mp4" ;
-                                codecs="avc1.42E01E, mp4a.40.2"
-                        ' />
-                        No HTML5 audio playback capabilities.
-                    </audio>
-                    &nbsp;
-                    <br>
-                    <p>
-                    <div class="btn-group" style="width: 100% !important;">
-
-                        <button type="button" class="btn btn-warning" style="width: 88% !important;">Submit
-                        </button>
-                        <button style="width: 10% !important;" type="button"
-                                class="btn btn-warning dropdown-toggle" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false"><span class="caret"></span> <span
-                                    class="sr-only">Toggle Dropdown</span></button>
-
-                        <ul class="dropdown-menu" style="width: 100% !important;">
-                            <li><a href="#">Edit</a></li>
-
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Delete this item</a></li>
-                        </ul>
-                    </div>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!-----------------------------------  ITEMS END  -**------------------------------------------------>
-
 
 
 
@@ -340,7 +119,7 @@
 
 
         <div  class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <nav aria-label="Page navigation"  style="margin-left:340px;">
+            <nav aria-label="Page navigation"  style="text-align: center;">
                 <ul class="pagination">
                     <li>
                         <a href="#" aria-label="Previous">
