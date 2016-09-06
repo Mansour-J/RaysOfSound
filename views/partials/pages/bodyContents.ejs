@@ -6,25 +6,28 @@
     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 middleInnerContainer" style="">
 
         <!-----------------------------------  ITEMS START  ------------------------------------------------->
-
-    <% for (var i = 0; i < data.length; i++) { %>
+    <p>
+        <%items[0].item_name%>
+    </p>
+    <% for (var i = 0; i < items.length; i++) { %>
 
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-top: 30px;">
 
             <div class="thumbnail">
-                <img src="images/data[i].image" alt="Deirdre_Gardiner Image">
+
+                <img src="/public/images/test.jpg" alt=" ">
                 <div class="caption">
-                    <span class="thumbnailTitle" style="font-size: 20px; display: block;"><% data[i].title %></span>
+                    <span class="thumbnailTitle" style="font-size: 20px; display: block;"><% items[i].item_name %></span>
 
                     <span class="label label-info">
-                        <a href="#" style="color: white;"><% data[i].location %></a>
+                        <a href="#" style="color: white;"><% items[i].location %></a>
                     </span>
 
                     <p style="margin: 10px 0px 10px 0px;">
-                        <% data[i].description %>
+                        <% items[i].description %>
                     </p>
                     <audio style="width: 100%;" controls="controls" preload="metadata">
-                        <source src="<% data[i].audio %>" type="audio/mp4" ;
+                        <source src=" " type="audio/mp4" ;
                                 codecs="avc1.42E01E, mp4a.40.2"/>
                         No HTML5 audio playback capabilities.
                     </audio>
