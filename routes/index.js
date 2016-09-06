@@ -3,13 +3,14 @@ var router = express.Router();
 var db = require('../lib/db');
 
 /* GET home page. */
+/*
 router.get('/maori', function(req, res, next) {
  db.Category.findAll().then(function(categories){
     res.send(categories);
    //res.render('index.ejs', { title: 'Express' , data: categories});
  });
 });
-
+*/
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

@@ -1,28 +1,37 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../lib/db');
+var sequelize = require('sequelize');
 
 router.get('/', function(req, res, next) {
-
-    db.Category.findAll().then(function(categories){
-        res.render('category.ejs'/*TODO replace with categoy page*/, { title: 'Express', data: categories});
-    });
-
-
+    console.log("")
 });
 
 router.get('/:id/view', function(req, res, next) {
-    var id = req.params.id;
-    sequelize.query("SELECT * FROM Items WHERE item_id='id' " +
-        "INNER JOIN Audio ON Items.item_id=Audio.item_id",
-        { type: sequelize.QueryTypes.SELECT})
-        .then(function (items) {
-            res.render('category.ejs', { title: 'Express', data: items});
-        })
+
+    /*  SELECT * FROM Items WHERE item_id='id'
+            INNER JOIN Audio ON Items.item_id=Audio.item_id */
+    var audio = db.Audio.findAll();
+
+    var items = db.Item.findAll({
+        where: {
+            category_id: req.params.id
+        }
+    }).then(function(items){
+        res.render('category.ejs', { title: 'Express', items: items, audio: audio});
+    });
 
 
 
+    /*
 
+
+    //console.log("ITEMS: "+items[0]);
+    //console.log("AUDIO: "+audio[0]);
+
+    res.render('category.ejs', { title: 'Express', data: [items, audio] })
+
+*/
 });
 
 router.get('/:id/edit', function(req, res, next) {
