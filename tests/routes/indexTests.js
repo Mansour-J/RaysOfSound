@@ -9,16 +9,23 @@ var router = app.Router()
 
 var Index = require("./../../routes/index.js");
 
+//TODO 
+//WHY WONT THIS FAIL??????? ARGH!!!!
 describe('GET /', function() {
   it('load index page', function() {
 
     request(app)
-        .get('/')
-        .expect(200, "ok")
+        .get('/fred')
+        .expect(404)
+        .expect(function(res){
+          if(true) return 'this should fail'
+        })
         .end(function(err, res){
-          res.should.have.status(200);
-          done();
-          if (err) throw err;
+          if(err)
+            done.fail(err);
+          else
+            done(err);
+          // if (err) throw err;
         });
 
   });
