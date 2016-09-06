@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../lib/db');
+var htmlToText = require('html-to-text');
 
 router.get('/', function(req, res, next) {
     console.log("")
@@ -14,12 +15,14 @@ router.get('/:id/view', function(req, res, next) {
                 category_id: req.params.id
             }
         }).then(function (items){
-            console.log(audio);
-            console.log(items);
-            res.render('category.ejs', { title: 'Express', items: items});
+
+          var htmlToText = require('html-to-text');
+
+          var text = htmlToText.fromString(items, {});
+            res.render('category.ejs', { title: 'Express', items: items, audio: audio});
         });
     });
-    
+
 });
 
 router.get('/:id/edit', function(req, res, next) {
