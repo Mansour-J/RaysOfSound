@@ -4,25 +4,25 @@ var db = require('../lib/db');
 
 /* GET home page. */
 router.get('/maori', function(req, res, next) {
- db.Category.findAll().then(function(categories){
-   res.render('index.ejs', { title: 'Express' , data: categories});
- });
+    db.Category.findAll().then(function(categories){
+        res.render('index.ejs', { title: 'Express' , data: categories});
+    });
 });
 
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
     db.Category.findAll().then(function(categories){
-      res.render('home.ejs', { title: 'Express', data: categories});
+        res.render('home.ejs', { title: 'Express', data: categories});
     });
 });
 
 
 //TET Routes
 router.get('/test', function(req, res, next){
-	db.Category.findAll().then(function(categories){
-    res.send(categories);
-  });
+    db.Category.findAll().then(function(categories){
+        res.send(categories);
+    });
 });
 
 //About Us Routes
@@ -40,23 +40,6 @@ router.get('/contactus', function(req, res, next){
 router.get('/individual', function(req, res, next){
     res.render('IndividualItem.ejs', { title: 'Express' });
 });
-
-
-
-
-
-
-
-
-
-//Individual Item Route
-router.get('/additem', function(req, res, next){
-    db.Category.findAll().then(function(categories){
-        res.render('addItem.ejs', { title: 'Express', data:categories });
-    });
-});
-
-
 
 //404 Routes
 router.get('*', function(req, res, next){

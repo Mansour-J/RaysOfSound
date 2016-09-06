@@ -30,7 +30,7 @@
 
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
 
-                    <form class="well form-horizontal" action=" " method="post" id="contact_form"
+                    <form class="well form-horizontal" action="/addItem/create" method="post" id="add_item_form"
                           style="border: 1px solid #bdbdbd !important;">
 
 
@@ -63,8 +63,8 @@
 
                             <div class="input-group">
                                 <span class="input-group-addon">Content</span>
-                                <textarea class="form-control" name="ItemContext"
-                                          placeholder="Item Context" class="contactTextArea"></textarea>
+                                <textarea class="form-control" name="ItemContent"
+                                          placeholder="Item Content" class="contactTextArea"></textarea>
                             </div>
 
                         </div>
@@ -85,7 +85,7 @@
                                     Browse&hellip; <input type="file" style="display: none;" multiple>
                                 </span>
                                 </label>
-                                <input type="text" class="form-control" readonly>
+                                <input type="text" class="form-control" name="ItemImage">
                             </div>
 
                         </div>
@@ -100,7 +100,7 @@
                                     Browse&hellip; <input type="file" style="display: none;" multiple>
                                 </span>
                                 </label>
-                                <input type="text" class="form-control" readonly>
+                                <input type="text" class="form-control" name="ItemAudio">
                             </div>
 
                         </div>
