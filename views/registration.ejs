@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <% include partials/pages/head.ejs %>
+
+    <style>
+        .form-group{
+            width:100% !important;
+
+        }
+        label{
+            padding-bottom: 3px !important;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Static navbar -->
+<nav class="navbar navbar-default navbar-static-top">
+    <% include partials/pages/topNav.ejs %>
+</nav>
+
+
+<div class="raysContainer">
+
+    <div class="row">
+
+        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+
+            <div id="login-overlay" class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Welcome To Rays of sound Registration Page</h4>
+                    </div>
+
+                    <div class="modal-body">
+
+
+                        <form id="registerForm" method="POST" >
+                            <!---form--->           <div class="form-group">
+                                <!---input width--->    <div class="col-xs-6">
+                                    <label for="InputName">First Name</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="first_name" placeholder="Enter First Name" required>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                                    </div>
+                                    <br>
+                                    <label for="InputPassword">Enter Password</label>
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" name="password" placeholder="Enter Password" required>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                                    </div>
+                                    <!--------------------------------------separator---------------------------------------------------------------> <hr>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-6">
+
+                                    <label for="InputName">Last Name</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="last_name" placeholder="Enter Last Name" required>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                                    </div>
+
+                                    <br>
+                                    <label for="InputPassword">Enter Password</label>
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" name="password" placeholder="Enter Password" required>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                                    </div>
+                                    <!--------------------------------------separator---------------------------------------------------------------> <hr>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <label for="InputEmail">Enter Email</label>
+                                    <div class="input-group">
+                                        <input type="email" class="form-control" name="email" placeholder="Enter Email" required>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                                    </div>
+                                    <!----------------------------break-------------------------------------------------------------> <br>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <label for="InputStreetName">Address</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="street_name" placeholder="Enter Street Name and Number" required>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                                    </div>
+                                    <!----------------------------break-------------------------------------------------------------> <br>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <label for="InputCity">City</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="city" placeholder="Enter City" required>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                                    </div>
+                                    <!----------------------------break-------------------------------------------------------------> <br>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <label for="InputProvince">Province</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="province" placeholder="Enter Province" required>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                                    </div>
+                                    <!----------------------------break-------------------------------------------------------------> <br>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="input-group-addon">
+                                    <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-success pull-right">
+
+                                </div>
+                            </div>
+                        </form>
+                    </div><!---modal-body--->
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+
+        </div>
+    </div>
+
+</div> <!-- /container -->
+
+
+<div class="raysContainer navbar-bottom">
+    <% include partials/pages/footer.ejs %>
+</div> <!-- /container -->
+
+<% include partials/pages/scripts.ejs %>
+
+</body>
+</html>

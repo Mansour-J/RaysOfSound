@@ -1,19 +1,63 @@
 var express = require('express');
+
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var expressSession = require('express-session');
+var passport = require('passport');
+var expressValidator = require('express-validator');
+var localStratgy = require('passport-local').Strategy;
+var multer = require('multer');
+var upload = multer({ dest: './uploads' }); //app.use(multer({dest: './uploads'}));
+var flash = require('connect-flash');
 var db = require('./lib/db');
+var app = express();
+
+
+//Handle Sessions
+app.use(expressSession({
+  secret: 'secret',
+  saveUninitialized : true,
+  resave: true
+}))
+
+//passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+//validator
+// In this example, the formParam value is going to get morphed into form body format useful for printing.
+app.use(expressValidator({
+  errorFormatter: function(param, msg, value) {
+    var namespace = param.split('.')
+        , root    = namespace.shift()
+        , formParam = root;
+
+    while(namespace.length) {
+      formParam += '[' + namespace.shift() + ']';
+    }
+    return {
+      param : formParam,
+      msg   : msg,
+      value : value
+    };
+  }
+}));
+
+/// Express Messages
+app.use(require('connect-flash')());
+app.use(function (req, res, next) {
+  res.locals.messages = require('express-messages')(req, res);
+  next();
+});
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var manage = require('./routes/manage');
 // var item = require('./routes/item');
 var category = require('./routes/category');
-
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

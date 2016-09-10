@@ -55,6 +55,15 @@ router.get('/encryption', function(req, res, next){
 
 
 
+//Registration Route
+router.get('/registration', function(req, res, next){
+    db.Category.findAll().then(function(categories){
+        res.render('registration.ejs', { title: 'Express', data: categories});
+    });
+});
+
+
+
 
 
 
