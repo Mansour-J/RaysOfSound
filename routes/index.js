@@ -39,7 +39,9 @@ router.get('/contactus', function(req, res, next){
 
 //Individual Item Route
 router.get('/individual', function(req, res, next){
-    res.render('IndividualItem.ejs', { title: 'Express' });
+    db.Category.findAll().then(function(categories){
+        res.render('IndividualItem.ejs', { title: 'Express'});
+    });
 });
 
 
