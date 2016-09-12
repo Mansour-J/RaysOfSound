@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../lib/db');
-var htmlToText = require('html-to-text');
 
 router.get('/', function(req, res, next) {
     console.log("")
