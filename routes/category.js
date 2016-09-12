@@ -15,10 +15,6 @@ router.get('/:id/view', function(req, res, next) {
                 category_id: req.params.id
             }
         }).then(function (items){
-
-          var htmlToText = require('html-to-text');
-
-          var text = htmlToText.fromString(items, {});
             res.render('category.ejs', { title: 'Express', items: items, audio: audio});
         });
     });
