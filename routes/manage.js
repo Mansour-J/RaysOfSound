@@ -90,7 +90,7 @@ router.get('/:id/edit/', function (req, res) {
     }
   }).then(function (items){
     db.Category.findAll().then(function(categories){
-      res.render(/*TODO replce*/ 'index.ejs', {
+      res.render('Item.ejs', {
         title: "Uploaded", 
         data: categories
       });

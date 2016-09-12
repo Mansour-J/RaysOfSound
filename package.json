@@ -17,6 +17,7 @@
     "mime-types": "~2.1.11",
     "morgan": "~1.7.0",
     "multer": "~1.1.0",
+    "password-hash": "^1.2.2",
     "pg": "^6.0.3",
     "pg-hstore": "^2.3.2",
     "sequelize": "^3.23.6",
