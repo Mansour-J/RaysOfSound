@@ -12,6 +12,7 @@ var users = require('./routes/users');
 var manage = require('./routes/manage');
 var item = require('./routes/item');
 var category = require('./routes/category');
+var admin = require('./routes/admin');
 
 var app = express();
 
@@ -32,6 +33,7 @@ app.use('/users', users);
 app.use('/manage', manage);
 app.use('/item', item);
 app.use('/category', category);
+app.use('/admin', admin);
 app.use('/', routes);   // MUST COME LAST AS HAS 404
 
 // catch 404 and forward to error handler
