@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+    <meta charset="utf-8">
     <% include partials/pages/head.ejs %>
 
 </head>
@@ -10,17 +10,15 @@
 
 <!-- Static navbar -->
 <nav class="navbar navbar-default navbar-static-top">
-
-    <% include partials/pages/topNav.ejs %>
+    <% //include partials/pages/topNav.ejs %>
 </nav>
 
-
 <div class="raysContainer">
-    <p>BLANK PAGE</p>
+    <% include partials/pages/bodyContents.ejs %>
 </div> <!-- /container -->
 
 
-<div class="raysContainer navbar-fixed-bottom">
+<div class="raysContainer">
     <% include partials/pages/footer.ejs %>
 </div> <!-- /container -->
 

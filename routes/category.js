@@ -1,18 +1,22 @@
 var express = require('express');
 var router = express.Router();
-//var db = require('../lib/db');
+var db = require('../lib/db');
 
 router.get('/', function(req, res, next) {
-
-  res.render('category.ejs'/*TODO replace with categoy page*/, { title: 'Express' });
-
-
+    console.log("")
 });
 
 router.get('/:id/view', function(req, res, next) {
 
-  res.render('category.ejs'/*TODO replace with categoy page*/, { title: 'Express' });
-
+    db.Audio.findAll().then(function (audio){
+      db.Item.findAll({
+            where: {
+                category_id: req.params.id
+            }
+        }).then(function (items){
+            res.render('category.ejs', { title: 'Express', items: items, audio: audio});
+        });
+    });
 
 });
 
