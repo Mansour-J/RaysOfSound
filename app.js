@@ -5,6 +5,11 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var passwordHash = require('password-hash');
+var session = require('express-session');
+
 var db = require('./lib/db');
 
 var routes = require('./routes/index');
@@ -15,9 +20,65 @@ var category = require('./routes/category');
 
 var app = express();
 
+//Passport code for user sessions
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(obj, done) {
+  db.User.findById(obj).then(function(user){
+    done(null, user);
+  }).error(function(err){
+    done(err, null);
+  });
+});
+
+
+passport.use(new LocalStrategy({
+  usernameField: 'email'
+},
+  function(username, password, done){
+    console.log("************************************")
+    db.User.find({ where : {email: username }}).success(function (err, user){
+      console.log(user);
+      if (!user) {
+        return done(null, false, {message: 'Unknown user'}); 
+      }
+      else if(!passwordHash.verify(password, user.password)) { 
+        return done(null,false, {message: 'Incorrect password'}); 
+      }
+      return done(null, user);
+    });
+  }
+));
+
+// app.post('/login', 
+//   passport.authenticate('local', {
+//     failureRedirect: '/',
+//    }),
+//   function(req, res) {
+//     res.redirect('/category/1/view');
+//   });
+
+app.post('/login', function(req, res) {
+    console.log(req);
+    // console.log(req.body.email);
+    // consoel.log(req.body.password);
+    res.redirect('/');
+    //res.redirect('/category/1/view');
+  });
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+var sessionConf = { 
+  secret: 'catty',
+  name: 'token',
+  resave: true, 
+  saveUninitialized: true 
+};
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -26,6 +87,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session(sessionConf));
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 app.use('/users', users);
@@ -33,6 +97,7 @@ app.use('/manage', manage);
 app.use('/item', item);
 app.use('/category', category);
 app.use('/', routes);   // MUST COME LAST AS HAS 404
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -64,6 +129,8 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
+
 
 
 module.exports = app;
