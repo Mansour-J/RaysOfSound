@@ -94,10 +94,6 @@ router.get('/Registration', function(req, res, next){
 });
 
 
-
-
-
-
 var hashedPassword = passwordHash.generate('mansour');
 
 console.log(hashedPassword); // sha1$3I7HRwy7$cbfdac6008f9cab4083784cbd1874f76618d2a97
