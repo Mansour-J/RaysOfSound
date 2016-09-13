@@ -54,14 +54,43 @@ router.get('/encryption', function(req, res, next){
 });
 
 
+/* GET users listing. */
+//Registration Route
+router.post('/Registration', function(req, res, next){
+
+    console.log("==========================================================================================================================================================================================================================================================================================================================================");
+    console.log(req.body.first_name);
+    console.log(req.body.last_name);
+    console.log(req.body.password1);
+    console.log(req.body.password2);
+    console.log(req.body.email);
+    var hashedPassword = passwordHash.generate(req.body.password1);
+
+    db.User.create({
+        username: req.body.first_name + " " + req.body.last_name,
+        role: "normalUser",
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email: req.body.email,
+        password: hashedPassword
+    }).then(function (){
+        //successfull
+        db.User.findAll().then(function (users) {
+            res.send(users);
+        });
+    })
+
+    console.log("==========================================================================================================================================================================================================================================================================================================================================");
+});
+
+
 
 //Registration Route
-router.get('/registration', function(req, res, next){
+router.get('/Registration', function(req, res, next){
     db.Category.findAll().then(function(categories){
         res.render('registration.ejs', { title: 'Express', data: categories});
     });
 });
-
 
 
 
