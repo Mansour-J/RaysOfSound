@@ -6,79 +6,88 @@ var router = express.Router();
 
 //TODO
 //DEPRECATED former file filter
+// var storage = multer.diskStorage({
+//     destination: function(req, file, cb) {
+//       cb(null, './uploads');
+//     },
+//     fileFilter: function(req, file, cb){
+//       console.log(file);
+//       if(file.mimetype == "image/*"){
+//         imageFilter;
+//       }
+//       else if(file.mimetype == "audio/*"){
+//         audioFilter;
+//       }
+//       else{
+//         cb(null, false);
+//       }
+//     },
+//     filename: function(req, file, cb) {
+//       var extension = "";
+//       if(mime.extension(file.mimetype) == "mpeg3"
+//         || mime.extension(file.mimetype) == "mp3" ){
+//         extension = "mp3";
+//       }
+//       else if(mime.extension(file.mimetype) == "mp4"){
+//         extension = "m4a";
+//       }
+//       else if(mime.extension(file.mimetype) == "jpeg"){
+//         extension = "jpg";
+//       }
+//       cb(null, Date.now() + '.' + extension);
+//     }
+// });
+
+
+// var audioStorage = multer.diskStorage({
+//     // console.log("setting up audio storage");
+//     destination: function(req, file, cb) {
+//       cb(null, './files/audio');
+//     },
+//     fileFilter: audioFilter,
+//     filename: function(req, file, cb) {
+//       var extension = "";
+//       if(mime.extension(file.mimetype) == "mpeg3"
+//         || mime.extension(file.mimetype) == "mp3" ){
+//         extension = "mp3";
+//       }
+//       else if(mime.extension(file.mimetype) == "mp4"){
+//         extension = "m4a";
+//       }
+//       cb(null, Date.now() + '.' + extension);
+//     }
+// });
+
+
 var storage = multer.diskStorage({
+  // console.log("setting up image storage");
     destination: function(req, file, cb) {
-      cb(null, './uploads');
+      cb(null, './files/images');
     },
-    fileFilter: function(req, file, cb){
-      console.log(file);
-      if(file.mimetype == "image/*"){
-        imageFilter;
-      }
-      else if(file.mimetype == "audio/*"){
-        audioFilter;
-      }
-      else{
-        cb(null, false);
-      }
-    },
+    // fileFilter: imageFilter,
+    //TODO ITERATE THROUGH OTHER FILES AS WELL: JUST COMPARING AGAINST FILE[0]
     filename: function(req, file, cb) {
       var extension = "";
-      if(mime.extension(file.mimetype) == "mpeg"
+      console.log(mime.extension(file.mimetype));
+      if(mime.extension(file.mimetype) == "jpeg"){
+        extension = "jpg";
+      }
+      else if(mime.extension(file.mimetype) == "mpeg3"
         || mime.extension(file.mimetype) == "mp3" ){
         extension = "mp3";
       }
       else if(mime.extension(file.mimetype) == "mp4"){
         extension = "m4a";
-      }
-      else if(mime.extension(file.mimetype) == "jpeg"){
-        extension = "jpg";
       }
       cb(null, Date.now() + '.' + extension);
     }
 });
 
 //filter out unsupported audio formats
-var audioStorage = multer.diskStorage({
-    // console.log("setting up audio storage");
-    destination: function(req, file, cb) {
-      cb(null, './files/audio');
-    },
-    fileFilter: audioFilter,
-    filename: function(req, file, cb) {
-      var extension = "";
-      if(mime.extension(file.mimetype) == "mpeg"
-        || mime.extension(file.mimetype) == "mp3" ){
-        extension = "mp3";
-      }
-      else if(mime.extension(file.mimetype) == "mp4"){
-        extension = "m4a";
-      }
-      cb(null, Date.now() + '.' + extension);
-    }
-});
-
-//filter out unsupported image formats
-var imageStorage = multer.diskStorage({
-  // console.log("setting up image storage");
-    destination: function(req, file, cb) {
-      cb(null, './files/images');
-    },
-    // fileFilter: imageFilter,
-    filename: function(req, file, cb) {
-      var extension = "";
-      if(mime.extension(file.mimetype) == "jpeg"){
-        extension = "jpg";
-      }
-      cb(null, Date.now() + '.' + extension);
-    }
-});
-
-
 var audioFilter = function (req, file, cb) {
   console.log("audio filtering");
     if (mime.extension(file.mimetype) != "mp3" /*&& mime.extension(file.mimetype) != "jpg" */) {
-        console.log("Incorrect audio format");
+        console.log("Invalid audio format");
         cb(null, false);
     }
     else {
@@ -87,10 +96,11 @@ var audioFilter = function (req, file, cb) {
     }
 };
 
+//filter out unsupported image formats
 var imageFilter = function (req, file, cb) {
   console.log("image filtering");
     if (mime.extension(file.mimetype) != "jpg" && mime.extension(file.mimetype) != "gif") {
-        console.log("Incorrect image format");
+        console.log("Invalid image format");
         cb(null, false);
     }
     else {
@@ -122,7 +132,7 @@ router.get('/createItem/', function (req, res) {
 
 //   res.redirect('/');
 // });
-router.post('/TESTFILE/', multer({storage: imageStorage}).fields([{
+router.post('/addItem/', multer({storage: storage}).fields([{
     name: 'audioFile', maxCount: 10
   }, {
     name: 'imageFile', maxCount: 1
@@ -130,9 +140,7 @@ router.post('/TESTFILE/', multer({storage: imageStorage}).fields([{
     function (req, res) {
       console.log("im here");
       console.log(req);
-      // console.log(req.files);
 
-      // console.log(req.files[0]);
 
   res.redirect('/');
 });
