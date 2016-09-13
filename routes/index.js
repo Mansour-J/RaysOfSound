@@ -6,26 +6,25 @@ var passwordHash = require('password-hash');
 /* GET home page. */
 /*
 router.get('/maori', function(req, res, next) {
- db.Category.findAll().then(function(categories){
-    res.send(categories);
-   //res.render('index.ejs', { title: 'Express' , data: categories});
- });
+    db.Category.findAll().then(function(categories){
+        res.render('index.ejs', { title: 'Express' , data: categories});
+    });
 });
 */
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
     db.Category.findAll().then(function(categories){
-      res.render('home.ejs', { title: 'Express', data: categories});
+        res.render('home.ejs', { title: 'Express', data: categories});
     });
 });
 
 
 //TET Routes
 router.get('/test', function(req, res, next){
-	db.Category.findAll().then(function(categories){
-    res.send(categories);
-  });
+    db.Category.findAll().then(function(categories){
+        res.send(categories);
+    });
 });
 
 //About Us Routes
