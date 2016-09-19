@@ -27,14 +27,11 @@ router.get('/test', function(req, res, next){
     });
 });
 
-//About Us Routes
-router.get('/aboutus', function(req, res, next){
-    res.render('contactus.ejs', { title: 'Express' });
-});
-
 //Contact Us Routes
 router.get('/contactus', function(req, res, next){
-    res.render('contactus.ejs', { title: 'Express' });
+    db.Category.findAll().then(function(categories){
+        res.render('contactus.ejs', { title: 'Express', data: categories});
+    });
 });
 
 
@@ -91,10 +88,6 @@ router.get('/Registration', function(req, res, next){
         res.render('registration.ejs', { title: 'Express', data: categories});
     });
 });
-
-
-
-
 
 
 var hashedPassword = passwordHash.generate('mansour');

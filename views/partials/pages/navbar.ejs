@@ -9,8 +9,6 @@
     <a class="navbar-brand" href="http://localhost:3000/"><i class="fa fa-graduation-cap" aria-hidden="true"  style="padding-right: 5px;"></i>Rays of sound</a>
     <ul class="nav navbar-nav foo">
         <li><a href="http://localhost:3000/">Home</a></li>
-        <li><a href="http://localhost:3000/maori">Maori</a></li>
-        <li><a href="http://localhost:3000/aboutus">About</a></li>
         <li><a href="http://localhost:3000/contactus">Contact</a></li>
     </ul>
 </div>
@@ -20,7 +18,7 @@
     <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
             <% for (var i = 0; i < data.length; i++) { %>
-                <li><a href="<%= data[i].id %>/view"> <%= data[i].title %> </a> </li>
+                <li><a href="/category/<%= data[i].id %>/view"> <%= data[i].title %> </a> </li>
             <% } %>
         </ul>
 
@@ -36,9 +34,9 @@
     <div class="modal-dialog">
         <div class="loginmodal-container">
             <h1>Login to Your Account</h1><br>
-                <form>
-                    <input type="text" name="user" placeholder="Username">
-                    <input type="password" name="pass" placeholder="Password">
+                <form method="post" action="/login">
+                    <input type="text" name="email" placeholder="Email">
+                    <input type="password" name="password" placeholder="Password">
                     <input type="submit" name="login" class="login loginmodal-submit" value="Login">
                 </form>
                     
