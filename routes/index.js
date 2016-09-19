@@ -6,26 +6,25 @@ var passwordHash = require('password-hash');
 /* GET home page. */
 /*
 router.get('/maori', function(req, res, next) {
- db.Category.findAll().then(function(categories){
-    res.send(categories);
-   //res.render('index.ejs', { title: 'Express' , data: categories});
- });
+    db.Category.findAll().then(function(categories){
+        res.render('index.ejs', { title: 'Express' , data: categories});
+    });
 });
 */
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
     db.Category.findAll().then(function(categories){
-      res.render('home.ejs', { title: 'Express', data: categories});
+        res.render('home.ejs', { title: 'Express', data: categories});
     });
 });
 
 
 //TET Routes
 router.get('/test', function(req, res, next){
-	db.Category.findAll().then(function(categories){
-    res.send(categories);
-  });
+    db.Category.findAll().then(function(categories){
+        res.send(categories);
+    });
 });
 
 //About Us Routes
@@ -41,7 +40,9 @@ router.get('/contactus', function(req, res, next){
 
 //Individual Item Route
 router.get('/individual', function(req, res, next){
-    res.render('IndividualItem.ejs', { title: 'Express' });
+    db.Category.findAll().then(function(categories){
+        res.render('IndividualItem.ejs', { title: 'Express'});
+    });
 });
 
 
@@ -53,6 +54,44 @@ router.get('/encryption', function(req, res, next){
     });
 });
 
+
+/* GET users listing. */
+//Registration Route
+router.post('/Registration', function(req, res, next){
+
+    console.log("==========================================================================================================================================================================================================================================================================================================================================");
+    console.log(req.body.first_name);
+    console.log(req.body.last_name);
+    console.log(req.body.password1);
+    console.log(req.body.password2);
+    console.log(req.body.email);
+    var hashedPassword = passwordHash.generate(req.body.password1);
+
+    db.User.create({
+        username: req.body.first_name + " " + req.body.last_name,
+        role: "normalUser",
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email: req.body.email,
+        password: hashedPassword
+    }).then(function (){
+        //successfull
+        db.User.findAll().then(function (users) {
+            res.send(users);
+        });
+    })
+
+    console.log("==========================================================================================================================================================================================================================================================================================================================================");
+});
+
+
+
+//Registration Route
+router.get('/Registration', function(req, res, next){
+    db.Category.findAll().then(function(categories){
+        res.render('registration.ejs', { title: 'Express', data: categories});
+    });
+});
 
 
 var hashedPassword = passwordHash.generate('mansour');

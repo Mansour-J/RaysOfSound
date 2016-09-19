@@ -1,4 +1,5 @@
 var express = require('express');
+
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -10,15 +11,49 @@ var LocalStrategy = require('passport-local').Strategy;
 var passwordHash = require('password-hash');
 var session = require('express-session');
 
+var expressValidator = require('express-validator');
+var multer = require('multer');
+var upload = multer({ dest: './uploads' }); //app.use(multer({dest: './uploads'}));
+var flash = require('connect-flash');
 var db = require('./lib/db');
+var app = express();
+
+//passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+//validator
+// In this example, the formParam value is going to get morphed into form body format useful for printing.
+app.use(expressValidator({
+  errorFormatter: function(param, msg, value) {
+    var namespace = param.split('.')
+        , root    = namespace.shift()
+        , formParam = root;
+
+    while(namespace.length) {
+      formParam += '[' + namespace.shift() + ']';
+    }
+    return {
+      param : formParam,
+      msg   : msg,
+      value : value
+    };
+  }
+}));
+
+/// Express Messages
+app.use(require('connect-flash')());
+app.use(function (req, res, next) {
+  res.locals.messages = require('express-messages')(req, res);
+  next();
+});
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var manage = require('./routes/manage');
 var item = require('./routes/item');
 var category = require('./routes/category');
-
-var app = express();
+var additem = require('./routes/additem');
 
 //Passport code for user sessions
 
@@ -96,6 +131,7 @@ app.use('/users', users);
 app.use('/manage', manage);
 app.use('/item', item);
 app.use('/category', category);
+app.use('/additem', additem);
 app.use('/', routes);   // MUST COME LAST AS HAS 404
 
 
