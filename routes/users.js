@@ -1,9 +1,18 @@
 var express = require('express');
 var router = express.Router();
+var db = require('../lib/db');
+
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+
+
+
+
+/*
+db.User.findAll().then(function(categories){
+
+  res.render('index.ejs', { title: 'Express' , data: categories});
 });
+*/
 
 module.exports = router;
