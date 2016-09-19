@@ -62,7 +62,7 @@ var router = express.Router();
 var storage = multer.diskStorage({
   // console.log("setting up image storage");
     destination: function(req, file, cb) {
-      cb(null, './files/images');
+      cb(null, './files');
     },
     // fileFilter: fileFilter,
     //TODO ITERATE THROUGH OTHER FILES AS WELL: JUST COMPARING AGAINST FILE[0]
