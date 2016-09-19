@@ -73,9 +73,9 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new LocalStrategy({
   usernameField: 'email'
 },
-  function(username, password, done){
+  function(email, password, done){
     console.log("************************************")
-    db.User.find({ where : {email: username }}).success(function (err, user){
+    db.User.find({ where : {email: email }}).success(function (err, user){
       console.log(user);
       if (!user) {
         return done(null, false, {message: 'Unknown user'}); 
@@ -88,21 +88,7 @@ passport.use(new LocalStrategy({
   }
 ));
 
-// app.post('/login', 
-//   passport.authenticate('local', {
-//     failureRedirect: '/',
-//    }),
-//   function(req, res) {
-//     res.redirect('/category/1/view');
-//   });
 
-app.post('/login', function(req, res) {
-    console.log(req);
-    // console.log(req.body.email);
-    // consoel.log(req.body.password);
-    res.redirect('/');
-    //res.redirect('/category/1/view');
-  });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -135,6 +121,15 @@ app.use('/additem', additem);
 app.use('/', routes);   // MUST COME LAST AS HAS 404
 
 
+app.post('/login', 
+  passport.authenticate('local', {
+    failureRedirect: '/',
+   }),
+  function(req, res) {
+    res.redirect('/category/1/view');
+  });
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -149,7 +144,7 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
+    res.render('404', {
       message: err.message,
       error: err
     });
