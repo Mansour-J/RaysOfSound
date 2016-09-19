@@ -30,7 +30,7 @@
 
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
 
-                    <form class="well form-horizontal" action="/addItem/create" method="post" id="add_item_form"
+                    <form class="well form-horizontal" enctype = "multipart/form-data" action="/manage/addItem" method="post" id="contact_form"
                           style="border: 1px solid #bdbdbd !important;">
 
 
@@ -97,7 +97,7 @@
                             <div class="input-group">
                                 <label class="input-group-btn">
                                 <span class="btn btn-primary">
-                                    Browse&hellip; <input type="file" style="display: none;" multiple>
+                                    Browse&hellip; <input type="file" name="imageFile" style="display: none;" multiple>
                                 </span>
                                 </label>
                                 <input type="text" class="form-control" name="ItemImage">
@@ -112,7 +112,7 @@
                             <div class="input-group">
                                 <label class="input-group-btn">
                                 <span class="btn btn-primary">
-                                    Browse&hellip; <input type="file" style="display: none;" multiple>
+                                    Browse&hellip; <input type="file" name="audioFile" style="display: none;" multiple>
                                 </span>
                                 </label>
                                 <input type="text" class="form-control" name="ItemAudio">
