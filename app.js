@@ -18,6 +18,14 @@ var flash = require('connect-flash');
 var db = require('./lib/db');
 var app = express();
 
+
+//Handle Sessions
+app.use(expressSession({
+    secret: 'secret',
+    saveUninitialized : true,
+    resave: true
+}))
+
 //passport
 app.use(passport.initialize());
 app.use(passport.session());
@@ -25,27 +33,27 @@ app.use(passport.session());
 //validator
 // In this example, the formParam value is going to get morphed into form body format useful for printing.
 app.use(expressValidator({
-  errorFormatter: function(param, msg, value) {
-    var namespace = param.split('.')
-        , root    = namespace.shift()
-        , formParam = root;
+    errorFormatter: function(param, msg, value) {
+        var namespace = param.split('.')
+            , root    = namespace.shift()
+            , formParam = root;
 
-    while(namespace.length) {
-      formParam += '[' + namespace.shift() + ']';
+        while(namespace.length) {
+            formParam += '[' + namespace.shift() + ']';
+        }
+        return {
+            param : formParam,
+            msg   : msg,
+            value : value
+        };
     }
-    return {
-      param : formParam,
-      msg   : msg,
-      value : value
-    };
-  }
 }));
 
 /// Express Messages
 app.use(require('connect-flash')());
 app.use(function (req, res, next) {
-  res.locals.messages = require('express-messages')(req, res);
-  next();
+    res.locals.messages = require('express-messages')(req, res);
+    next();
 });
 
 var routes = require('./routes/index');
@@ -53,52 +61,49 @@ var users = require('./routes/users');
 var manage = require('./routes/manage');
 var item = require('./routes/item');
 var category = require('./routes/category');
+var admin = require('./routes/admin');
 var additem = require('./routes/additem');
 
 //Passport code for user sessions
 
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+    done(null, user.id);
 });
 
 passport.deserializeUser(function(obj, done) {
-  db.User.findById(obj).then(function(user){
-    done(null, user);
-  }).error(function(err){
-    done(err, null);
-  });
+    db.User.findById(obj).then(function(user){
+        done(null, user);
+    }).error(function(err){
+        done(err, null);
+    });
 });
 
 
 passport.use(new LocalStrategy({
-  usernameField: 'email'
-},
-  function(email, password, done){
-    console.log("************************************")
-    db.User.find({ where : {email: email }}).success(function (err, user){
-      console.log(user);
-      if (!user) {
-        return done(null, false, {message: 'Unknown user'}); 
-      }
-      else if(!passwordHash.verify(password, user.password)) { 
-        return done(null,false, {message: 'Incorrect password'}); 
-      }
-      return done(null, user);
-    });
-  }
-));
-
-
-
-// view engine setup
+        usernameField: 'email'
+    },
+    function(email, password, done){
+        console.log("************************************")
+        db.User.find({ where : {email: email }}).success(function (err, user){
+            console.log(user);
+            if (!user) {
+                return done(null, false, {message: 'Unknown user'});
+            }
+            else if(!passwordHash.verify(password, user.password)) {
+                return done(null,false, {message: 'Incorrect password'});
+            }
+            return done(null, user);
+        });
+    }
+));// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-var sessionConf = { 
-  secret: 'catty',
-  name: 'token',
-  resave: true, 
-  saveUninitialized: true 
+var sessionConf = {
+    secret: 'catty',
+    name: 'token',
+    resave: true,
+    saveUninitialized: true
 };
 
 // uncomment after placing your favicon in /public
@@ -121,20 +126,20 @@ app.use('/additem', additem);
 app.use('/', routes);   // MUST COME LAST AS HAS 404
 
 
-app.post('/login', 
-  passport.authenticate('local', {
-    failureRedirect: '/',
-   }),
-  function(req, res) {
-    res.redirect('/category/1/view');
-  });
+app.post('/login',
+    passport.authenticate('local', {
+        failureRedirect: '/',
+    }),
+    function(req, res) {
+        res.redirect('/category/1/view');
+    });
 
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 // error handlers
@@ -142,23 +147,23 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('404', {
-      message: err.message,
-      error: err
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('404', {
+            message: err.message,
+            error: err
+        });
     });
-  });
 }
 
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
+    res.status(err.status || 500);
+    res.render('error', {
+        message: err.message,
+        error: {}
+    });
 });
 
 

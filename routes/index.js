@@ -43,7 +43,6 @@ router.get('/individual', function(req, res, next){
 });
 
 
-
 //Encryption Route
 router.get('/encryption', function(req, res, next){
     db.Category.findAll().then(function(categories){
