@@ -19,13 +19,6 @@ var db = require('./lib/db');
 var app = express();
 
 
-//Handle Sessions
-app.use(expressSession({
-    secret: 'secret',
-    saveUninitialized : true,
-    resave: true
-}))
-
 //passport
 app.use(passport.initialize());
 app.use(passport.session());
