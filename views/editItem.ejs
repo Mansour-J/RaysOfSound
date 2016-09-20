@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <% include partials/pages/head.ejs %>
+
+    <!-- Custom Style-->
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <link href="../stylesheets/validation.css" type="text/css" rel="stylesheet">
+    <link href="../stylesheets/slideshow.css" type="text/css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- Static navbar -->
+<nav class="navbar navbar-default navbar-static-top">
+
+    <% include partials/pages/navbar.ejs %>
+</nav>
+
+<div class="raysContainer">
+
+    <div class="row">
+
+        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 middleInnerContainer">
+            <form class="well form-horizontal" action="edit" method="post" id="add_item_form"
+                  style="border: 1px solid #bdbdbd !important;">
+                <div class="row" style="padding: 50px;">
+                    <div class="media">
+
+
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 " style="margin: 0px !important; padding: 0px !important;">
+
+
+                            <div class="media-left">
+                                <a href="#" class="thumbnail" style="width: 300px;">
+                                    <img alt="64x64" class="media-object"
+                                         data-src="holder.js/64x64"
+                                         style="width: 300px; height: 300px;"
+                                         src=<%= '../../' + items[0].image %>
+                                         data-holder-rendered="true"> </a>
+
+                            </div>
+                            <!-- Adding Image -->
+                            <div class="form-group">
+                                <h4 style="padding-bottom: 5px;">Add Image</h4>
+                                <div class="input-group">
+                                    <label class="input-group-btn">
+                                <span class="btn btn-primary">
+                                    Browse&hellip; <input type="file" style="display: none;" multiple>
+                                </span>
+                                    </label>
+                                    <input type="text" class="form-control" name="ItemImage" value=<%= items[0].image %>>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 " style="margin: 0px !important; padding: 0px !important;">
+
+                            <div class="media-body">
+
+                                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+
+                                    <!-- Text input-->
+
+                                    <div class="form-group">
+
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Title</span>
+                                            <input name="ItemTitle" placeholder="Item Title" class="form-control" type="text" value='<%= items[0].item_name %>'>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Text input-->
+
+                                    <div class="form-group">
+
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Information</span>
+                                            <input name="ItemInfo" placeholder="Item Information" class="form-control" type="text" value='<%= items[0].location %>'>
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- Text area -->
+
+                                    <div class="form-group">
+
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Content</span>
+                                            <textarea class="form-control" name="ItemContent"
+                                                      placeholder="Item Content" class="contactTextArea"><%= items[0].description %></textarea>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Category area -->
+                                    <div class="form-group">
+
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Category</span>
+                                            <select class="form-control" name="ItemCategory">
+                                                <% for (var i = 0; i < data.length; i++) { %>
+                                                <% if(items[0].category_id == i+1){ %>
+                                                <option selected="selected"><a><%= data[i].title %></a></option>
+                                                <% } else {%>
+                                                <option><a><%= data[i].title %></a></option>
+                                                <% } %>
+                                                <% } %>
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- Success message -->
+                                    <div class="alert alert-success" role="alert" id="success_message">Success <i
+                                                class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get
+                                        back to you
+                                        shortly.
+                                    </div>
+
+
+                                    <!-- Adding Sound -->
+                                    <div class="form-group">
+                                        <h4 style="padding-bottom: 5px;">Add Sound</h4>
+                                        <div class="input-group">
+                                            <label class="input-group-btn">
+                                <span class="btn btn-primary">
+                                    Browse&hellip; <input type="file" style="display: none;" multiple>
+                                </span>
+                                            </label>
+                                            <input type="text" class="form-control" name="ItemAudio">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <audio style="width: 100%; margin-top: 20px;" controls="controls" preload="metadata">
+                                    <source src="maori/audio/3699_6_TePapaWira.m4a" type="audio/mp4" ;
+                                            codecs="avc1.42E01E, mp4a.40.2"/>
+                                    No HTML5 audio playback capabilities.
+                                </audio>
+
+                                <!-- Button -->
+                                <div class="form-group">
+                                    <label class="control-label"></label>
+                                    <div class="col-md-4">
+                                        <button type="submit" class="   btn btn-warning">Send <span></span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" >
+
+        </div>
+    </div>
+
+</div> <!-- /container -->
+
+<!-- <div class="raysContainer navbar-fixed-bottom">
+    <% include partials/pages/footer.ejs %>
+</div>  -->
+<div class="raysContainer">
+    <% include partials/pages/footer.ejs %>
+</div>
+<!-- /container -->
+
+
+<% include partials/pages/scripts.ejs %>
+
+</body>
+</html>
