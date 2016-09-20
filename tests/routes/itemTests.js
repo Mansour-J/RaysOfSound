@@ -1,13 +1,13 @@
-var chai = require("chai");
-var assert = chai.assert;
-var expect = chai.expect;
-var should = chai.should();
+// var chai = require("chai");
+// var assert = chai.assert;
+// var expect = chai.expect;
+// var should = chai.should();
 
-var request = require('supertest');
-var app = require('express');
-var router = app.Router()
+// var request = require('supertest');
+// var app = require('express');
+// var router = app.Router()
 
-var Item = require("./../../routes/item.js");
+// var Item = require("./../../routes/item.js");
 
 
 //TODO test for specific item pages
