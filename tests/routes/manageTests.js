@@ -1,23 +1,24 @@
-// var chai = require("chai");
-// var assert = chai.assert;
-// var expect = chai.expect;
-// var should = chai.should();
+var chai = require("chai");
+var assert = chai.assert;
+var expect = chai.expect;
+var should = chai.should();
 
-// var request = require('supertest');
-// var app = require('express');
-// var router = app.Router()
+var request = require('supertest');
+var express = require('express');
+// var app = express();
+var app = require('./../../app.js');
+// var router = app.Router();
 
-// var Manage = require("./../../routes/manage.js");
+describe('GET additem page', function() {
+  it('load add item page', function(done) {
+    this.timeout('10000');
+    request(app)
+        .get('/additem')
+        .expect(200)
+        .end(function(err, res){   
+           if (err) done(err);
+           else done();
+        });
 
-// describe('GET /manage', function() {
-//   it('load manage page', function() {
-
-//     request(app)
-//         .get('/manage')
-//         .expect(200, "ok")
-//         .end(function(err, res){
-//            if (err) throw err;
-//         });
-
-//   });
-// });
+  });
+});

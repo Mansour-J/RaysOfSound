@@ -9,9 +9,6 @@ var express = require('express');
 var app = require('./../../app.js');
 // var router = app.Router();
 
-var Index = require("./../../routes/index.js");
-request(app).get('/');
-
 describe('GET /', function() {
   it('load index page', function(done) {
     this.timeout('10000');
