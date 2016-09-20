@@ -15,7 +15,6 @@ router.get('/:id/view', function(req, res, next) {
             }
         }).then(function (items){
             db.Category.findAll().then(function(categories){
-              console.log(items);
               if (items.length != 0){
                 res.render('category.ejs', { title: 'Express', items: items, audio: audio, data: categories});
               }

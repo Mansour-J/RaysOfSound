@@ -73,12 +73,17 @@ passport.deserializeUser(function(obj, done) {
 
 
 passport.use(new LocalStrategy({
-        usernameField: 'email'
+        usernameField: 'username'
     },
-    function(email, password, done){
-        console.log("************************************")
-        db.User.find({ where : {email: email }}).success(function (err, user){
-            console.log(user);
+    function(username, password, done){
+        console.log("************************************");
+        db.User.find({
+          where: {
+            username: username
+          }
+        }).then(function (user, err){
+            console.log("ERROR " + err);
+            console.log("USER " + user);
             if (!user) {
                 return done(null, false, {message: 'Unknown user'});
             }
@@ -88,7 +93,8 @@ passport.use(new LocalStrategy({
             return done(null, user);
         });
     }
-));// view engine setup
+));
+// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -124,6 +130,8 @@ app.post('/login',
         failureRedirect: '/',
     }),
     function(req, res) {
+        console.log('something went right');
+        console.log(req.user);
         res.redirect('/category/1/view');
     });
 
