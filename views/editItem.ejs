@@ -142,7 +142,7 @@
                                         <% for (var i = 0; i < audios.length; i++) { %>
                                         <p><%= audios[i].audio_location %></p>
                                         <audio style="width: 100%; margin-top: 20px;" controls="controls" preload="metadata">
-                                            <source src="maori/audio/3699_6_TePapaWira.m4a" type="audio/mp4" ;
+                                            <source src=<%= audios[i].audio_location %> type="audio/mp4" ;
                                                     codecs="avc1.42E01E, mp4a.40.2"/>
                                             No HTML5 audio playback capabilities.
                                         </audio>
