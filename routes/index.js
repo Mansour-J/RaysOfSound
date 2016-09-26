@@ -27,22 +27,20 @@ router.get('/test', function(req, res, next){
     });
 });
 
-//About Us Routes
-router.get('/aboutus', function(req, res, next){
-    res.render('contactus.ejs', { title: 'Express' });
-});
-
 //Contact Us Routes
 router.get('/contactus', function(req, res, next){
-    res.render('contactus.ejs', { title: 'Express' });
+    db.Category.findAll().then(function(categories){
+        res.render('contactus.ejs', { title: 'Express', data: categories});
+    });
 });
 
 
 //Individual Item Route
 router.get('/individual', function(req, res, next){
-    res.render('IndividualItem.ejs', { title: 'Express' });
+    db.Category.findAll().then(function(categories){
+        res.render('IndividualItem.ejs', { title: 'Express'});
+    });
 });
-
 
 
 //Encryption Route
@@ -53,9 +51,43 @@ router.get('/encryption', function(req, res, next){
 });
 
 
+/* GET users listing. */
+//Registration Route
+router.post('/Registration', function(req, res, next){
+
+    console.log("==========================================================================================================================================================================================================================================================================================================================================");
+    console.log(req.body.first_name);
+    console.log(req.body.last_name);
+    console.log(req.body.password1);
+    console.log(req.body.password2);
+    console.log(req.body.email);
+    var hashedPassword = passwordHash.generate(req.body.password1);
+
+    db.User.create({
+        username: req.body.first_name + " " + req.body.last_name,
+        role: "normalUser",
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email: req.body.email,
+        password: hashedPassword
+    }).then(function (){
+        //successfull
+        db.User.findAll().then(function (users) {
+            res.send(users);
+        });
+    })
+
+    console.log("==========================================================================================================================================================================================================================================================================================================================================");
+});
 
 
 
+//Registration Route
+router.get('/Registration', function(req, res, next){
+    db.Category.findAll().then(function(categories){
+        res.render('registration.ejs', { title: 'Express', data: categories});
+    });
+});
 
 
 var hashedPassword = passwordHash.generate('mansour');
@@ -81,10 +113,10 @@ router.get('/additem', function(req, res, next){
 
 
 //404 Routes
-router.get('*', function(req, res, next){
-    res.statusCode = 404;
-    // res.send('None shall pass');
-    res.render('404.ejs', { title: 'Express' });
-});
+// router.get('*', function(req, res, next){
+//     res.statusCode = 404;
+//     // res.send('None shall pass');
+//     res.render('404.ejs', { title: 'Express' });
+// });
 
 module.exports = router;

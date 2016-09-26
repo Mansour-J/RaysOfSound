@@ -4,70 +4,50 @@ var expect = chai.expect;
 var should = chai.should();
 
 var request = require('supertest');
-var app = require('express');
-var router = app.Router()
+var express = require('express');
+// var app = express();
+var app = require('./../../app.js');
+// var router = app.Router();
 
-var Index = require("./../../routes/index.js");
-
-//TODO 
-//WHY WONT THIS FAIL??????? ARGH!!!!
 describe('GET /', function() {
-  it('load index page', function() {
-
+  it('load index page', function(done) {
+    this.timeout('10000');
     request(app)
-        .get('/fred')
-        .expect(404)
-        .expect(function(res){
-          if(true) return 'this should fail'
-        })
-        .end(function(err, res){
-          if(err)
-            done.fail(err);
-          else
-            done(err);
-          // if (err) throw err;
+        .get('/')
+        .expect(200)
+        .end(function(err, res){   
+           if (err) done(err);
+           else done();
         });
 
   });
 });
 
 describe('GET /contactus', function() {
-  it('load index page', function() {
-
+  it('load contact us page', function(done) {
+    this.timeout('10000');
     request(app)
         .get('/contactus')
-        .expect(200, "ok")
-        .end(function(err, res){
-           if (err) throw err;
-        });
-
-  });
-});
-
-describe('GET /maori', function() {
-  it('load index page', function() {
-
-    request(app)
-        .get('/maori')
-        .expect(200, "ok")
-        .end(function(err, res){
-           if (err) throw err;
+        .expect(200)
+        .end(function(err, res){   
+           if (err) done(err);
+           else done();
         });
 
   });
 });
 
 describe('GET /404', function() {
-  it('load index page', function() {
-
+  it('load 404 page', function(done) {
+    this.timeout('10000');
     request(app)
         .get('/GypsyMcFunkPants')
         .expect(404)
-        .end(function(err, res){
-           res.should.have.status(404);      
-           if (err) throw err;
-           done();
+        .end(function(err, res){   
+           if (err) done(err);
+           else done();
         });
 
   });
 });
+
