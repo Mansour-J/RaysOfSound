@@ -8,9 +8,9 @@
         <!-----------------------------------  ITEMS START  ------------------------------------------------->
 
     <% for (var i = 0; i < items.length; i++) { %>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" style="padding-top: 30px;">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" style="padding-top: 30px;height: 690px !important;" >
 
-            <div class="thumbnail">
+            <div class="thumbnail" style="height: 100%;">
 
                 <img src="/images/test.jpg" alt=" ">
                 <div class="caption">
@@ -20,8 +20,14 @@
                         <a href="#" style="color: white;"><%= items[i].location %></a>
                     </span>
 
-                    <p style="margin: 10px 0px 10px 0px;">
-                        <%= items[i].description %>
+                    <p style="margin: 10px 0px 10px 0px; height: 80px; overflow: hidden; text-overflow: ellipsis;  width: 100%;">
+                        <% if (items[i].description.length > 150) { %>
+
+                            <%= items[i].description.slice(0, 210) %> <a href="#">Read More</a>
+                        <% }else{ %>
+                            <%= items[i].description %>
+                        <% } %>
+
                     </p>
                     <audio style="width: 100%;" controls="controls" preload="metadata">
                         <source src=" " type="audio/mp4" ;
