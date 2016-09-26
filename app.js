@@ -76,14 +76,11 @@ passport.use(new LocalStrategy({
         usernameField: 'username'
     },
     function(username, password, done){
-        console.log("************************************");
         db.User.find({
           where: {
             username: username
           }
         }).then(function (user, err){
-            console.log("ERROR " + err);
-            console.log("USER " + user);
             if (!user) {
                 return done(null, false, {message: 'Unknown user'});
             }
