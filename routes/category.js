@@ -16,7 +16,7 @@ router.get('/:id/view', function(req, res, next) {
         }).then(function (items){
             db.Category.findAll().then(function(categories){
               if (items.length != 0){
-                res.render('category.ejs', { title: 'Express', items: items, audio: audio, data: categories});
+                res.render('category.ejs', { title: 'Express', items: items, audio: audio, data: categories, user:req.user});
               }
               else {
                 res.redirect('/error');

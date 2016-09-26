@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../lib/db');
+var helper = require('../lib/helper');
 
 //Individual Item Route
-router.get('/', function(req, res, next){
+router.get('/',helper.authedOrLogin, function(req, res, next){
     db.Category.findAll().then(function(categories){
         res.render('addItem.ejs', { title: 'Express', data:categories });
     });
