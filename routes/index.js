@@ -6,15 +6,6 @@ var nodemailer = require('nodemailer');
 
 
 /* GET home page. */
-/*
-router.get('/maori', function(req, res, next) {
-    db.Category.findAll().then(function(categories){
-        res.render('index.ejs', { title: 'Express' , data: categories});
-    });
-});
-*/
-
-/* GET home page. */
 router.get('/', function(req, res, next) {
     db.Category.findAll().then(function(categories){
         res.render('home.ejs', { title: 'Express', data: categories});
@@ -97,17 +88,10 @@ router.get('/encryption', function(req, res, next){
 /* GET users listing. */
 //Registration Route
 router.post('/Registration', function(req, res, next){
-
-    console.log("==========================================================================================================================================================================================================================================================================================================================================");
-    console.log(req.body.first_name);
-    console.log(req.body.last_name);
-    console.log(req.body.password1);
-    console.log(req.body.password2);
-    console.log(req.body.email);
     var hashedPassword = passwordHash.generate(req.body.password1);
 
     db.User.create({
-        username: req.body.first_name + " " + req.body.last_name,
+        username: req.body.username,
         role: "normalUser",
         first_name: req.body.first_name,
         last_name: req.body.last_name,
@@ -116,35 +100,19 @@ router.post('/Registration', function(req, res, next){
     }).then(function (){
         //successfull
         db.User.findAll().then(function (users) {
-            res.send(users);
+            res.render('index.ejs', { title: 'Rays of Sound'});
         });
     })
-
-    console.log("==========================================================================================================================================================================================================================================================================================================================================");
 });
 
 
 
 //Registration Route
-router.get('/Registration', function(req, res, next){
+router.get('/registration', function(req, res, next){
     db.Category.findAll().then(function(categories){
         res.render('registration.ejs', { title: 'Express', data: categories});
     });
 });
-
-
-var hashedPassword = passwordHash.generate('mansour');
-
-console.log(hashedPassword); // sha1$3I7HRwy7$cbfdac6008f9cab4083784cbd1874f76618d2a97
-
-/*
-
-
-*/
-console.log(passwordHash.verify('mansour', 'sha1$120660af$1$d76a9218180d5508e0dd3fff9f6c88ab9d0f3e9a'));
-console.log(passwordHash.verify('mansour', 'sha1$ec91d7f9$1$30d8cdae74d7691ca2aa3fe6de149ef3a3514a9b'));
-console.log(passwordHash.verify('mansour', 'sha1$9912b9e7$1$c571a8b3c89089776f4ad194ed7a5356d567a153'));
-
 
 //Individual Item Route
 router.get('/additem', function(req, res, next){
@@ -156,10 +124,10 @@ router.get('/additem', function(req, res, next){
 
 
 //404 Routes
-// router.get('*', function(req, res, next){
-//     res.statusCode = 404;
-//     // res.send('None shall pass');
-//     res.render('404.ejs', { title: 'Express' });
-// });
+router.get('*', function(req, res, next){
+    res.statusCode = 404;
+    // res.send('None shall pass');
+    res.render('404.ejs', { title: 'Express' });
+});
 
 module.exports = router;

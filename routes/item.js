@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../lib/db');
+var helper = require('../lib/helper');
 
 router.get('/:id', function(req, res, next) {
-  var loggedIn;
   db.Item.findAll({
     where: {
       id: req.params.id
@@ -20,7 +20,7 @@ router.get('/:id', function(req, res, next) {
   });
 });
 
-router.get('/:id/edit', function(req, res, next) {
+router.get('/:id/edit', helper.authedOrLogin, function(req, res, next) {
   var loggedIn;
   db.Item.findAll({where: {id: req.params.id}
   }).then(function (items) {
@@ -38,7 +38,7 @@ router.get('/:id/edit', function(req, res, next) {
   });
 });
 
-router.post('/:id/edit', function(req, res, next) {
+router.post('/:id/edit', helper.isAuthenicated, function(req, res, next) {
   var loggedIn;
   db.Category.findOne({where: {title: req.body.ItemCategory}
   }).then(function(category) {
