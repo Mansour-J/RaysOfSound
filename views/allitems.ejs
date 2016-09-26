@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+    <meta charset="utf-8">
     <% include partials/pages/head.ejs %>
-
+    <link href="../stylesheets/itemList.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
 
 <!-- Static navbar -->
 <nav class="navbar navbar-default navbar-static-top">
-    <% include partials/pages/navbar.ejs data %>
+    <% include partials/pages/topNav.ejs %>
 </nav>
 
-
 <div class="raysContainer">
-    <% include partials/pages/contactUs.ejs %>
+    <% include partials/pages/itemList.ejs %>
 </div> <!-- /container -->
 
 
-<div class="raysContainer navbar-fixed-bottom">
+<div class="raysContainer">
     <% include partials/pages/footer.ejs %>
 </div> <!-- /container -->
 
 <% include partials/pages/scripts.ejs %>
+
 
 </body>
 </html>

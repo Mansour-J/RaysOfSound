@@ -5,31 +5,93 @@ var db = require('../lib/db');
 var router = express.Router();
 
 //TODO
-//skeleton storage of uploaded files
+//DEPRECATED former file filter
+// var storage = multer.diskStorage({
+//     destination: function(req, file, cb) {
+//       cb(null, './uploads');
+//     },
+//     fileFilter: function(req, file, cb){
+//       console.log(file);
+//       if(file.mimetype == "image/*"){
+//         imageFilter;
+//       }
+//       else if(file.mimetype == "audio/*"){
+//         audioFilter;
+//       }
+//       else{
+//         cb(null, false);
+//       }
+//     },
+//     filename: function(req, file, cb) {
+//       var extension = "";
+//       if(mime.extension(file.mimetype) == "mpeg3"
+//         || mime.extension(file.mimetype) == "mp3" ){
+//         extension = "mp3";
+//       }
+//       else if(mime.extension(file.mimetype) == "mp4"){
+//         extension = "m4a";
+//       }
+//       else if(mime.extension(file.mimetype) == "jpeg"){
+//         extension = "jpg";
+//       }
+//       cb(null, Date.now() + '.' + extension);
+//     }
+// });
+
+
+// var audioStorage = multer.diskStorage({
+//     // console.log("setting up audio storage");
+//     destination: function(req, file, cb) {
+//       cb(null, './files/audio');
+//     },
+//     fileFilter: audioFilter,
+//     filename: function(req, file, cb) {
+//       var extension = "";
+//       if(mime.extension(file.mimetype) == "mpeg3"
+//         || mime.extension(file.mimetype) == "mp3" ){
+//         extension = "mp3";
+//       }
+//       else if(mime.extension(file.mimetype) == "mp4"){
+//         extension = "m4a";
+//       }
+//       cb(null, Date.now() + '.' + extension);
+//     }
+// });
+
+
 var storage = multer.diskStorage({
+  // console.log("setting up image storage");
     destination: function(req, file, cb) {
-      cb(null, './uploads')
+      cb(null, './files');
     },
+    // fileFilter: fileFilter,
+    //TODO ITERATE THROUGH OTHER FILES AS WELL: JUST COMPARING AGAINST FILE[0]
     filename: function(req, file, cb) {
-      var extesion = "";
-      if(mime.extension(file.mimetype) == "mpeg"
-        || mime.extesion(file.mimetype) == "mp3" ){
-        extension = "mp3";
-      }
-      else if(mime.extension(file.mimetype) == "mp4"){
-        extension = "m4a";
-      }
-      else if(mime.extension(file.mimetype) == "jpeg"){
+      console.log(file.mimetype);
+      var extension = "";
+      // console.log(mime.extension(file.mimetype));
+      if(mime.extension(file.mimetype) == "jpeg"){
         extension = "jpg";
       }
-      cb(null, Date.now() + '.' + extension);
+      if(file.mimetype == "image/png"){
+        extension = "png";
+      }
+      else if(file.mimetype == "audio/mpeg3"
+        || file.mimetype == "audio/mp3"){
+        extension = "mp3";
+      }
+      else if(file.mimetype == "audio/x-m4a"){
+        extension = "m4a";
+      }
+      cb(null, Date.now() + '.' + extension); //TODO preserve file name maybe
     }
 });
 
-
+//filter out unsupported audio formats
 var audioFilter = function (req, file, cb) {
+  console.log("audio filtering");
     if (mime.extension(file.mimetype) != "mp3" /*&& mime.extension(file.mimetype) != "jpg" */) {
-        console.log("Incorrect file format");
+        console.log("Invalid audio format");
         cb(null, false);
     }
     else {
@@ -38,15 +100,48 @@ var audioFilter = function (req, file, cb) {
     }
 };
 
+//filter out unsupported image formats
 var imageFilter = function (req, file, cb) {
-    if (mime.extension(file.mimetype) != "jpg" && mime.extension(file.mimetype) != "gif") {
-        console.log("Incorrect file format");
+  console.log("image filtering");
+    if (mime.extension(file.mimetype) != "jpg" && mime.extension(file.mimetype) != "png") {
+        console.log("Invalid image format");
         cb(null, false);
     }
     else {
         // To accept the file pass `true`, like so:
         cb(null, true)
     }
+};
+
+//filter out unsupported files
+var fileFilter = function(req, file, cb){
+  var extension = "";
+  // console.log(mime.extension(file.mimetype));
+  if(mime.extension(file.mimetype) == "jpeg"){
+    extension = "jpg";
+  }
+  if(file.mimetype == "image/png"){
+    extension = "png";
+  }
+  else if(file.mimetype == "audio/mpeg3"
+    || file.mimetype == "audio/mp3"){
+    extension = "mp3";
+  }
+  else if(file.mimetype == "audio/x-m4a"){
+    extension = "m4a";
+  }
+  if(extension != "jpg"
+    && extension != "png"
+    && extension != "mp3"
+    && extension != "m4a"
+    ){
+    console.log("file thrown out");
+    return cb(new Error('Unsupported Format'))
+  }
+  else{
+    console.log("file kept");
+    cb(null, true);
+  }
 };
 
 // router.get('/:id/', function (req, res) {
@@ -60,6 +155,28 @@ router.get('/createItem/', function (req, res) {
   res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded", data: categories});
 })
 });
+
+//TEST CODE>>>REMOVE
+// router.post('/TESTFILE/', multer({storage: audioStorage}).array('audio', 10), 
+//     multer({storage: imageStorage}).array('image', 5), function (req, res) {
+//       console.log("im here");
+//       console.log(req);
+//       // console.log(req.files);
+
+//       // console.log(req.files[0]);
+
+//   res.redirect('/');
+// });
+router.post('/addItem/', multer({storage: storage, fileFilter: fileFilter}).fields([{
+    name: 'audioFile', maxCount: 10
+  }, {
+    name: 'imageFile', maxCount: 1
+  }]),
+    function (req, res) {
+
+  res.redirect('/');
+});
+
 
 
 

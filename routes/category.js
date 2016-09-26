@@ -14,7 +14,14 @@ router.get('/:id/view', function(req, res, next) {
                 category_id: req.params.id
             }
         }).then(function (items){
-            res.render('category.ejs', { title: 'Express', items: items, audio: audio});
+            db.Category.findAll().then(function(categories){
+              if (items.length != 0){
+                res.render('category.ejs', { title: 'Express', items: items, audio: audio, data: categories});
+              }
+              else {
+                res.redirect('/error');
+              }
+            });
         });
     });
 

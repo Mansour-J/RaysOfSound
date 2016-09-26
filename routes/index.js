@@ -27,14 +27,11 @@ router.get('/test', function(req, res, next){
     });
 });
 
-//About Us Routes
-router.get('/aboutus', function(req, res, next){
-    res.render('contactus.ejs', { title: 'Express' });
-});
-
 //Contact Us Routes
 router.get('/contactus', function(req, res, next){
-    res.render('contactus.ejs', { title: 'Express' });
+    db.Category.findAll().then(function(categories){
+        res.render('contactus.ejs', { title: 'Express', data: categories});
+    });
 });
 
 
@@ -44,7 +41,6 @@ router.get('/individual', function(req, res, next){
         res.render('IndividualItem.ejs', { title: 'Express'});
     });
 });
-
 
 
 //Encryption Route
@@ -117,10 +113,10 @@ router.get('/additem', function(req, res, next){
 
 
 //404 Routes
-router.get('*', function(req, res, next){
-    res.statusCode = 404;
-    // res.send('None shall pass');
-    res.render('404.ejs', { title: 'Express' });
-});
+// router.get('*', function(req, res, next){
+//     res.statusCode = 404;
+//     // res.send('None shall pass');
+//     res.render('404.ejs', { title: 'Express' });
+// });
 
 module.exports = router;
