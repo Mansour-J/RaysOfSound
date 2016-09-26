@@ -37,22 +37,24 @@
                     &nbsp;
                     <br>
                     <p>
-                    <div class="btn-group" style="width: 100% !important;">
+                    <%if (user){ %>
+                        <div class="btn-group" style="width: 100% !important;">
 
-                        <button type="button" class="btn btn-warning" style="width: 88% !important;">Submit
-                        </button>
-                        <button style="width: 10% !important;" type="button"
-                                class="btn btn-warning dropdown-toggle" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false"><span class="caret"></span> <span
-                                    class="sr-only">Toggle Dropdown</span></button>
+                            <button type="button" class="btn btn-warning" style="width: 88% !important;">Submit
+                            </button>
+                            <button style="width: 10% !important;" type="button"
+                                    class="btn btn-warning dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false"><span class="caret"></span> <span
+                                        class="sr-only">Toggle Dropdown</span></button>
 
-                        <ul class="dropdown-menu" style="width: 100% !important;">
-                            <li><a href="#">Edit</a></li>
+                            <ul class="dropdown-menu" style="width: 100% !important;">
+                                <li><a href="#">Edit</a></li>
 
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Delete this item</a></li>
-                        </ul>
-                    </div>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Delete this item</a></li>
+                            </ul>
+                        </div>
+                    <% } %>
                     </p>
                 </div>
             </div>
