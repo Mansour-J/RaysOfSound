@@ -14,7 +14,6 @@
     "debug": "~2.2.0",
     "ejs": "^2.5.1",
     "express": "~4.13.4",
-<<<<<<< HEAD
     "express-messages": "*",
     "express-session": "^1.14.1",
     "express-validator": "*",
@@ -25,15 +24,6 @@
     "passport": "*",
     "passport-http": "*",
     "passport-local": "*",
-=======
-    "express-session": "^1.14.1",
-    "jade": "~1.11.0",
-    "mime-types": "~2.1.11",
-    "morgan": "~1.7.0",
-    "multer": "~1.1.0",
-    "passport": "^0.3.2",
-    "passport-local": "^1.0.0",
->>>>>>> 5c599744d5f08d42219bb5b6a79710575dbc9434
     "password-hash": "^1.2.2",
     "pg": "^6.0.3",
     "pg-hstore": "^2.3.2",
