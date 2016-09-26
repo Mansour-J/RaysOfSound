@@ -3,7 +3,10 @@ var router = express.Router();
 var db = require('../lib/db');
 
 router.get('/', function(req, res, next) {
-    console.log("")
+    console.log("index");
+    db.Category.findAll().then(function(categories){
+        res.render('allCategories.ejs', {data: categories, user:req.user});
+    });
 });
 
 router.get('/:id/view', function(req, res, next) {
