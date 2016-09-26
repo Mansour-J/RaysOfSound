@@ -1,4 +1,4 @@
-var ava = require('ava');
+import test from 'ava';
 
 test(function name(t) {
     t.pass();
