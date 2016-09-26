@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var db = require('../lib/db');
 var passwordHash = require('password-hash');
+var nodemailer = require('nodemailer');
+
 
 /* GET home page. */
 /*
@@ -33,6 +35,47 @@ router.get('/contactus', function(req, res, next){
         res.render('contactus.ejs', { title: 'Express', data: categories});
     });
 });
+
+
+//Contact Us Routes
+router.post('/contactus/send', function(req, res, next){
+    db.Category.findAll().then(function(categories){
+        res.render('contactus.ejs', { title: 'Express', data: categories});
+        console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        console.log("TEST");
+        console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+
+        var transporter = nodemailer.createTransport({
+            service: 'Gmail',
+            auth: {
+                user: 'swen302raysofsound@gmail.com',
+                pass: 'raysofsound'
+            }
+        });
+
+        var mailOptions = {
+            from: 'Mansour Javaher <swen302raysofsound@gmail.com>',
+            to: 'javaher.mansour@gmail.com',
+            subject: 'Contact US',
+            text: 'You have a submission with the following details... Name: '+req.body.first_name+'Email: '+req.body.email+ 'Message: '+req.body.comment,
+            html: '<p>You have a submission with the following details...</p><ul><li>Name: '+req.body.first_name+'</li><li>Email: '+req.body.email+'</li><li>Message: '+req.body.comment+'</li></ul>'
+        };
+
+        transporter.sendMail(mailOptions, function(error, info){
+            if(error){
+                console.log(error);
+                res.redirect('/');
+            } else {
+                console.log('Message Sent: '+info.response);
+                res.redirect('/');
+            }
+        });
+
+
+    });
+});
+
+
 
 
 //Individual Item Route
