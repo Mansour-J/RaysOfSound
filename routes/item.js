@@ -13,7 +13,8 @@ router.get('/:id', function(req, res, next) {
       res.render('IndividualItem.ejs', {
         title: "Uploaded", 
         data: categories,
-        items: items
+        items: items,
+        user: req.user
       });
     });
   });
