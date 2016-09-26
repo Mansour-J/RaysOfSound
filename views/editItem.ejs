@@ -138,23 +138,30 @@
 
                                     </div>
 
-                                </div>
+                                    <div>
+                                        <% for (var i = 0; i < audios.length; i++) { %>
+                                        <p><%= audios[i].audio_location %></p>
+                                        <audio style="width: 100%; margin-top: 20px;" controls="controls" preload="metadata">
+                                            <source src="maori/audio/3699_6_TePapaWira.m4a" type="audio/mp4" ;
+                                                    codecs="avc1.42E01E, mp4a.40.2"/>
+                                            No HTML5 audio playback capabilities.
+                                        </audio>
+                                        <%}%>
+                                    </div>
 
-                                <audio style="width: 100%; margin-top: 20px;" controls="controls" preload="metadata">
-                                    <source src="maori/audio/3699_6_TePapaWira.m4a" type="audio/mp4" ;
-                                            codecs="avc1.42E01E, mp4a.40.2"/>
-                                    No HTML5 audio playback capabilities.
-                                </audio>
 
-                                <!-- Button -->
-                                <div class="form-group">
-                                    <label class="control-label"></label>
-                                    <div class="col-md-4">
-                                        <button type="submit" class="   btn btn-warning">Send <span></span></button>
+                                    <!-- Button -->
+                                    <div class="form-group">
+                                        <label class="control-label"></label>
+                                        <div class="col-md-4">
+                                            <button type="submit" class="   btn btn-warning">Send <span></span></button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div>
                     </div>
                 </div>
             </form>

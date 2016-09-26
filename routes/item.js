@@ -22,16 +22,17 @@ router.get('/:id', function(req, res, next) {
 
 router.get('/:id/edit', function(req, res, next) {
   var loggedIn;
-  db.Item.findAll({
-    where: {
-      id: req.params.id
-    }
-  }).then(function (items){
-    db.Category.findAll().then(function(categories){
-      res.render('editItem.ejs', {
-        title: "Uploaded",
-        data: categories,
-        items: items
+  db.Item.findAll({where: {id: req.params.id}
+  }).then(function (items) {
+    db.Audio.findAll({where: {item_id: req.params.id}
+    }).then(function (audios) {
+      db.Category.findAll().then(function (categories) {
+        res.render('editItem.ejs', {
+          title: "Uploaded",
+          data: categories,
+          items: items,
+          audios: audios
+        });
       });
     });
   });
@@ -53,22 +54,28 @@ router.post('/:id/edit', function(req, res, next) {
               {
                 where: {id: item.id}
               })
-              .then(function () {
-                db.Item.findAll({
-                  where: {
-                    id: req.params.id
-                  }
-                }).then(function (items) {
-                  db.Category.findAll().then(function (categories) {
-                    res.render('editItem.ejs', {
-                      title: "Uploaded",
-                      data: categories,
-                      items: items
-                    });
-                  });
-                });
-              })
-        });
+        })
+        .then(function(){
+          db.Audio.create({
+            item_id: req.params.id,
+            audio_location: req.body.ItemAudio
+          })
+        })
+        .then(function () {
+          db.Item.findAll({
+            where: {
+              id: req.params.id
+            }
+          }).then(function (items) {
+            db.Category.findAll().then(function (categories) {
+              res.render('editItem.ejs', {
+                title: "Uploaded",
+                data: categories,
+                items: items
+              });
+            });
+          });
+        })
   });
 });
 
