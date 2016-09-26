@@ -257,3 +257,10 @@ form#contact_form {
 .ItemBrief{
 }
 
+
+.loginmodal-container {
+    background-color: white;
+    padding: 50px;
+    border: 1px solid black;
+    border-radius: 3px;
+}
