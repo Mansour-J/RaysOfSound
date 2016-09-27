@@ -190,13 +190,22 @@ router.post('/addItem/', multer({storage: storage, fileFilter: fileFilter}).fiel
         }).then(function (item) {
             console.log(req.files);
             console.log(req.files.audioFile[0].filename);
-            db.Audio.create({
+            req.files.audioFile.forEach(function (it, index, array){
+                db.Audio.create({
                 item_id: item.id,
                 duration: "3:00",
                 artist: "tempArtist",
-                audio_location: req.files.audioFile[0].filename
+                audio_location: it.filename
                 // audio_location: req.body.ItemAudio
             });
+            });
+            // db.Audio.create({
+            //     item_id: item.id,
+            //     duration: "3:00",
+            //     artist: "tempArtist",
+            //     audio_location: req.files.audioFile[0].filename
+            //     // audio_location: req.body.ItemAudio
+            // });
         })
     });
     res.redirect("../item/" + item.id + "/edit");

@@ -4,17 +4,18 @@ var db = require('../lib/db');
 var helper = require('../lib/helper');
 
 router.get('/:id', function(req, res, next) {
-  db.Item.findAll({
-    where: {
-      id: req.params.id
-    }
-  }).then(function (items){
-    db.Category.findAll().then(function(categories){
-      res.render('IndividualItem.ejs', {
-        title: "Uploaded",
-        data: categories,
-        items: items,
-        user: req.user
+  db.Item.findAll({where: {id: req.params.id}
+  }).then(function (items) {
+    db.Audio.findAll({where: {item_id: req.params.id}
+    }).then(function (audios) {
+      db.Category.findAll().then(function(categories){
+        res.render('IndividualItem.ejs', {
+          title: "Uploaded",
+          data: categories,
+          items: items,
+          audios: audios,
+          user: req.user
+        });
       });
     });
   });
