@@ -4,6 +4,11 @@ var mime = require('mime-types');
 var db = require('../lib/db');
 var router = express.Router();
 
+
+var images = [];
+var audio = [];
+
+
 //TODO
 //DEPRECATED former file filter
 // var storage = multer.diskStorage({
@@ -62,10 +67,8 @@ var router = express.Router();
 var storage = multer.diskStorage({
   // console.log("setting up image storage");
     destination: function(req, file, cb) {
-      cb(null, './files');
+      cb(null, './public/files');
     },
-    // fileFilter: fileFilter,
-    //TODO ITERATE THROUGH OTHER FILES AS WELL: JUST COMPARING AGAINST FILE[0]
     filename: function(req, file, cb) {
       console.log(file.mimetype);
       var extension = "";
@@ -73,7 +76,7 @@ var storage = multer.diskStorage({
       if(mime.extension(file.mimetype) == "jpeg"){
         extension = "jpg";
       }
-      if(file.mimetype == "image/png"){
+      else if(file.mimetype == "image/png"){
         extension = "png";
       }
       else if(file.mimetype == "audio/mpeg3"
@@ -173,8 +176,31 @@ router.post('/addItem/', multer({storage: storage, fileFilter: fileFilter}).fiel
     name: 'imageFile', maxCount: 1
   }]),
     function (req, res) {
-
-  res.redirect('/');
+      console.log(req);
+      db.Category.findOne({where: {title: req.body.ItemCategory}
+    }).then(function(category)
+    {
+        db.Item.create({
+            category_id: category.id,
+            item_name: req.body.ItemTitle,
+            location: req.body.ItemInfo,
+            description: req.body.ItemContent,
+            image: req.files.imageFile[0].filename,
+            user_id: 1
+        }).then(function (item) {
+            console.log(req.files);
+            console.log(req.files.audioFile[0].filename);
+            db.Audio.create({
+                item_id: item.id,
+                duration: "3:00",
+                artist: "tempArtist",
+                audio_location: req.files.audioFile[0].filename
+                // audio_location: req.body.ItemAudio
+            });
+        })
+    });
+    res.redirect("../item/" + item.id + "/edit");
+  // res.redirect('/');
 });
 
 
