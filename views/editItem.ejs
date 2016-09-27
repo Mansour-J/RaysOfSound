@@ -139,7 +139,7 @@
                                     </div>
 
                                     <div>
-                                        <% for (var i = 0; i < audios.length; i++) { %>
+                                        <% for (var i = 1; i < audios.length; i++) { %>
                                         <p><%= audios[i].audio_location %></p>
                                         <audio style="width: 100%; margin-top: 20px;" controls="controls" preload="metadata">
                                             <source src=<%= '/files/' + audios[i].audio_location %> type="audio/mp4" ;
