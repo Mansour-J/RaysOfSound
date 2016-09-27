@@ -3,21 +3,22 @@
 
         <!-----------------------------------  ITEMS START  ------------------------------------------------->
         <div>
-            <table>
-                <tr style="border-bottom: solid 1px #000000; margin-bottom: 5px;">
-                    <td><h2>Item Name</h2></td>
-                    <td><h2>Category</h2></td>
-                    <td><h2>Metadata</h2></td>
+            <table class="sortable">
+                <tr>
+                    <th>Item Name</td>
+                    <th>Category</td>
+                    <th>Metadata</td>
                 </tr>
                 <% for (var i=0; i<items.length; i++) { %>
                 <tr>
-                    <td><%= items[i].item_name %></td>
-                    <td><%= items[i].category_id %></td>
+                    <td class="name"><%= items[i].item_name %></td>
+                    <td class="category"><%= items[i].category_id %></td>
                     <td><%= items[i].metadata %></td>
                 </tr>
                 <% } %>
             </table>
         </div>
+        <script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
         <!-----------------------------------  ITEMS END ----------------------------------------------------->
 
 

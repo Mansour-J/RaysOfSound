@@ -301,6 +301,13 @@ form#contact_form {
 .itemList table {
     margin: 20px 10px 20px 10px;
 }
-.itemList td {
+.itemList th {
+    background-color:#eee;
+    color:#666666;
+    font-weight: bold;
+    cursor: default;
     padding-right: 10px;
+}
+.itemList td {
+
 }
