@@ -37,7 +37,7 @@
                                     <img alt="64x64" class="media-object"
                                          data-src="holder.js/64x64"
                                          style="width: 300px; height: 300px;"
-                                         src=<%= '../../' + items[0].image %>
+                                         src=<%= '/files/' + items[0].image %>
                                          data-holder-rendered="true"> </a>
 
                             </div>
@@ -142,7 +142,7 @@
                                         <% for (var i = 0; i < audios.length; i++) { %>
                                         <p><%= audios[i].audio_location %></p>
                                         <audio style="width: 100%; margin-top: 20px;" controls="controls" preload="metadata">
-                                            <source src=<%= audios[i].audio_location %> type="audio/mp4" ;
+                                            <source src=<%= '/files/' + audios[i].audio_location %> type="audio/mp4" ;
                                                     codecs="avc1.42E01E, mp4a.40.2"/>
                                             No HTML5 audio playback capabilities.
                                         </audio>
