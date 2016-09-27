@@ -6,15 +6,26 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var expressSession = require('express-session');
+var passport = require('passport');
+var expressValidator = require('express-validator');
+var localStratgy = require('passport-local').Strategy;
+var multer = require('multer');
+var upload = multer({ dest: './uploads' }); //app.use(multer({dest: './uploads'}));
+var flash = require('connect-flash');
+
+
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var passwordHash = require('password-hash');
 var session = require('express-session');
 
+
 var expressValidator = require('express-validator');
 var multer = require('multer');
 var upload = multer({ dest: './uploads' }); //app.use(multer({dest: './uploads'}));
 var flash = require('connect-flash');
+
 var db = require('./lib/db');
 var app = express();
 
@@ -76,14 +87,11 @@ passport.use(new LocalStrategy({
         usernameField: 'username'
     },
     function(username, password, done){
-        console.log("************************************");
         db.User.find({
           where: {
             username: username
           }
         }).then(function (user, err){
-            console.log("ERROR " + err);
-            console.log("USER " + user);
             if (!user) {
                 return done(null, false, {message: 'Unknown user'});
             }

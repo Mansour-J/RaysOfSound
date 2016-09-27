@@ -43,22 +43,24 @@
                                      src="../images/Deirdre_Gardiner.jpg"
                                      data-holder-rendered="true"> </a>
 
-                            <div class="btn-group" style="width: 100% !important; margin-bottom: 100px;" >
+                            <% if (user) { %>
+                                <div class="btn-group" style="width: 100% !important; margin-bottom: 100px;" >
 
-                                <button type="button" class="btn btn-warning" style="width: 250px !important;">Submit
-                                </button>
-                                <button style="" type="button"
-                                        class="btn btn-warning dropdown-toggle" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false"><span class="caret"></span> <span
-                                            class="sr-only">Toggle Dropdown</span></button>
+                                    <button type="button" class="btn btn-warning" style="width: 250px !important;">Submit
+                                    </button>
+                                    <button style="" type="button"
+                                            class="btn btn-warning dropdown-toggle" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false"><span class="caret"></span> <span
+                                                class="sr-only">Toggle Dropdown</span></button>
 
-                                <ul class="dropdown-menu" style="width: 100% !important;">
-                                    <li><a href='<%=items[0].id%>/edit'>Edit</a></li>
+                                    <ul class="dropdown-menu" style="width: 100% !important;">
+                                        <li><a href='<%=items[0].id%>/edit'>Edit</a></li>
 
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href='<%=items[0].id%>/edit'>Delete this item</a></li>
-                                </ul>
-                            </div>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href='<%=items[0].id%>/edit'>Delete this item</a></li>
+                                    </ul>
+                                </div>
+                            <% } %>
                         </div>
 
                     </div>
