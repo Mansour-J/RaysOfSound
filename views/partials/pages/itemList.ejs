@@ -1,17 +1,19 @@
 <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1 middleInnerContainer" style="">
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1 middleInnerContainer itemList">
 
         <!-----------------------------------  ITEMS START  ------------------------------------------------->
         <div>
             <table>
-                <tr>
-                    <td><h1>Item Name</h1></td>
-                    <td><h1>Category</h1></td>
+                <tr style="border-bottom: solid 1px #000000; margin-bottom: 5px;">
+                    <td><h2>Item Name</h2></td>
+                    <td><h2>Category</h2></td>
+                    <td><h2>Metadata</h2></td>
                 </tr>
                 <% for (var i=0; i<items.length; i++) { %>
                 <tr>
-                    <td><%=items[i].item_name%></td>
-                    <td><%=cat[items[i].category_id-1].title%></td>
+                    <td><%= items[i].item_name %></td>
+                    <td><%= items[i].category_id %></td>
+                    <td><%= items[i].metadata %></td>
                 </tr>
                 <% } %>
             </table>

@@ -293,3 +293,14 @@ form#contact_form {
 .adminTile:hover{
     background-color: #def8df;
 }
+
+/********* item list ***********/
+.itemList {
+    line-height: 20px;
+}
+.itemList table {
+    margin: 20px 10px 20px 10px;
+}
+.itemList td {
+    padding-right: 10px;
+}
