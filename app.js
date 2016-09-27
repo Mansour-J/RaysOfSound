@@ -129,7 +129,7 @@ app.use('/users', users);
 app.use('/manage', manage);
 app.use('/item', item);
 app.use('/category', category);
-app.use('/additem', additem);
+app.use('/admin', admin);
 app.use('/', routes);   // MUST COME LAST AS HAS 404
 
 
