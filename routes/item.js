@@ -79,4 +79,13 @@ router.post('/:id/edit', helper.isAuthenicated, function(req, res, next) {
   });
 });
 
+router.delete('/:id', helper.isAuthenicated, function(req, res, next){
+  console.log(req.params.id);
+  db.Item.destroy({
+    where: {id : req.params.id}
+  }).then(function (){
+    res.json({ success: true, data: req.item });
+  });
+});
+
 module.exports = router;

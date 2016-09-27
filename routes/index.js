@@ -87,7 +87,7 @@ router.get('/encryption', function(req, res, next){
 
 /* GET users listing. */
 //Registration Route
-router.post('/Registration', function(req, res, next){
+router.post('/registration', function(req, res, next){
     var hashedPassword = passwordHash.generate(req.body.password1);
 
     db.User.create({
