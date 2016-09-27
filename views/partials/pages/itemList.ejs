@@ -7,12 +7,14 @@
                 <tr>
                     <th>Item Name</td>
                     <th>Category</td>
+                    <th>cat2</th>
                     <th>Metadata</td>
                 </tr>
                 <% for (var i=0; i<items.length; i++) { %>
                 <tr>
-                    <td class="name"><%= items[i].item_name %></td>
-                    <td class="category"><%= items[i].category_id %></td>
+                    <td><%= items[i].item_name %></td>
+                    <td><%= items[i].category_id %></td>
+                    <td><%= data[items[i].category_id-1].title %></td>
                     <td><%= items[i].metadata %></td>
                 </tr>
                 <% } %>
