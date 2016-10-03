@@ -54,10 +54,11 @@
                                                 class="sr-only">Toggle Dropdown</span></button>
 
                                     <ul class="dropdown-menu" style="width: 100% !important;">
-                                        <li><a href='<%=items[0].id%>/edit'>Edit</a></li>
+                                        <li><a href='/item/<%=items[0].id%>/edit'>Edit</a></li>
 
                                         <li role="separator" class="divider"></li>
-                                        <li><a href='<%=items[0].id%>/edit'>Delete this item</a></li>
+                                        <!-- <li><a href='<%=items[0].id%>/delete'>Delete this item</a></li> -->
+                                        <button id="remove<%=items[0].id%>" OnClick="removeItem(<%=items[0].id%>)"> Delete Item </button>
                                     </ul>
                                 </div>
                             <% } %>
@@ -138,6 +139,15 @@
 
 
 <% include partials/pages/scripts.ejs %>
+<script >
+    function removeItem(id){
+    $.ajax({
+        method: 'DELETE',
+        url: "/item/"+id,
+    });
+    window.location="/";
+}
+</script>
 
 </body>
 </html>

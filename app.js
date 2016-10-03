@@ -138,9 +138,8 @@ app.post('/login',
         failureRedirect: '/',
     }),
     function(req, res) {
-        console.log('something went right');
-        console.log(req.user);
-        res.redirect('/category/1/view');
+        //res.redirect('/category/1/view');
+        res.redirect(req.get('referer'));
     });
 
 
