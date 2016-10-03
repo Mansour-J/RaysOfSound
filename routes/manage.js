@@ -175,7 +175,7 @@ router.post('/addItem/', multer({storage: storage, fileFilter: fileFilter}).fiel
     }, {
         name: 'imageFile', maxCount: 1
     }]),
-    function (req, res) {
+
         console.log(req);
         db.Category.findOne({where: {title: req.body.ItemCategory}
         }).then(function(category)
@@ -201,6 +201,7 @@ router.post('/addItem/', multer({storage: storage, fileFilter: fileFilter}).fiel
         });
         res.redirect("../item/" + item.id + "/edit");
         // res.redirect('/');
+
     });
 
 
