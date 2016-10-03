@@ -176,6 +176,7 @@ router.post('/addItem/', multer({storage: storage, fileFilter: fileFilter}).fiel
     name: 'imageFile', maxCount: 1
   }]),
     function (req, res) {
+      var itemID;
       console.log(req);
       db.Category.findOne({where: {title: req.body.ItemCategory}
     }).then(function(category)
@@ -188,6 +189,7 @@ router.post('/addItem/', multer({storage: storage, fileFilter: fileFilter}).fiel
             image: req.files.imageFile[0].filename,
             user_id: 1
         }).then(function (item) {
+            itemID = item.id;
             console.log(req.files);
             console.log(req.files.audioFile[0].filename);
             req.files.audioFile.forEach(function (it, index, array){
@@ -206,9 +208,11 @@ router.post('/addItem/', multer({storage: storage, fileFilter: fileFilter}).fiel
             //     audio_location: req.files.audioFile[0].filename
             //     // audio_location: req.body.ItemAudio
             // });
-        })
+        }).then(function(results){
+          res.redirect("../item/" + itemID);
+        });
     });
-    res.redirect("../item/" + item.id + "/edit");
+    // res.redirect("../item/" + item.id + "/edit");
   // res.redirect('/');
 });
 
