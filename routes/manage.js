@@ -171,12 +171,14 @@ router.get('/createItem/', function (req, res) {
 //   res.redirect('/');
 // });
 router.post('/addItem/', multer({storage: storage, fileFilter: fileFilter}).fields([{
-        name: 'audioFile', maxCount: 10
-    }, {
-        name: 'imageFile', maxCount: 1
-    }]),
-
-    db.Category.findOne({where: {title: req.body.ItemCategory}
+    name: 'audioFile', maxCount: 10
+  }, {
+    name: 'imageFile', maxCount: 1
+  }]),
+    function (req, res) {
+      var itemID;
+      console.log(req);
+      db.Category.findOne({where: {title: req.body.ItemCategory}
     }).then(function(category)
     {
         db.Item.create({
@@ -187,15 +189,23 @@ router.post('/addItem/', multer({storage: storage, fileFilter: fileFilter}).fiel
             image: req.files.imageFile[0].filename,
             user_id: 1
         }).then(function (item) {
-            db.Audio.create({
+            itemID = item.id;
+            console.log(req.files);
+            console.log(req.files.audioFile[0].filename);
+            req.files.audioFile.forEach(function (it, index, array){
+                db.Audio.create({
                 item_id: item.id,
                 duration: "3:00",
                 artist: "tempArtist",
-                audio_location: req.files.audioFile[0].filename
-            })
-        })
-        res.redirect("../item/" + item.id + "/edit");
-    }));
+                audio_location: it.filename
+            });
+            });
+            
+        }).then(function(results){
+          res.redirect("../item/" + itemID);
+        });
+    });
+});
 
 
 
