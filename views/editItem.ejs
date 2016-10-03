@@ -130,7 +130,7 @@
                                         <div class="input-group">
                                             <label class="input-group-btn">
                                 <span class="btn btn-primary">
-                                    Browse&hellip; <input type="file" style="display: none;" multiple>
+                                    Browse&hellip; <input type="file" style="display: none;" multiple onchange="addAudio(<%= items[0].id %>)">
                                 </span>
                                             </label>
                                             <input type="text" class="form-control" name="ItemAudio">
@@ -138,32 +138,33 @@
 
                                     </div>
 
-                                    <div>
-                                        <% for (var i = 0; i < audios.length; i++) { %>
-                                        <p><%= audios[i].audio_location %></p>
-                                        <audio style="width: 100%; margin-top: 20px;" controls="controls" preload="metadata">
-                                            <source src=<%= '/files/' + audios[i].audio_location %> type="audio/mp4" ;
-                                                    codecs="avc1.42E01E, mp4a.40.2"/>
-                                            No HTML5 audio playback capabilities.
-                                        </audio>
-                                        <%}%>
-                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-11">
+                                            <% for (var i = 0; i < audios.length; i++) { %>
+                                            <audio style="width: 100%; margin-top: 20px;" controls="controls" preload="metadata" id="ItemAudio<%= audios[i].id %>" >
+                                                <source src=<%= '/files/' + audios[i].audio_location %> type="audio/mp4" ;
+                                                        codecs="avc1.42E01E, mp4a.40.2"/>
+                                                No HTML5 audio playback capabilities.
+                                            </audio>
+                                            <button type="button" id="2ItemAudio<%= audios[i].id %>" onclick="removeAudio(<%= audios[i].id %>)">Remove</button>
+                                            <%}%>
+                                        </div>
 
 
-                                    <!-- Button -->
-                                    <div class="form-group">
-                                        <label class="control-label"></label>
-                                        <div class="col-md-4">
-                                            <button type="submit" class="   btn btn-warning">Send <span></span></button>
+                                        <!-- Button -->
+                                        <div class="form-group">
+                                            <label class="control-label"></label>
+                                            <div class="col-md-4">
+                                                <button type="submit" class="   btn btn-warning" style="margin-top: 20px">Send <span></span></button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div>
+                        </div>
                     </div>
-                    <div>
-                    </div>
-                </div>
             </form>
 
         </div>
@@ -184,6 +185,26 @@
 
 
 <% include partials/pages/scripts.ejs %>
+<script>
+    function removeAudio(id){
+        var idName = "#ItemAudio" + id;
+        var idName2 = "#2ItemAudio" + id;
+        $.ajax({
+            method: 'DELETE',
+            url: '/item/audio/' + id
+        });
+     $(idName).remove();
+     $(idName2).remove();
+    }
+
+    function addAudio(itemId){
+        $.ajax({
+            method: 'POST',
+            url: '/manage/addAudio/' + itemId
+        });
+        //create item to show on page
+    }
+</script>
 
 </body>
 </html>

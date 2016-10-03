@@ -38,10 +38,18 @@ router.get('/:id/edit', helper.authedOrLogin, function(req, res, next) {
   });
 });
 
+router.delete('/audio/:id', helper.isAuthenicated, function (req,res,next) {
+  db.Audio.destroy({where: {
+    id: req.params.id
+  }
+  });
+});
+
 router.post('/:id/edit', helper.isAuthenicated, function(req, res, next) {
   var loggedIn;
-  db.Category.findOne({where: {title: req.body.ItemCategory}
-  }).then(function(category) {
+  db.Category.findOne({
+    where: {title: req.body.ItemCategory}
+  }).then(function (category) {
     db.Item.findById(req.params.id)
         .then(function (item) {
           db.Item.update({
@@ -54,28 +62,21 @@ router.post('/:id/edit', helper.isAuthenicated, function(req, res, next) {
               {
                 where: {id: item.id}
               })
-        })
-        .then(function(){
-          db.Audio.create({
-            item_id: req.params.id,
-            audio_location: req.body.ItemAudio
-          })
-        })
-        .then(function () {
-          db.Item.findAll({
-            where: {
-              id: req.params.id
-            }
-          }).then(function (items) {
-            db.Category.findAll().then(function (categories) {
-              res.render('editItem.ejs', {
-                title: "Uploaded",
-                data: categories,
-                items: items
-              });
-            });
+        }).then(function () {
+      db.Item.findOne({
+        where: {
+          id: req.params.id
+        }
+      }).then(function (items) {
+        db.Category.findAll().then(function (categories) {
+          res.render('editItem.ejs', {
+            title: "Uploaded",
+            data: categories,
+            items: items
           });
-        })
+        });
+      });
+    })
   });
 });
 
