@@ -7,22 +7,26 @@
                 <tr>
                     <th>Item Name</td>
                     <th>Category</td>
-                    <th>cat2</th>
                     <th>Metadata</td>
+                    <th>Audio files</th>
                 </tr>
                 <% for (var i=0; i<items.length; i++) { %>
                 <tr>
                     <td><%= items[i].item_name %></td>
-                    <td><%= items[i].category_id %></td>
                     <td><%= data[items[i].category_id-1].title %></td>
                     <td><%= items[i].metadata %></td>
+                    <td>
+                        <% for (var j=0; j<audio.length; j++) { %>
+                            <% if (audio[j].item_id == items[i].id && audio[j].audio_location != null) {%>
+                                <%= audio[j].audio_location + "; "%>
+                            <% } %>
+                        <% } %>
+                    </td>
                 </tr>
                 <% } %>
             </table>
         </div>
         <script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
         <!-----------------------------------  ITEMS END ----------------------------------------------------->
-
-
     </div>
 </div>
