@@ -1,0 +1,16 @@
+Visuals:
+	Does the formatting look correct
+		are images skewed.
+		is the navbar up the top.
+		is the footer at the bottom.
+		do items appear to overlap.
+
+Functionality:
+	Navbar
+		click each link on the navbar
+			Home --> return to home page (the current page, nothing changes)
+			Contact --> /contactus --> contact form
+			Gagana Samoan --> correct category page --> 1
+			Maori Tamariki --> correct category page --> 2
+			Maori Rangatahi --> correct category page --> 3
+			Maori Kuki'Airani --> correct category page --> 4
