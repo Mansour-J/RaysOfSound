@@ -324,3 +324,27 @@ table.sortable tbody tr::before {
     counter-increment: sortabletablescope;
     display: table-cell;
 }
+
+/************ add item *******************/
+.inputTitle {
+    width: 104px;
+}
+.add-form-group{
+    padding:0px !important;
+    margin:5px 0px 10px !important;
+}
+.add-form-group input {
+    width: 400px !important;
+}
+.add-form-group textarea {
+    width: 400px !important;
+}
+.add-form-group select {
+    width: 400px !important;
+}
+
+.add-button {
+    margin: 10px 0px 0px 154px;
+    width: 200px;
+    height: 40px;
+}
