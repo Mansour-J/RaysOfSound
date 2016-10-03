@@ -29,12 +29,9 @@ router.get('/contactus', function(req, res, next){
 
 
 //Contact Us Routes
-router.post('/contactus/send', function(req, res, next){
+router.post('/contactus/', function(req, res, next){
     db.Category.findAll().then(function(categories){
         res.render('contactus.ejs', { title: 'Express', data: categories});
-        console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-        console.log("TEST");
-        console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
         var transporter = nodemailer.createTransport({
             service: 'Gmail',
@@ -44,12 +41,22 @@ router.post('/contactus/send', function(req, res, next){
             }
         });
 
+
+        var from = "" + req.body.first_name + " " + req.body.last_name +  " <" +  req.body.email + "> ";
+
         var mailOptions = {
+
             from: 'Mansour Javaher <swen302raysofsound@gmail.com>',
-            to: 'javaher.mansour@gmail.com',
+            to: 'javaher.mansour@gmail.com', // Bailants email
             subject: 'Contact US',
-            text: 'You have a submission with the following details... Name: '+req.body.first_name+'Email: '+req.body.email+ 'Message: '+req.body.comment,
-            html: '<p>You have a submission with the following details...</p><ul><li>Name: '+req.body.first_name+'</li><li>Email: '+req.body.email+'</li><li>Message: '+req.body.comment+'</li></ul>'
+            text: 'You have a contact us email with the following details... ',
+            html: '<div style="border: 5px solid #e5e8ff;border-top: 20px solid #e5e8ff !important; padding: 20px 0px 0px 10px; border-radius: 5px;">' +
+            '<p> You have a <strong> contact us  </strong> email with the following details...  </p>'+
+            '<p> <strong> Name: </strong> ' +  req.body.first_name + " " + req.body.last_name  + '</p>'+
+            '<p> <strong> Email: </strong> ' +  req.body.email + '</p>'+
+            '<p> <strong>Message:</strong> <br>' +  req.body.comment  + '</p>'+
+
+            '</div>'
         };
 
         transporter.sendMail(mailOptions, function(error, info){

@@ -1,5 +1,6 @@
-var ava = require('ava');
+// var ava = require('ava');
 
-test(function name(t) {
-    t.pass();
-});
+// test(function name(t) {
+//     t.pass();
+// });
+

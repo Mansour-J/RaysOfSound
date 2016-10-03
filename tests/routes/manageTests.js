@@ -9,16 +9,16 @@ var express = require('express');
 var app = require('./../../app.js');
 // var router = app.Router();
 
-describe('GET additem page', function() {
-  it('load add item page', function(done) {
-    this.timeout('10000');
-    request(app)
-        .get('/additem')
-        .expect(200)
-        .end(function(err, res){   
-           if (err) done(err);
-           else done();
-        });
+// describe('GET additem page', function() {
+//   it('load add item page', function(done) {
+//     this.timeout('10000');
+//     request(app)
+//         .get('/additem')
+//         .expect(200)
+//         .end(function(err, res){   
+//            if (err) done(err);
+//            else done();
+//         });
 
-  });
-});
+//   });
+// });

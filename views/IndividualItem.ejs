@@ -75,26 +75,9 @@
 
                             <p style="margin: 10px 0px 10px 0px;">
                                 <%= items[0].description %>
-                                <!-- Ko ngā kōrero nā Makere Rogers
-                                Ko ngā pikitia nā Bob Kerr,
-                                Ko ngā kōrero nā Makere Rogers
-                                Ko ngā pikitia nā Bob Kerr,
-                                Ko ngā kōrero nā Makere Rogers
-                                Ko ngā pikitia nā Bob Kerr,
-                                Ko ngā kōrero nā Makere Rogers
-                                Ko ngā pikitia nā Bob Kerr -->
                             </p>
-                           <!--  &nbsp;
-                            <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin
-                                commodo. Cras
-                                purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-                                nisi
-                                vulputate
-                                fringilla. Donec lacinia congue felis in faucibus.
-                            </p> -->
 
-
-                            <audio style="width: 100%; margin-top: 20px;" controls="controls" preload="metadata">
+                            <!-- <audio style="width: 100%; margin-top: 20px;" controls="controls" preload="metadata">
                                 <source src="maori/audio/3699_6_TePapaWira.m4a" type="audio/mp4" ;
                                         codecs="avc1.42E01E, mp4a.40.2"
                                 ' />
@@ -113,8 +96,18 @@
                                         codecs="avc1.42E01E, mp4a.40.2"
                                 ' />
                                 No HTML5 audio playback capabilities.
-                            </audio>
+                            </audio> -->
 
+                            <div>
+                                        <% for (var i = 1; i < audios.length; i++) { %>
+                                        <p><%= audios[i].audio_location %></p>
+                                        <audio style="width: 100%; margin-top: 20px;" controls="controls" preload="metadata">
+                                            <source src=<%= '/files/' + audios[i].audio_location %> type="audio/mp4" ;
+                                                    codecs="avc1.42E01E, mp4a.40.2"/>
+                                            No HTML5 audio playback capabilities.
+                                        </audio>
+                                        <%}%>
+                            </div>
 
 
                         </div>

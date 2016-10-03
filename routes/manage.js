@@ -4,6 +4,11 @@ var mime = require('mime-types');
 var db = require('../lib/db');
 var router = express.Router();
 
+
+var images = [];
+var audio = [];
+
+
 //TODO
 //DEPRECATED former file filter
 // var storage = multer.diskStorage({
@@ -60,36 +65,34 @@ var router = express.Router();
 
 
 var storage = multer.diskStorage({
-  // console.log("setting up image storage");
+    // console.log("setting up image storage");
     destination: function(req, file, cb) {
-      cb(null, './files');
+        cb(null, './public/files');
     },
-    // fileFilter: fileFilter,
-    //TODO ITERATE THROUGH OTHER FILES AS WELL: JUST COMPARING AGAINST FILE[0]
     filename: function(req, file, cb) {
-      console.log(file.mimetype);
-      var extension = "";
-      // console.log(mime.extension(file.mimetype));
-      if(mime.extension(file.mimetype) == "jpeg"){
-        extension = "jpg";
-      }
-      if(file.mimetype == "image/png"){
-        extension = "png";
-      }
-      else if(file.mimetype == "audio/mpeg3"
-        || file.mimetype == "audio/mp3"){
-        extension = "mp3";
-      }
-      else if(file.mimetype == "audio/x-m4a"){
-        extension = "m4a";
-      }
-      cb(null, Date.now() + '.' + extension); //TODO preserve file name maybe
+        console.log(file.mimetype);
+        var extension = "";
+        // console.log(mime.extension(file.mimetype));
+        if(mime.extension(file.mimetype) == "jpeg"){
+            extension = "jpg";
+        }
+        else if(file.mimetype == "image/png"){
+            extension = "png";
+        }
+        else if(file.mimetype == "audio/mpeg3"
+            || file.mimetype == "audio/mp3"){
+            extension = "mp3";
+        }
+        else if(file.mimetype == "audio/x-m4a"){
+            extension = "m4a";
+        }
+        cb(null, Date.now() + '.' + extension); //TODO preserve file name maybe
     }
 });
 
 //filter out unsupported audio formats
 var audioFilter = function (req, file, cb) {
-  console.log("audio filtering");
+    console.log("audio filtering");
     if (mime.extension(file.mimetype) != "mp3" /*&& mime.extension(file.mimetype) != "jpg" */) {
         console.log("Invalid audio format");
         cb(null, false);
@@ -102,7 +105,7 @@ var audioFilter = function (req, file, cb) {
 
 //filter out unsupported image formats
 var imageFilter = function (req, file, cb) {
-  console.log("image filtering");
+    console.log("image filtering");
     if (mime.extension(file.mimetype) != "jpg" && mime.extension(file.mimetype) != "png") {
         console.log("Invalid image format");
         cb(null, false);
@@ -115,33 +118,33 @@ var imageFilter = function (req, file, cb) {
 
 //filter out unsupported files
 var fileFilter = function(req, file, cb){
-  var extension = "";
-  // console.log(mime.extension(file.mimetype));
-  if(mime.extension(file.mimetype) == "jpeg"){
-    extension = "jpg";
-  }
-  if(file.mimetype == "image/png"){
-    extension = "png";
-  }
-  else if(file.mimetype == "audio/mpeg3"
-    || file.mimetype == "audio/mp3"){
-    extension = "mp3";
-  }
-  else if(file.mimetype == "audio/x-m4a"){
-    extension = "m4a";
-  }
-  if(extension != "jpg"
-    && extension != "png"
-    && extension != "mp3"
-    && extension != "m4a"
+    var extension = "";
+    // console.log(mime.extension(file.mimetype));
+    if(mime.extension(file.mimetype) == "jpeg"){
+        extension = "jpg";
+    }
+    if(file.mimetype == "image/png"){
+        extension = "png";
+    }
+    else if(file.mimetype == "audio/mpeg3"
+        || file.mimetype == "audio/mp3"){
+        extension = "mp3";
+    }
+    else if(file.mimetype == "audio/x-m4a"){
+        extension = "m4a";
+    }
+    if(extension != "jpg"
+        && extension != "png"
+        && extension != "mp3"
+        && extension != "m4a"
     ){
-    console.log("file thrown out");
-    return cb(new Error('Unsupported Format'))
-  }
-  else{
-    console.log("file kept");
-    cb(null, true);
-  }
+        console.log("file thrown out");
+        return cb(new Error('Unsupported Format'))
+    }
+    else{
+        console.log("file kept");
+        cb(null, true);
+    }
 };
 
 // router.get('/:id/', function (req, res) {
@@ -151,9 +154,9 @@ var fileFilter = function(req, file, cb){
 
 
 router.get('/createItem/', function (req, res) {
-  db.Category.findAll().then(function(categories){
-  res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded", data: categories});
-})
+    db.Category.findAll().then(function(categories){
+        res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded", data: categories});
+    })
 });
 
 //TEST CODE>>>REMOVE
@@ -168,82 +171,98 @@ router.get('/createItem/', function (req, res) {
 //   res.redirect('/');
 // });
 router.post('/addItem/', multer({storage: storage, fileFilter: fileFilter}).fields([{
-    name: 'audioFile', maxCount: 10
-  }, {
-    name: 'imageFile', maxCount: 1
-  }]),
-    function (req, res) {
+        name: 'audioFile', maxCount: 10
+    }, {
+        name: 'imageFile', maxCount: 1
+    }]),
 
-  res.redirect('/');
-});
+    db.Category.findOne({where: {title: req.body.ItemCategory}
+    }).then(function(category)
+    {
+        db.Item.create({
+            category_id: category.id,
+            item_name: req.body.ItemTitle,
+            location: req.body.ItemInfo,
+            description: req.body.ItemContent,
+            image: req.files.imageFile[0].filename,
+            user_id: 1
+        }).then(function (item) {
+            db.Audio.create({
+                item_id: item.id,
+                duration: "3:00",
+                artist: "tempArtist",
+                audio_location: req.files.audioFile[0].filename
+            })
+        })
+        res.redirect("../item/" + item.id + "/edit");
+    }));
 
 
 
 
 router.post('/createItem/', function (req, res) {
-  var id;
-  console.log(req.body);
+    var id;
+    console.log(req.body);
 
-  db.Item.create({
-    category_id: req.body.category,
-    item_name: req.body.name,
-    description: req.body.description,
-    // user_id:
+    db.Item.create({
+        category_id: req.body.category,
+        item_name: req.body.name,
+        description: req.body.description,
+        // user_id:
 
-  }).then(function (item) {
-    res.redirect(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
-  })
-  // res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
+    }).then(function (item) {
+        res.redirect(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
+    })
+    // res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
 });
 
 
 
 router.get('/:id/edit/', function (req, res) {
-  var loggedIn;
+    var loggedIn;
 
-  db.Item.findAll({
-    where: {
-      id: req.params.id
-    }
-  }).then(function (items){
-    db.Category.findAll().then(function(categories){
-      res.render('Item.ejs', {
-        title: "Uploaded", 
-        data: categories
-      });
+    db.Item.findAll({
+        where: {
+            id: req.params.id
+        }
+    }).then(function (items){
+        db.Category.findAll().then(function(categories){
+            res.render('Item.ejs', {
+                title: "Uploaded",
+                data: categories
+            });
+        });
     });
-  });
-  // res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
+    // res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
 });
 
 
 
 router.post('/:id/edit/', function (req, res) {
-  res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
+    res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
 });
 
 
 
 router.get('/:id/destroy/', function (req, res) {
-  res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
+    res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
 });
 
 
-
-router.post('/SubmitAudio', multer({storage: storage}).single('upl'), function(req, res) {
-  var audio_id;
-  console.log(req.body);
-  console.log(req.file);
-  /*TODO
-
-  */
-  res.redirect("/");
-});
-/*
-function Manage () {}
-Manage.getTest = function() {
-  return 0;
-};
-*/
-
+router.post('/addAudio/:id', multer({storage: storage, fileFilter: fileFilter}).fields([{
+        name: 'audioFile', maxCount: 1
+    }]),
+    function (req, res) {
+        console.log("WE GOT HERE");
+        console.log(req.params.id);
+        console.log("SSSS" + req.files);
+        db.Audio.create({
+            item_id: req.params.id,
+            duration: "3:00",
+            artist: "tempArtist",
+            audio_location: "some shit"
+            // audio_location: req.body.ItemAudio
+        });
+        console.log("WE GOT HERE ASWELL");
+    });
 module.exports = router;
