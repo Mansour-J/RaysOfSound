@@ -176,33 +176,26 @@ router.post('/addItem/', multer({storage: storage, fileFilter: fileFilter}).fiel
         name: 'imageFile', maxCount: 1
     }]),
 
-        console.log(req);
-        db.Category.findOne({where: {title: req.body.ItemCategory}
-        }).then(function(category)
-        {
-            db.Item.create({
-                category_id: category.id,
-                item_name: req.body.ItemTitle,
-                location: req.body.ItemInfo,
-                description: req.body.ItemContent,
-                image: req.files.imageFile[0].filename,
-                user_id: 1
-            }).then(function (item) {
-                console.log(req.files);
-                console.log(req.files.audioFile[0].filename);
-                db.Audio.create({
-                    item_id: item.id,
-                    duration: "3:00",
-                    artist: "tempArtist",
-                    audio_location: req.files.audioFile[0].filename
-                    // audio_location: req.body.ItemAudio
-                });
+    db.Category.findOne({where: {title: req.body.ItemCategory}
+    }).then(function(category)
+    {
+        db.Item.create({
+            category_id: category.id,
+            item_name: req.body.ItemTitle,
+            location: req.body.ItemInfo,
+            description: req.body.ItemContent,
+            image: req.files.imageFile[0].filename,
+            user_id: 1
+        }).then(function (item) {
+            db.Audio.create({
+                item_id: item.id,
+                duration: "3:00",
+                artist: "tempArtist",
+                audio_location: req.files.audioFile[0].filename
             })
-        });
+        })
         res.redirect("../item/" + item.id + "/edit");
-        // res.redirect('/');
-
-    });
+    }));
 
 
 
@@ -271,5 +264,5 @@ router.post('/addAudio/:id', multer({storage: storage, fileFilter: fileFilter}).
             // audio_location: req.body.ItemAudio
         });
         console.log("WE GOT HERE ASWELL");
-});
+    });
 module.exports = router;
