@@ -292,6 +292,9 @@ form#contact_form {
 .adminTile:hover{
     background-color: #def8df;
 }
+.adminTile a:hover{
+    text-decoration: none !important;
+}
 
 /********* item list ***********/
 .itemList {
@@ -301,11 +304,11 @@ form#contact_form {
     margin: 20px 10px 20px 10px;
 }
 .itemList th {
-    background-color:#eee;
-    color:#666666;
-    font-weight: bold;
+    background-color: #e1e1e1;
+    color: #000000;
+    font-size: 20px;
     cursor: default;
-    padding-left: 20px;
+    padding: 5px 0px 5px 20px;
 }
 .itemList td {
     padding-left: 20px;
@@ -324,7 +327,15 @@ table.sortable tbody tr::before {
     counter-increment: sortabletablescope;
     display: table-cell;
 }
-
+table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after {
+    content: " \25B4\25BE"
+}
+table.sortable tbody tr:nth-child(2n) td {
+    background: #ebebeb;
+}
+table.sortable tbody tr:nth-child(2n+1) td {
+    background: transparent;
+}
 /************ add item *******************/
 .inputTitle {
     width: 104px;
@@ -342,7 +353,6 @@ table.sortable tbody tr::before {
 .add-form-group select {
     width: 400px !important;
 }
-
 .add-button {
     margin: 10px 0px 0px 154px;
     width: 200px;

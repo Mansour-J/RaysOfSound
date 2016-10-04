@@ -13,108 +13,109 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2 middleInnerContainer">
 
-            <div>
-                <h1>Add an item</h1>
+        <div class="admin">
+            <h1>Add an item</h1>
+        </div>
+
+        <form class="well form-horizontal" enctype = "multipart/form-data"
+              action="/manage/addItem" method="post" id="contact_form"
+              style="box-shadow: none">
+
+            <!-- Text input-->
+            <div class="add-form-group">
+                <div class="input-group">
+                    <span class="input-group-addon inputTitle">Title</span>
+                    <input name="ItemTitle" placeholder="The title goes here" class="form-control addInput" type="text">
+                </div>
             </div>
 
-            <form class="well form-horizontal" enctype = "multipart/form-data"
-                  action="/manage/addItem" method="post" id="contact_form">
-
-                <!-- Text input-->
-                <div class="add-form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon inputTitle">Title</span>
-                        <input name="ItemTitle" placeholder="The title goes here" class="form-control addInput" type="text">
-                    </div>
+            <!-- Text input-->
+            <div class="add-form-group">
+                <div class="input-group">
+                    <span class="input-group-addon inputTitle">Classification</span>
+                    <input name="ItemInfo" placeholder="[ABC.1234.A/1] " class="form-control" type="text">
                 </div>
+            </div>
 
-                <!-- Text input-->
-                <div class="add-form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon inputTitle">Classification</span>
-                        <input name="ItemInfo" placeholder="[ABC.1234.A/1] " class="form-control" type="text">
-                    </div>
+
+            <!-- Text area -->
+            <div class="add-form-group">
+                <div class="input-group">
+                    <span class="input-group-addon inputTitle">Description</span>
+                    <textarea class="form-control" name="ItemContent"
+                              placeholder="This song/story is..." class="contactTextArea"></textarea>
                 </div>
+            </div>
 
-
-                <!-- Text area -->
-                <div class="add-form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon inputTitle">Description</span>
-                        <textarea class="form-control" name="ItemContent"
-                                  placeholder="This song/story is..." class="contactTextArea"></textarea>
-                    </div>
+            <!-- Text area -->
+            <div class="add-form-group">
+                <div class="input-group">
+                    <span class="input-group-addon inputTitle">Metadata</span>
+                    <textarea class="form-control" name="ItemContent"
+                              placeholder="example: my metadata; example2: more metadata" class="contactTextArea"></textarea>
                 </div>
+            </div>
 
-                <!-- Text area -->
-                <div class="add-form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon inputTitle">Metadata</span>
-                        <textarea class="form-control" name="ItemContent"
-                                  placeholder="example: my metadata; example2: more metadata" class="contactTextArea"></textarea>
-                    </div>
+            <!-- Category area -->
+            <div class="add-form-group">
+                <div class="input-group">
+                    <span class="input-group-addon inputTitle">Category</span>
+                    <select class="form-control" name="ItemCategory">
+                        <% for (var i = 0; i < data.length; i++) { %>
+                        <option><a><%= data[i].title %></a></option>
+                        <% } %>
+                    </select>
                 </div>
-
-                <!-- Category area -->
-                <div class="add-form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon inputTitle">Category</span>
-                        <select class="form-control" name="ItemCategory">
-                            <% for (var i = 0; i < data.length; i++) { %>
-                            <option><a><%= data[i].title %></a></option>
-                            <% } %>
-                        </select>
-                    </div>
-                </div>
+            </div>
 
 
-                <!-- Success message -->
-                <div class="alert alert-success" role="alert" id="success_message">Success<i
-                            class="glyphicon glyphicon-thumbs-up"></i>
-                    Item added.
-                </div>
+            <!-- Success message -->
+            <div class="alert alert-success" role="alert" id="success_message">Success<i
+                        class="glyphicon glyphicon-thumbs-up"></i>
+                Item added.
+            </div>
 
-                <!-- Adding Image -->
-                <div class="add-form-group">
-                    <h4 style="padding-bottom: 5px;">Add Image</h4>
-                    <div class="input-group">
-                        <label class="input-group-btn">
+            <!-- Adding Image -->
+            <div class="add-form-group">
+                <h4 style="padding-bottom: 5px;">Add Image</h4>
+                <div class="input-group">
+                    <label class="input-group-btn">
                                 <span class="btn btn-primary inputTitle">
                                     Browse&hellip;
                                     <input type="file" name="imageFile" style="display: none;" multiple>
                                 </span>
-                        </label>
-                        <input type="text" class="form-control" name="ItemImage">
-                    </div>
-
+                    </label>
+                    <input type="text" class="form-control" name="ItemImage">
                 </div>
 
+            </div>
 
-                <!-- Adding Sound -->
-                <div class="add-form-group">
-                    <h4 style="padding-bottom: 5px;">Add Sound</h4>
-                    <div class="input-group">
-                        <label class="input-group-btn">
+
+            <!-- Adding Sound -->
+            <div class="add-form-group">
+                <h4 style="padding-bottom: 5px;">Add Sound</h4>
+                <div class="input-group">
+                    <label class="input-group-btn">
                                 <span class="btn btn-primary inputTitle">
                                     Browse&hellip;
                                     <input type="file" name="audioFile" style="display: none;" multiple>
                                 </span>
-                        </label>
-                        <input type="text" class="form-control" name="ItemAudio">
-                    </div>
-
+                    </label>
+                    <input type="text" class="form-control" name="ItemAudio">
                 </div>
 
-
-                <!-- Button -->
-                <div class="add-form-group">
-                    <button type="submit" class="btn btn-warning add-button">Submit</button>
-                </div>
+            </div>
 
 
-            </form>
-        </div>
+            <!-- Button -->
+            <div class="add-form-group">
+                <button type="submit" class="btn btn-warning add-button">Submit</button>
+            </div>
+
+
+        </form>
     </div>
+</div>
 </div>
 <!-- /container -->
 
