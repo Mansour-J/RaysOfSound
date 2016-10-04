@@ -22,7 +22,7 @@
         <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
 
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 middleInnerContainer">
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
             <form class="well form-horizontal" action="edit" method="post" id="add_item_form"
                   style="border: 1px solid #bdbdbd !important;">
                 <div class="row" style="padding: 50px;">
@@ -91,8 +91,8 @@
 
                                         <div class="input-group">
                                             <span class="input-group-addon">Content</span>
-                                            <textarea class="form-control" name="ItemContent"
-                                                      placeholder="Item Content" class="contactTextArea"><%= items[0].description %></textarea>
+                                            <textarea class="form-control contentTextArea" name="ItemContent"
+                                                      placeholder="Item Content" class="contactTextArea" style="margin: 0px; height: 204px; width: 100%px; z-index: 3; position: relative; line-height: 20px; font-size: 14px; transition: none; max-width: 405px !important;"><%= items[0].description %></textarea>
                                         </div>
 
                                     </div>
