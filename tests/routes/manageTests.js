@@ -11,7 +11,7 @@ var app = require('./../../app.js');
 
 
 describe('GET additem page', function() {
-  it('load add item page', function(done) {
+  it('load add item page, logged out', function(done) {
     this.timeout('10000');
     request(app)
         .get('/additem')
@@ -23,3 +23,22 @@ describe('GET additem page', function() {
 
   });
 });
+
+// describe('GET additem page', function() {
+  
+//   it('load add item page, logged in', function(done) {
+//     this.timeout('10000');
+//     request(app)
+//         .post('/login')
+//         .field('username' , 'admin')
+//         .field('pasword' , 'admin')
+//         request(app)
+//         .get('/additem')
+//         .expect(200)
+//         .end(function(err, res){   
+//            if (err) done(err);
+//            else done();
+//         });
+
+//   });
+// });

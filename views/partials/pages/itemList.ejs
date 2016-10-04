@@ -14,12 +14,26 @@
                 <tr>
                     <td><%= items[i].item_name %></td>
                     <td><%= data[items[i].category_id-1].title %></td>
-                    <td><%= items[i].metadata %></td>
                     <td>
-                        <% for (var j=0; j<audio.length; j++) { %>
-                            <% if (audio[j].item_id == items[i].id && audio[j].audio_location != null) {%>
-                                <%= audio[j].audio_location + "; "%>
+                        <% if (items[i].metadata != null) { %>
+                        <% var meta = items[i].metadata.split(";") %>
+                        <% for (var k=0; k<meta.length; k++) { %>
+                            <% if (k < meta.length-1) { %>
+                                <%= meta[k] + "; " %><br>
                             <% } %>
+                            <% if (k == meta.length-1) { %>
+                                <%= meta[k] %>
+                            <% } %>
+                        <% } %>
+                        <% } %>
+                    </td>
+
+
+                    <td style="padding-right: 20px">
+                        <% for (var j=0; j<audio.length; j++) { %>
+                        <% if (audio[j].item_id == items[i].id && audio[j].audio_location != null) {%>
+                        <%= audio[j].audio_location + "; "%><br>
+                        <% } %>
                         <% } %>
                     </td>
                 </tr>
