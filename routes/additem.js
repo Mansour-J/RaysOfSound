@@ -20,6 +20,7 @@ router.post('/create', function(req, res, next){
             location: req.body.ItemInfo,
             description: req.body.ItemContent,
             image: req.body.ItemImage,
+            metadata: req.body.ItemData,
             user_id: 1
         }).then(function (item) {
             db.Audio.create({
