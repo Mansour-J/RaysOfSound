@@ -29,7 +29,14 @@
                     <br>
                 </div>
                 <audio style=" position:absolute; width: 88% !important; bottom: 10px; margin: auto;" controls="controls" preload="metadata">
-                    <source src=" " type="audio/mp4" ;
+                <% var source = ""%>
+                <% for (var j = 0; j < audio.length; j++){ %>
+                    <% if (items[i].id == audio[j].item_id){ %>
+                        <% source = audio[j].audio_location %>
+                        <% break; %>
+                    <% } %>
+                <% } %>
+                    <source src="<%=source%>" type="audio/mp4" ;
                             codecs="avc1.42E01E, mp4a.40.2"/>
                     No HTML5 audio playback capabilities.
                 </audio>
