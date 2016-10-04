@@ -58,7 +58,7 @@
 
                                         <li role="separator" class="divider"></li>
                                         <!-- <li><a href='<%=items[0].id%>/delete'>Delete this item</a></li> -->
-                                        <button id="remove<%=items[0].id%>" OnClick="removeItem(<%=items[0].id%>)"> Delete Item </button>
+                                        <button class="btn btn-danger" style="margin-left: 5px !important;" id="remove<%=items[0].id%>" OnClick="removeItem(<%=items[0].id%>)"> Delete Item </button>
                                     </ul>
                                 </div>
                             <% } %>
@@ -70,8 +70,7 @@
 
                         <div class="media-body">
                             <h4 class="media-heading" style="font-weight: bold; font-size: 20px;"><%= items[0].item_name %></h4>
-                            <span class="label label-info"><a href="#"
-                                                              style="color: white;">MAOR.LAN.3699.B/6</a></span>
+                            <span class="label label-info">MAOR.LAN.3699.B/6</span>
 
                             <p style="margin: 10px 0px 10px 0px;">
                                 <%= items[0].description %>
@@ -132,7 +131,7 @@
 <!-- <div class="raysContainer navbar-fixed-bottom">
     <% include partials/pages/footer.ejs %>
 </div>  -->
-<div class="raysContainer">
+<div class="raysContainer navbar-fixed-bottom">
     <% include partials/pages/footer.ejs %>
 </div> 
 <!-- /container -->

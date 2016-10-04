@@ -1,155 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <% include partials/pages/head.ejs %>
-
 </head>
-
 <body>
 
 <!-- Static navbar -->
 <nav class="navbar navbar-default navbar-static-top">
-    <% include partials/pages/navbar.ejs data %>
+    <% include partials/pages/navbar.ejs %>
 </nav>
 
-<div class="raysContainer">
-    <div class="row">
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2 middleInnerContainer">
 
-        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-
+        <div class="admin">
+            <h1>Add an item</h1>
         </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+        <form class="well form-horizontal" enctype = "multipart/form-data"
+              action="/manage/addItem" method="post" id="contact_form"
+              style="box-shadow: none">
 
-            <div class="row">
-
-                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-
+            <!-- Text input-->
+            <div class="add-form-group">
+                <div class="input-group">
+                    <span class="input-group-addon inputTitle">Title</span>
+                    <input name="ItemTitle" placeholder="The title goes here" class="form-control addInput" type="text">
                 </div>
+            </div>
 
-                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-
-                    <form class="well form-horizontal" enctype = "multipart/form-data" action="/manage/addItem" method="post" id="contact_form"
-                          style="border: 1px solid #bdbdbd !important;">
-
-
-                        <!-- Text input-->
-
-                        <div class="form-group">
-
-                            <div class="input-group">
-                                <span class="input-group-addon">Title</span>
-                                <input name="ItemTitle" placeholder="Item Title" class="form-control" type="text">
-                            </div>
-
-                        </div>
-
-                        <!-- Text input-->
-
-                        <div class="form-group">
-
-                            <div class="input-group">
-                                <span class="input-group-addon">Information</span>
-                                <input name="ItemInfo" placeholder="Item Information" class="form-control" type="text">
-                            </div>
-
-                        </div>
+            <!-- Text input-->
+            <div class="add-form-group">
+                <div class="input-group">
+                    <span class="input-group-addon inputTitle">Classification</span>
+                    <input name="ItemInfo" placeholder="[ABC.1234.A/1] " class="form-control" type="text">
+                </div>
+            </div>
 
 
-                        <!-- Text area -->
+            <!-- Text area -->
+            <div class="add-form-group">
+                <div class="input-group">
+                    <span class="input-group-addon inputTitle">Description</span>
+                    <textarea class="form-control" name="ItemContent"
+                              placeholder="This song/story is..." class="contactTextArea"></textarea>
+                </div>
+            </div>
 
-                        <div class="form-group">
+            <!-- Text area -->
+            <div class="add-form-group">
+                <div class="input-group">
+                    <span class="input-group-addon inputTitle">Metadata</span>
+                    <textarea class="form-control" name="ItemContent"
+                              placeholder="example: my metadata; example2: more metadata" class="contactTextArea"></textarea>
+                </div>
+            </div>
 
-                            <div class="input-group">
-                                <span class="input-group-addon">Content</span>
-                                <textarea class="form-control" name="ItemContent"
-                                          placeholder="Item Content" class="contactTextArea"></textarea>
-                            </div>
-
-                        </div>
-
-                        <!-- Category area -->
-                        <div class="form-group">
-
-                            <div class="input-group">
-                                <span class="input-group-addon">Category</span>
-                                <select class="form-control" name="ItemCategory">
-                                    <% for (var i = 0; i < data.length; i++) { %>
-                                    <option><a><%= data[i].title %></a></option>
-                                    <% } %>
-                                </select>
-                            </div>
-
-                        </div>
+            <!-- Category area -->
+            <div class="add-form-group">
+                <div class="input-group">
+                    <span class="input-group-addon inputTitle">Category</span>
+                    <select class="form-control" name="ItemCategory">
+                        <% for (var i = 0; i < data.length; i++) { %>
+                        <option><a><%= data[i].title %></a></option>
+                        <% } %>
+                    </select>
+                </div>
+            </div>
 
 
-                        <!-- Success message -->
-                        <div class="alert alert-success" role="alert" id="success_message">Success <i
-                                    class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get
-                            back to you
-                            shortly.
-                        </div>
+            <!-- Success message -->
+            <div class="alert alert-success" role="alert" id="success_message">Success<i
+                        class="glyphicon glyphicon-thumbs-up"></i>
+                Item added.
+            </div>
 
-                        <!-- Adding Image -->
-                        <div class="form-group">
-                            <h4 style="padding-bottom: 5px;">Add Image</h4>
-                            <div class="input-group">
-                                <label class="input-group-btn">
-                                <span class="btn btn-primary">
-                                    Browse&hellip; <input type="file" name="imageFile" style="display: none;" multiple>
+            <!-- Adding Image -->
+            <div class="add-form-group">
+                <h4 style="padding-bottom: 5px;">Add Image</h4>
+                <div class="input-group">
+                    <label class="input-group-btn">
+                                <span class="btn btn-primary inputTitle">
+                                    Browse&hellip;
+                                    <input type="file" name="imageFile" style="display: none;" multiple>
                                 </span>
-                                </label>
-                                <input type="text" class="form-control" name="ItemImage">
-                            </div>
-
-                        </div>
-
-
-                        <!-- Adding Sound -->
-                        <div class="form-group">
-                            <h4 style="padding-bottom: 5px;">Add Sound</h4>
-                            <div class="input-group">
-                                <label class="input-group-btn">
-                                <span class="btn btn-primary">
-                                    Browse&hellip; <input type="file" name="audioFile" style="display: none;" multiple>
-                                </span>
-                                </label>
-                                <input type="text" class="form-control" name="ItemAudio">
-                            </div>
-
-                        </div>
-
-
-                        <!-- Button -->
-                        <div class="form-group">
-                            <label class="control-label"></label>
-                            <div class="col-md-4">
-                                <button type="submit" class="   btn btn-warning">Send <span></span></button>
-                            </div>
-                        </div>
-
-
-                    </form>
+                    </label>
+                    <input type="text" class="form-control" name="ItemImage">
                 </div>
-
-                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-
-                </div>
-
 
             </div>
 
 
-        </div>
+            <!-- Adding Sound -->
+            <div class="add-form-group">
+                <h4 style="padding-bottom: 5px;">Add Sound</h4>
+                <div class="input-group">
+                    <label class="input-group-btn">
+                                <span class="btn btn-primary inputTitle">
+                                    Browse&hellip;
+                                    <input type="file" name="audioFile" style="display: none;" multiple>
+                                </span>
+                    </label>
+                    <input type="text" class="form-control" name="ItemAudio">
+                </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-
-        </div>
+            </div>
 
 
+            <!-- Button -->
+            <div class="add-form-group">
+                <button type="submit" class="btn btn-warning add-button">Submit</button>
+            </div>
+
+
+        </form>
     </div>
-</div> <!-- /container -->
+</div>
+</div>
+<!-- /container -->
 
 
 <div class="raysContainer navbar-fixed-bottom">
