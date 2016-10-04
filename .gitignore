@@ -18,3 +18,7 @@ npm-debug.log
 #tempUploads
 uploads
 files/**
+
+
+#testCoverage
+coverage
