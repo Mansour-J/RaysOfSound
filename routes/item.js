@@ -58,7 +58,8 @@ router.post('/:id/edit', helper.isAuthenicated, function(req, res, next) {
                 item_name: req.body.ItemTitle,
                 location: req.body.ItemInfo,
                 description: req.body.ItemContent,
-                image: req.body.ItemImage
+                image: req.body.ItemImage,
+                metadata: req.body.ItemData
               },
               {
                 where: {id: item.id}
@@ -68,16 +69,10 @@ router.post('/:id/edit', helper.isAuthenicated, function(req, res, next) {
         where: {
           id: req.params.id
         }
-      }).then(function (items) {
-        db.Category.findAll().then(function (categories) {
-          res.render('editItem.ejs', {
-            title: "Uploaded",
-            data: categories,
-            items: items
-          });
-        });
+      }).then(function () {
+        res.redirect('/item/' + req.params.id);
       });
-    })
+    });
   });
 });
 
