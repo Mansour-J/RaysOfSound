@@ -139,7 +139,7 @@ app.post('/login',
     }),
     function(req, res) {
         //res.redirect('/category/1/view');
-        res.redirect(req.get('referer'));
+        res.redirect('/admin');
     });
 
 
