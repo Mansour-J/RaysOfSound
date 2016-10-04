@@ -114,7 +114,7 @@ var sessionConf = {
 };
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -129,7 +129,7 @@ app.use('/users', users);
 app.use('/manage', manage);
 app.use('/item', item);
 app.use('/category', category);
-app.use('/additem', additem);
+app.use('/admin', admin);
 app.use('/', routes);   // MUST COME LAST AS HAS 404
 
 
