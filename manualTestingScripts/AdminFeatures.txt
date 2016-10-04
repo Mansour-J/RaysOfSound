@@ -1,0 +1,10 @@
+Not logged in:
+	visit /additem --> should return to homepage --> IMPORTANT
+	visit /item/id (where id is a valid item id) --> page should have no visible 'edit' buttons --> IMPORTANT
+	visit /item/id/edit (where id is a valid item id) --> should return to homepage --> IMPORTANT
+
+Logged In:
+	visit /additem --> should load 'add item' form
+	visit /item/id (where id is a valid item id) --> should have dropdown with 'edit' button
+		edit button shoud link to /item/id/edit for current item item id / item
+	visit /item/id/edit (where id is a valid item id) --> should show editing form, populated with current item data
