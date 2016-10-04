@@ -46,35 +46,6 @@ router.delete('/audio/:id', helper.isAuthenicated, function (req,res,next) {
   });
 });
 
-router.post('/:id/edit', helper.isAuthenicated, function(req, res, next) {
-  var loggedIn;
-  db.Category.findOne({
-    where: {title: req.body.ItemCategory}
-  }).then(function (category) {
-    db.Item.findById(req.params.id)
-        .then(function (item) {
-          db.Item.update({
-                category_id: category.id,
-                item_name: req.body.ItemTitle,
-                location: req.body.ItemInfo,
-                description: req.body.ItemContent,
-                image: req.body.ItemImage,
-                metadata: req.body.ItemData
-              },
-              {
-                where: {id: item.id}
-              })
-        }).then(function () {
-      db.Item.findOne({
-        where: {
-          id: req.params.id
-        }
-      }).then(function () {
-        res.redirect('/item/' + req.params.id);
-      });
-    });
-  });
-});
 
 router.delete('/:id', helper.isAuthenicated, function(req, res, next){
   console.log(req.params.id);

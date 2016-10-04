@@ -3,6 +3,7 @@ var multer = require('multer');
 var mime = require('mime-types');
 var db = require('../lib/db');
 var router = express.Router();
+var helper = require('../lib/helper');
 
 
 var images = [];
@@ -88,67 +89,40 @@ var fileFilter = function(req, file, cb){
 };
 
 router.post('/addItem/', multer({storage: storage, fileFilter: fileFilter}).fields([{
-    name: 'audioFile', maxCount: 10
-  }, {
-    name: 'imageFile', maxCount: 1
-  }]),
+        name: 'audioFile', maxCount: 10
+    }, {
+        name: 'imageFile', maxCount: 1
+    }]),
     function (req, res) {
-      var itemID;
-      db.Category.findOne({where: {title: req.body.ItemCategory}
-    }).then(function(category)
-    {
-        db.Item.create({
-            category_id: category.id,
-            item_name: req.body.ItemTitle,
-            location: req.body.ItemInfo,
-            description: req.body.ItemContent,
-            image: req.files.imageFile[0].filename,
-            user_id: 1
-        }).then(function (item) {
-            itemID = item.id;
-            // console.log(req.files);
-            // console.log(req.files.audioFile[0].filename);
-            req.files.audioFile.forEach(function (it, index, array){
-                db.Audio.create({
-                item_id: item.id,
-                duration: "3:00",
-                artist: "tempArtist",
-                audio_location: it.filename
-            });
-            });
-            
-        }).then(function(results){
-          res.redirect("../item/" + itemID);
-        });
-    });
-});
+        var itemID;
+        db.Category.findOne({where: {title: req.body.ItemCategory}
+        }).then(function(category)
+        {
+            db.Item.create({
+                category_id: category.id,
+                item_name: req.body.ItemTitle,
+                location: req.body.ItemInfo,
+                description: req.body.ItemContent,
+                image: req.files.imageFile[0].filename,
+                user_id: 1
+            }).then(function (item) {
+                itemID = item.id;
+                // console.log(req.files);
+                // console.log(req.files.audioFile[0].filename);
+                req.files.audioFile.forEach(function (it, index, array){
+                    db.Audio.create({
+                        item_id: item.id,
+                        duration: "3:00",
+                        artist: "tempArtist",
+                        audio_location: it.filename
+                    });
+                });
 
-
-router.get('/:id/edit/', function (req, res) {
-    var loggedIn;
-
-    db.Item.findAll({
-        where: {
-            id: req.params.id
-        }
-    }).then(function (items){
-        db.Category.findAll().then(function(categories){
-            res.render('Item.ejs', {
-                title: "Uploaded",
-                data: categories
+            }).then(function(results){
+                res.redirect("../item/" + itemID);
             });
         });
     });
-    // res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
-});
-
-
-
-router.post('/:id/edit/', function (req, res) {
-    res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
-});
-
-
 
 router.get('/:id/destroy/', function (req, res) {
     res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
@@ -171,4 +145,35 @@ router.post('/addAudio/:id', multer({storage: storage, fileFilter: fileFilter}).
         });
         console.log("WE GOT HERE ASWELL");
     });
+
+router.post('/:id/edit', helper.isAuthenicated, function(req, res, next) {
+    var loggedIn;
+    db.Category.findOne({
+        where: {title: req.body.ItemCategory}
+    }).then(function (category) {
+        db.Item.findById(req.params.id)
+            .then(function (item) {
+                db.Item.update({
+                        category_id: category.id,
+                        item_name: req.body.ItemTitle,
+                        location: req.body.ItemInfo,
+                        description: req.body.ItemContent,
+                        image: req.body.ItemImage,
+                        metadata: req.body.ItemData
+                    },
+                    {
+                        where: {id: item.id}
+                    })
+            }).then(function () {
+            db.Item.findOne({
+                where: {
+                    id: req.params.id
+                }
+            }).then(function () {
+                res.redirect('../../item/' + req.params.id);
+            });
+        });
+    });
+});
+
 module.exports = router;
