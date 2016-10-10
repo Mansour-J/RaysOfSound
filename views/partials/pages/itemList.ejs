@@ -9,6 +9,7 @@
                     <th>Category &nbsp</td>
                     <th>Metadata &nbsp</td>
                     <th>Audio files &nbsp</th>
+                    <td id="itemList_edit">Edit</td>
                 </tr>
                 <% for (var i=0; i<items.length; i++) { %>
                 <tr>
@@ -28,13 +29,15 @@
                         <% } %>
                     </td>
 
-
                     <td style="padding-right: 20px">
                         <% for (var j=0; j<audio.length; j++) { %>
                         <% if (audio[j].item_id == items[i].id && audio[j].audio_location != null) {%>
                         <%= audio[j].audio_location + "; "%><br>
                         <% } %>
                         <% } %>
+                    </td>
+                    <td style="padding-right: 20px">
+                        <a href="/item/<%=items[i].id%>/edit"><span class="ion-edit"></span></a>
                     </td>
                 </tr>
                 <% } %>
