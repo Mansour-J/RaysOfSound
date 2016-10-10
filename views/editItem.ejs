@@ -4,7 +4,6 @@
 
     <% include partials/pages/head.ejs %>
 
-
 </head>
 
 <body>
@@ -23,13 +22,15 @@
 
         </div>
         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
-            <form class="well form-horizontal" action=' /manage/<%= items[0].id %>/edit' method="post" id="add_item_form"
+            <form class="well form-horizontal" action=' /manage/<%= items[0].id %>/edit' method="post"
+                  id="add_item_form"
                   style="border: 1px solid #bdbdbd !important;">
                 <div class="row" style="padding: 50px;">
                     <div class="media">
 
 
-                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 " style="margin: 0px !important; padding: 0px !important;">
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 "
+                             style="margin: 0px !important; padding: 0px !important;">
 
 
                             <div class="media-left">
@@ -50,89 +51,77 @@
                                     Browse&hellip; <input type="file" style="display: none;" multiple>
                                 </span>
                                     </label>
-                                    <input type="text" class="form-control" name="ItemImage" value=<%= items[0].image %>>
+                                    <input type="text" class="form-control" name="ItemImage"
+                                           value=<%= items[0].image %>>
                                 </div>
 
                             </div>
                         </div>
 
-                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 " style="margin: 0px !important; padding: 0px !important;">
+                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 "
+                             style="margin: 0px !important; padding: 0px !important;">
 
                             <div class="media-body">
 
                                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
 
                                     <!-- Text input-->
-
                                     <div class="form-group">
-
                                         <div class="input-group">
                                             <span class="input-group-addon">Title</span>
-                                            <input name="ItemTitle" placeholder="Item Title" class="form-control" type="text" value='<%= items[0].item_name %>'>
+                                            <input name="ItemTitle" placeholder="Item Title" class="form-control"
+                                                   type="text" value='<%= items[0].item_name %>'>
                                         </div>
-
                                     </div>
-
                                     <!-- Text input-->
-
                                     <div class="form-group">
-
                                         <div class="input-group">
                                             <span class="input-group-addon">Information</span>
-                                            <input name="ItemInfo" placeholder="Item Information" class="form-control" type="text" value='<%= items[0].location %>'>
+                                            <input name="ItemInfo" placeholder="Item Information" class="form-control"
+                                                   type="text" value='<%= items[0].location %>'>
                                         </div>
-
                                     </div>
-
-
                                     <!-- Text area -->
-
                                     <div class="form-group">
-
                                         <div class="input-group">
                                             <span class="input-group-addon">Content</span>
                                             <textarea class="form-control contentTextArea" name="ItemContent"
-                                                      placeholder="Item Content" class="contactTextArea" style="margin: 0px; height: 204px; width: 100%px; z-index: 3; position: relative; line-height: 20px; font-size: 14px; transition: none; max-width: 405px !important;"><%= items[0].description %></textarea>
+                                                      placeholder="Item Content" class="contactTextArea"
+                                                      style="margin: 0px; height: 204px; width: 100%px; z-index: 3; position: relative; line-height: 20px; font-size: 14px; transition: none; max-width: 405px !important;"><%= items[0].description %></textarea>
                                         </div>
-
                                     </div>
-
                                     <!-- Category area -->
                                     <div class="form-group">
-
                                         <div class="input-group">
                                             <span class="input-group-addon">Category</span>
                                             <select class="form-control" name="ItemCategory">
                                                 <% for (var i = 0; i < data.length; i++) { %>
-                                                <% if(items[0].category_id == i+1){ %>
+                                                <% if(items[0].category_id == i + 1){ %>
                                                 <option selected="selected"><a><%= data[i].title %></a></option>
-                                                <% } else {%>
+                                                <% } else { %>
                                                 <option><a><%= data[i].title %></a></option>
                                                 <% } %>
                                                 <% } %>
                                             </select>
                                         </div>
-
                                     </div>
-
                                     <!-- META DATA -->
                                     <div class="form-group">
-
                                         <div class="input-group">
                                             <span class="input-group-addon">Meta data</span>
                                             <textarea class="form-control contentTextArea" name="ItemData"
-                                                      placeholder="Item Content" class="contactTextArea" style="margin: 0px; height: 204px; width: 100%px; z-index: 3; position: relative; line-height: 20px; font-size: 14px; transition: none; max-width: 405px !important;"><%= items[0].metadata %></textarea>
+                                                      placeholder="Item Content" class="contactTextArea"
+                                                      style="margin: 0px; height: 204px; width: 100%px; z-index: 3; position: relative; line-height: 20px; font-size: 14px; transition: none; max-width: 405px !important;"><%= items[0].metadata %></textarea>
                                         </div>
-
                                     </div>
-
                                     <!-- Adding Sound -->
                                     <div class="form-group">
                                         <h4 style="padding-bottom: 5px;">Add Sound</h4>
                                         <div class="input-group">
                                             <label class="input-group-btn">
                                 <span class="btn btn-primary">
-                                    Browse&hellip; <input type="file" style="display: none;" multiple onchange="addAudio(<%= items[0].id %>)">
+                                    Browse&hellip; <input type="file" style="display: none;" multiple
+                                                          onchange="addAudio(<%= items[0].id %>)">
                                 </span>
                                             </label>
                                             <input type="text" class="form-control" name="ItemAudio">
@@ -143,13 +132,18 @@
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-12 col-md-10 col-lg-11">
                                             <% for (var i = 0; i < audios.length; i++) { %>
-                                            <audio style="width: 100%; margin-top: 20px;" controls="controls" preload="metadata" id="ItemAudio<%= audios[i].id %>" >
-                                                <source src=<%= '/files/' + audios[i].audio_location %> type="audio/mp4" ;
+                                            <audio style="width: 100%; margin-top: 20px;" controls="controls"
+                                                   preload="metadata" id="ItemAudio<%= audios[i].id %>">
+                                                <source src=<%= '/files/' + audios[i].audio_location %> type="audio/mp4"
+                                                        ;
                                                         codecs="avc1.42E01E, mp4a.40.2"/>
                                                 No HTML5 audio playback capabilities.
                                             </audio>
-                                            <button type="button" class="btn btn-danger" id="2ItemAudio<%= audios[i].id %>" onclick="removeAudio(<%= audios[i].id %>)">Remove</button>
-                                            <%}%>
+                                            <button type="button" class="btn btn-danger"
+                                                    id="2ItemAudio<%= audios[i].id %>"
+                                                    onclick="removeAudio(<%= audios[i].id %>)">Remove
+                                            </button>
+                                            <% } %>
                                         </div>
 
 
@@ -157,20 +151,22 @@
                                         <div class="form-group">
                                             <label class="control-label"></label>
                                             <div class="col-md-4">
-                                                <button type="submit" class="   btn btn-warning" style="margin-top: 20px">Send <span></span></button>
+                                                <button type="submit" class="   btn btn-warning"
+                                                        style="margin-top: 20px">Send <span></span></button>
                                             </div>
                                         </div>
                                     </div>
+
+
                                 </div>
                             </div>
                         </div>
-                        <div>
-                        </div>
                     </div>
+                </div>
             </form>
 
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" >
+        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
 
         </div>
     </div>
@@ -185,21 +181,20 @@
 </div>
 <!-- /container -->
 
-
 <% include partials/pages/scripts.ejs %>
 <script>
-    function removeAudio(id){
+    function removeAudio(id) {
         var idName = "#ItemAudio" + id;
         var idName2 = "#2ItemAudio" + id;
         $.ajax({
             method: 'DELETE',
             url: '/item/audio/' + id
         });
-     $(idName).remove();
-     $(idName2).remove();
+        $(idName).remove();
+        $(idName2).remove();
     }
 
-    function addAudio(itemId){
+    function addAudio(itemId) {
         $.ajax({
             method: 'POST',
             url: '/manage/addAudio/' + itemId

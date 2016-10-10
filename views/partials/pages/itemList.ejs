@@ -9,7 +9,6 @@
                     <th>Category &nbsp</td>
                     <th>Metadata &nbsp</td>
                     <th>Audio files &nbsp</th>
-                    <td class="edit-th">Edit &nbsp</td>
                 </tr>
                 <% for (var i=0; i<items.length; i++) { %>
                 <tr>
@@ -37,21 +36,11 @@
                         <% } %>
                         <% } %>
                     </td>
-                    <td style="text-align: center; padding: 0px !important;">
-                        <a href="<%="../item/"+items[i].id+"/edit"%>"><i class="ion-edit"></i></a>
-                    </td>
                 </tr>
                 <% } %>
             </table>
         </div>
         <script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
-        <script>
-            jQuery(document).ready(function($) {
-                $(".clickable-row").click(function() {
-                    window.document.location = $(this).data("href");
-                });
-            });
-        </script>
         <!-----------------------------------  ITEMS END ----------------------------------------------------->
     </div>
 </div>
