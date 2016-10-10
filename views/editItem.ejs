@@ -16,14 +16,13 @@
 </nav>
 
 <div class="raysContainer">
-
     <div class="row">
 
         <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
 
         </div>
         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
-            <form class="well form-horizontal" action=' /manage/<%= items[0].id %>/edit' method="post" id="add_item_form"
+            <form class="well form-horizontal" enctype = "multipart/form-data" action=' /manage/<%= items[0].id %>/edit' method="post" id="add_item_form"
                   style="border: 1px solid #bdbdbd !important;">
                 <div class="row" style="padding: 50px;">
                     <div class="media">
@@ -47,10 +46,10 @@
                                 <div class="input-group">
                                     <label class="input-group-btn">
                                 <span class="btn btn-primary">
-                                    Browse&hellip; <input type="file" style="display: none;" multiple>
+                                    Browse&hellip; <input type="file" name="imageFile" style="display: none;" multiple>
                                 </span>
                                     </label>
-                                    <input type="text" class="form-control" name="ItemImage" value=<%= items[0].image %>>
+                                    <input type="text" class="form-control" name="ItemImage" >
                                 </div>
 
                             </div>
@@ -126,13 +125,19 @@
 
                                     </div>
 
+
+
+                                    <input type="hidden" id="anything" name="RemoveList" value="empty">
+
+
                                     <!-- Adding Sound -->
-                                    <div class="form-group">
+                                    <div class="add-form-group">
                                         <h4 style="padding-bottom: 5px;">Add Sound</h4>
                                         <div class="input-group">
                                             <label class="input-group-btn">
-                                <span class="btn btn-primary">
-                                    Browse&hellip; <input type="file" style="display: none;" multiple onchange="addAudio(<%= items[0].id %>)">
+                                <span class="btn btn-primary inputTitle">
+                                    Browse&hellip;
+                                    <input type="file" name="audioFile" style="display: none;" multiple>
                                 </span>
                                             </label>
                                             <input type="text" class="form-control" name="ItemAudio">
@@ -157,16 +162,15 @@
                                         <div class="form-group">
                                             <label class="control-label"></label>
                                             <div class="col-md-4">
-                                                <button type="submit" class="   btn btn-warning" style="margin-top: 20px">Send <span></span></button>
+                                                <button type="submit" class="btn btn-warning" style="margin-top: 20px">Send</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div>
-                        </div>
                     </div>
+                </div>
             </form>
 
         </div>
@@ -188,24 +192,44 @@
 
 <% include partials/pages/scripts.ejs %>
 <script>
+    var items = "";
+
     function removeAudio(id){
-        var idName = "#ItemAudio" + id;
-        var idName2 = "#2ItemAudio" + id;
-        $.ajax({
-            method: 'DELETE',
-            url: '/item/audio/' + id
-        });
-     $(idName).remove();
-     $(idName2).remove();
+        items = items + id + ",";
+        var a = document.getElementById("anything");
+        a.setAttribute('value',  items);
+        $("#ItemAudio" + id).remove();
+        $("#2ItemAudio" + id).remove();
     }
 
-    function addAudio(itemId){
-        $.ajax({
-            method: 'POST',
-            url: '/manage/addAudio/' + itemId
+
+    $(function () {
+
+        // We can attach the `fileselect` event to all file inputs on the page
+        $(document).on('change', ':file', function () {
+            var input = $(this),
+                    numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                    label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+            input.trigger('fileselect', [numFiles, label]);
         });
-        //create item to show on page
-    }
+
+        // We can watch for our custom `fileselect` event like this
+        $(document).ready(function () {
+            $(':file').on('fileselect', function (event, numFiles, label) {
+
+                var input = $(this).parents('.input-group').find(':text'),
+                        log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+                if (input.length) {
+                    input.val(log);
+                } else {
+                    if (log) alert(log);
+                }
+
+            });
+        });
+
+    });
 </script>
 
 </body>
