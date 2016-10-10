@@ -130,6 +130,7 @@ app.use('/manage', manage);
 app.use('/item', item);
 app.use('/category', category);
 app.use('/admin', admin);
+app.use('/additem', additem);
 app.use('/', routes);   // MUST COME LAST AS HAS 404
 
 

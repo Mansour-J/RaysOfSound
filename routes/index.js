@@ -121,12 +121,12 @@ router.get('/registration', function(req, res, next){
     });
 });
 
-//Individual Item Route
-router.get('/additem', function(req, res, next){
-    db.Category.findAll().then(function(categories){
-        res.render('addItem.ejs', { title: 'Express', data:categories});
-    });
-});
+// //Individual Item Route
+// router.get('/additem', function(req, res, next){
+//     db.Category.findAll().then(function(categories){
+//         res.render('addItem.ejs', { title: 'Express', data:categories});
+//     });
+// });
 
 
 
