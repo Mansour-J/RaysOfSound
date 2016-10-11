@@ -11,38 +11,39 @@
 </nav>
 
 <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2 middleInnerContainer">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3 middleInnerContainer">
 
         <div class="admin">
             <h1>Login</h1>
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2">
+            <form class="well form-horizontal"
+                  action="/login" method="post" id="contact_form"
+                  style="box-shadow: none">
 
-        <form class="well form-horizontal"
-              action="/login" method="post" id="contact_form"
-              style="box-shadow: none">
-
-            <!-- Text input-->
-            <div class="add-form-group">
-                <div class="input-group">
-                    <span class="input-group-addon inputTitle">Username</span>
-                    <input type="text" name="username" placeholder="Username">
+                <!-- Text input-->
+                <div class="add-form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon inputTitle">Username</span>
+                        <input class="form-control" type="text" name="username" placeholder="Username">
+                    </div>
                 </div>
-            </div>
 
-            <!-- Text input-->
-            <div class="add-form-group">
-                <div class="input-group">
-                    <span class="input-group-addon inputTitle">Password</span>
-                    <input type="password" name="password" placeholder="Password">
+                <!-- Text input-->
+                <div class="add-form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon inputTitle">Password</span>
+                        <input class="form-control" type="password" name="password" placeholder="Password">
+                    </div>
                 </div>
-            </div>
 
 
-            <!-- Button -->
-            <div class="add-form-group">
-                <button type="submit" class="btn btn-warning add-button">Submit</button>
-            </div>
-        </form>
+                <!-- Button -->
+                <div class="add-form-group">
+                    <button type="submit" class="btn btn-warning add-button">Submit</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 </div>
