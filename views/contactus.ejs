@@ -8,7 +8,7 @@
 
 <!-- Static navbar -->
 <nav class="navbar navbar-default navbar-static-top">
-    <% include partials/pages/navbar.ejs data %>
+    <% include partials/pages/navbar.ejs data%>
 </nav>
 
 <div class="raysContainer">
@@ -16,7 +16,7 @@
 </div> <!-- /container -->
 
 
-<div class="raysContainer navbar-fixed-bottom">
+<div class="raysContainer ">
     <% include partials/pages/footer.ejs %>
 </div> <!-- /container -->
 
@@ -49,8 +49,17 @@
 
 
     }
-</script>
+    function myMap() {
+        var mapCanvas = document.getElementById("map");
+        var mapOptions = {
+            center: new google.maps.LatLng( -41.2879817, 174.7680926),
+            zoom: 10
+        }
+        var map = new google.maps.Map(mapCanvas, mapOptions);
+    }
 
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
 
 
 
