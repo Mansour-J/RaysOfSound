@@ -27,8 +27,7 @@ router.get('/manage/categories', function (req, res, next) {
     });
 });
 
-//router.post('/manage/categories', helper.isAuthenicated, function (req, res, next) {
-router.post('/manage/categories', function (req, res, next) {
+router.post('/manage/categories', helper.isAuthenicated, function (req, res, next) {
         var loggedIn;
 
         var newId = [];
