@@ -2,22 +2,26 @@
     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2 middleInnerContainer category">
         <h1>Categories</h1>
         <form action="./categories" method="post">
+
         <div class="row">
             <fieldset disabled id="cats">
             <% for (var i = 0; i < data.length; i++) { %>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 categoryTile">
                     <div class="form-group">
                         <input name="input<%=data[i].id%>" type="text" id="disabledTextInput"
-                               class="form-control"
-                               value="<%= data[i].title %>">
+                               class="form-control" value="<%= data[i].title %>">
                     </div>
             </div>
             <% } %>
             </fieldset>
         </div>
+
         <div class="row">
-            <a onclick="edit()" class="btn btn-info">Change</a>
-            <button type="submit" class="btn btn-success">Submit</button>
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-12"
+                style="text-align: center;">
+            <button onclick="edit()" class="btn btn-info">Edit categories</button>
+            <button type="submit" class="btn btn-success">Submit changes</button>
+            </div>
         </div>
         </form>
     </div>

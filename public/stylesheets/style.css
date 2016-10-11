@@ -322,16 +322,27 @@ textarea.form-control.contentTextArea{
     position: relative;
     top:60px;
 }
+.category button {
+    margin: 10px 10px 20px 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 15px;
+}
+.category input {
+    width: 100%;
+    height: 40px;
+    margin: 25px 0px 0px 0px;
+
+}
 .categoryTile {
     width: 200px;
-    height: 200px;
+    height: 100px;
     text-align: center;
     background: #FFFFFF;
     border-radius: 20px;
     border: solid #000000;
     margin: 10px 10px 10px 10px;
 }
-
 .categoryTile:hover{
     background-color: #def8df;
 }
