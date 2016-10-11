@@ -3,27 +3,21 @@ var router = express.Router();
 var db = require('../lib/db');
 var passwordHash = require('password-hash');
 var nodemailer = require('nodemailer');
+var helper = require('../lib/helper');
 
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
     db.Category.findAll().then(function(categories){
-        res.render('home.ejs', { title: 'Express', data: categories});
+        res.render('home.ejs', { title: 'Rays of Sound', data: categories, user: req.user});
     });
 });
 
-
-//TET Routes
-router.get('/test', function(req, res, next){
-    db.Category.findAll().then(function(categories){
-        res.send(categories);
-    });
-});
 
 //Contact Us Routes
 router.get('/contactus', function(req, res, next){
     db.Category.findAll().then(function(categories){
-        res.render('contactus.ejs', { title: 'Express', data: categories});
+        res.render('contactus.ejs', { title: 'Contact Us', user: req.user, data: categories});
     });
 });
 
@@ -31,7 +25,7 @@ router.get('/contactus', function(req, res, next){
 //Contact Us Routes
 router.post('/contactus/', function(req, res, next){
     db.Category.findAll().then(function(categories){
-        res.render('contactus.ejs', { title: 'Express', data: categories});
+        res.render('contactus.ejs', { title: 'Express', user: req.user, data: categories});
 
         var transporter = nodemailer.createTransport({
             service: 'Gmail',
@@ -73,28 +67,16 @@ router.post('/contactus/', function(req, res, next){
     });
 });
 
-
-
-
-//Individual Item Route
-router.get('/individual', function(req, res, next){
+router.get('/login', function(req, res, next){
     db.Category.findAll().then(function(categories){
-        res.render('IndividualItem.ejs', { title: 'Express'});
-    });
-});
-
-
-//Encryption Route
-router.get('/encryption', function(req, res, next){
-    db.Category.findAll().then(function(categories){
-        res.render('encryption.ejs', { title: 'Express', data: categories, hashed:  JSON.stringify(hashedPassword)});
+            res.render('login.ejs', {title:'Login', data: categories, user: req.user});
     });
 });
 
 
 /* GET users listing. */
 //Registration Route
-router.post('/registration', function(req, res, next){
+router.post('/registration', helper.authedOrLogin, function(req, res, next){
     var hashedPassword = passwordHash.generate(req.body.password1);
 
     db.User.create({
@@ -107,28 +89,26 @@ router.post('/registration', function(req, res, next){
     }).then(function (){
         //successfull
         db.User.findAll().then(function (users) {
-            res.render('index.ejs', { title: 'Rays of Sound'});
+            res.redirect('/');
         });
     })
 });
 
 
 
+//Need to rename to bunch of random characters or get rid of entirely
 //Registration Route
-router.get('/registration', function(req, res, next){
+router.get('/kadgnkauadf33321866mnpqwr', helper.authedOrLogin, function(req, res, next){ 
     db.Category.findAll().then(function(categories){
-        res.render('registration.ejs', { title: 'Express', data: categories});
+        res.render('registration.ejs', { title: 'Registration', user: req.user, data: categories});
     });
 });
 
-// //Individual Item Route
-// router.get('/additem', function(req, res, next){
-//     db.Category.findAll().then(function(categories){
-//         res.render('addItem.ejs', { title: 'Express', data:categories});
-//     });
-// });
 
-
+router.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('/');
+});
 
 //404 Routes
 router.get('*', function(req, res, next){

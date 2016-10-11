@@ -6,11 +6,11 @@ var helper = require('../lib/helper');
 //Individual Item Route
 router.get('/',helper.authedOrLogin, function(req, res, next){
     db.Category.findAll().then(function(categories){
-        res.render('addItem.ejs', { title: 'Express', data:categories });
+        res.render('addItem.ejs', { title: 'Add Item', user: req.user,  data:categories });
     });
 });
 
-router.post('/create', function(req, res, next){
+router.post('/create', helper.authedOrLogin, function(req, res, next){
     db.Category.findOne({where: {title: req.body.ItemCategory}
     }).then(function(category)
     {

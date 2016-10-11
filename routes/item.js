@@ -32,7 +32,8 @@ router.get('/:id/edit', helper.authedOrLogin, function(req, res, next) {
           title: "Uploaded",
           data: categories,
           items: items,
-          audios: audios
+          audios: audios,
+          user: req.user
         });
       });
     });

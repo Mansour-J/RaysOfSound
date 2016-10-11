@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include partials/pages/head.ejs %>
+</head>
+<body>
+
+<!-- Static navbar -->
+<nav class="navbar navbar-default navbar-static-top">
+    <% include partials/pages/navbar.ejs data %>
+</nav>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3 middleInnerContainer">
+
+        <div class="admin">
+            <h1>Login</h1>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2">
+            <form class="well form-horizontal"
+                  action="/login" method="post" id="contact_form"
+                  style="box-shadow: none">
+
+                <!-- Text input-->
+                <div class="add-form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon inputTitle">Username</span>
+                        <input class="form-control" type="text" name="username" placeholder="Username">
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="add-form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon inputTitle">Password</span>
+                        <input class="form-control" type="password" name="password" placeholder="Password">
+                    </div>
+                </div>
+
+
+                <!-- Button -->
+                <div class="add-form-group">
+                    <button type="submit" class="btn btn-warning add-button">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+<!-- /container -->
+
+
+<div class="raysContainer navbar-fixed-bottom">
+    <% include partials/pages/footer.ejs %>
+</div> <!-- /container -->
+
+<% include partials/pages/scripts.ejs %>
+
+<script>
+    $(function () {
+
+        // We can attach the `fileselect` event to all file inputs on the page
+        $(document).on('change', ':file', function () {
+            var input = $(this),
+                    numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                    label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+            input.trigger('fileselect', [numFiles, label]);
+        });
+
+        // We can watch for our custom `fileselect` event like this
+        $(document).ready(function () {
+            $(':file').on('fileselect', function (event, numFiles, label) {
+
+                var input = $(this).parents('.input-group').find(':text'),
+                        log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+                if (input.length) {
+                    input.val(log);
+                } else {
+                    if (log) alert(log);
+                }
+
+            });
+        });
+
+    });
+</script>
+
+</body>
+</html>
+

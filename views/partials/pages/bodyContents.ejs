@@ -12,7 +12,7 @@
 
             <div class="thumbnail" style="height: 100%;">
 
-                <a href="/item/<%= items[i].id %>"><img src="/images/test.jpg" alt="ItemImage"></a>
+                <a href="/item/<%= items[i].id %>"><img src="<%= '/files/' + items[i].image %>" alt="ItemImage"></a>
                 <div class="caption" style=" position: relative;" >
                     <span class="thumbnailTitle" style="font-size: 20px; display: block;"><a href="/item/<%= items[i].id %>"> <%= items[i].item_name %> </a></span>
 
@@ -32,7 +32,7 @@
                 <% var source = ""%>
                 <% for (var j = 0; j < audio.length; j++){ %>
                     <% if (items[i].id == audio[j].item_id){ %>
-                        <% source = audio[j].audio_location %>
+                        <% source = '/files/' + audio[j].audio_location %>
                         <% break; %>
                     <% } %>
                 <% } %>
@@ -64,7 +64,7 @@
                     for (var i = 0; i < numbers; i++) {
 
                     %>
-                    <li><a href="/category/1/view/<%= i+1 %>"><%= i+1 %></a></li>
+                    <li><a href="/category/<%=items[i].category_id%>/view/<%= i+1 %>"><%= i+1 %></a></li>
                     <% } %>
 
                     <!--<li>
