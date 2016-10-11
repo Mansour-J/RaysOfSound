@@ -1,0 +1,19 @@
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2 middleInnerContainer category">
+        <h1>Categories</h1>
+        <div class="row">
+
+            <% for (var i=0; i<data.length; i++) { %>
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 categoryTile">
+                <a href="/category/<%=data[i].id%>/view">
+                    <h2>
+                        <%=data[i].title%>
+                    </h2>
+                </a>
+            </div>
+
+            <% } %>
+        </div>
+    </div>
+</div>
