@@ -87,6 +87,24 @@ body{
 
 
 /*************************************** CONTACT US Styles *****************************/
+
+.contact {
+}
+.contact h4 {
+    margin: 15px 0px 10px 0px;
+    font-size: 20px;
+}
+.contact img {
+    border-radius: 10px;
+    float:left;
+    margin: 0px 10px 10px 10px;
+}
+
+
+
+
+
+
 form#contact_form {
     height: 100% !important;
     width: 100% !important;
