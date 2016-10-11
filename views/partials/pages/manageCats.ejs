@@ -1,9 +1,7 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2 middleInnerContainer category">
         <h1>Categories</h1>
-<<<<<<< HEAD
         <form action="./categories" method="post">
-
         <div class="row">
             <fieldset disabled id="cats">
             <% for (var i = 0; i < data.length; i++) { %>
@@ -12,17 +10,6 @@
                         <input name="input<%=data[i].id%>" type="text" id="disabledTextInput"
                                class="form-control" value="<%= data[i].title %>">
                     </div>
-=======
-        <div class="row" style="margin-left: 15%;">
-
-            <% for (var i=0; i<data.length; i++) { %>
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 categoryTile" >
-                <a href="/category/<%=data[i].id%>/view" >
-                    <h2>
-                        <%=data[i].title%>
-                    </h2>
-                </a>
->>>>>>> ecba964378fb25b70607a46dd5433a5d65a3328c
             </div>
             <% } %>
             </fieldset>
