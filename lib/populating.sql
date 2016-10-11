@@ -113,105 +113,105 @@ Story by Daemon Salesa Recording by Mii Hinarere Tupangaia (Mama Mii)', 'images/
 --Samoa
 --O Mamanu o le Siapo
 INSERT INTO audio (item_id, duration, artist, audio_location)
-VALUES (1,'13:09', 'Unknown', '/files/5627_1_siapo.m4a');
+VALUES (1,'13:09', 'Unknown', '5627_1_siapo.m4a');
 
 INSERT INTO audio (item_id, duration, artist, audio_location)
-VALUES (1, '5:57', 'Unknown', '/files/5627_1_siapo.m4a');
+VALUES (1, '5:57', 'Unknown', '5627_1_siapo.m4a');
 
 --Pese Samoa
 INSERT INTO audio (item_id, duration, artist, audio_location)
-VALUES (2, '14:13', 'Unknown', '/files/1812_1_pesesamoa.m4a');
+VALUES (2, '14:13', 'Unknown', '1812_1_pesesamoa.m4a');
 
 INSERT INTO audio (item_id, duration, artist, audio_location)
-VALUES (2, '12:20', 'Unknown', '/files/1812_2_pesesamoa.m4a');
+VALUES (2, '12:20', 'Unknown', '1812_2_pesesamoa.m4a');
 
 --Sina Ma Le Tuna
 INSERT INTO audio (item_id, duration, artist, audio_location)
-VALUES (3, '11:36', 'Unknown', '/files/5448_1_sina.m4a');
+VALUES (3, '11:36', 'Unknown', '5448_1_sina.m4a');
 
 INSERT INTO audio (item_id, duration, artist, audio_location)
-VALUES (3, '9:11', 'Unknown', '/files/5448_2_sina.m4a');
+VALUES (3, '9:11', 'Unknown', '5448_2_sina.m4a');
 
 --Le Moe a Timi
 INSERT INTO audio (item_id, duration, artist, audio_location)
-VALUES (4, '5:04', 'Unknown', '/files/5549_uncletimsleeps.m4a');
+VALUES (4, '5:04', 'Unknown', '5549_uncletimsleeps.m4a');
 
 --O Pese Samoa
 INSERT INTO audio (item_id, duration, artist, audio_location)
-VALUES (5, '7:09', 'Unknown', '/files/8795_opesesamoa.m4a');
+VALUES (5, '7:09', 'Unknown', '8795_opesesamoa.m4a');
 
 --Palusami
 INSERT INTO audio (item_id, duration, artist, audio_location)
-VALUES (6, '7:09', 'Unknown', '/files/8795_opesesamoa.m4a');
+VALUES (6, '7:09', 'Unknown', '8795_opesesamoa.m4a');
 
 --'O le Taimi o le Palolo
 INSERT INTO audio (item_id, duration, artist, audio_location)
-VALUES (7, '4:39', 'Unknown', '/files/13371_18_PaloloTime.m4a');
+VALUES (7, '4:39', 'Unknown', '13371_18_PaloloTime.m4a');
 
 --Maori - Tamariki
 --Nga Manu i Runga i te Rakau
 INSERT INTO audio (item_id, duration, artist, audio_location)
-VALUES (8, '5:38', 'Unknown', '/files/3699_8_NgaManuIRungaITeRakau.m4a');
+VALUES (8, '5:38', 'Unknown', '3699_8_NgaManuIRungaITeRakau.m4a');
 
 --He Aporo Ma Hoiho
 INSERT INTO audio (item_id, duration, artist, audio_location)
-VALUES (9, '5:26', 'Unknown', '/files/3699_1_HeAporomaHoiho.m4a');
+VALUES (9, '5:26', 'Unknown', '3699_1_HeAporomaHoiho.m4a');
 
 --Te Whakawhiti i te Rori
 INSERT INTO audio (item_id, duration, artist, audio_location)
-VALUES (10, '4:15', 'Unknown', '/files/3699_3_2_TeWhakawhitiITeRori.m4a');
+VALUES (10, '4:15', 'Unknown', '3699_3_2_TeWhakawhitiITeRori.m4a');
 
 --He Kai Ma te Ika
 INSERT INTO audio (item_id, duration, artist, audio_location)
-VALUES (11, '6:30', 'Unknown', '/files/3699_4_HeKaiMaTeIka.m4a');
+VALUES (11, '6:30', 'Unknown', '3699_4_HeKaiMaTeIka.m4a');
 
 --Papa Mama
 INSERT INTO audio (item_id, duration, artist, audio_location)
-VALUES (12, '3:20', 'Unknown', '/files/3699_5_MamaPapa.m4a');
+VALUES (12, '3:20', 'Unknown', '3699_5_MamaPapa.m4a');
 
 --Pererika Te Poraka
 INSERT INTO audio (item_id, duration, artist, audio_location)
-VALUES (13, '4:50', 'Unknown', '/files/3699_7_PererikaTePoraka.m4a');
+VALUES (13, '4:50', 'Unknown', '3699_7_PererikaTePoraka.m4a');
 
 --Ko Maia me te Manumangu Taipo
 INSERT INTO audio (item_id, duration, artist, audio_location)
-VALUES (14, '4:41', 'Unknown', '/files/3731_2_TeTautoko15.m4a');
+VALUES (14, '4:41', 'Unknown', '3731_2_TeTautoko15.m4a');
 
 --Maori - Randatahi
 --Te Papa Wira
 --Ko Maia me te Manumangu Taipo
 INSERT INTO audio (item_id, duration, artist, audio_location)
-VALUES (15, '2:37', 'Unknown', '/files/3699_6_TePapaWira.m4a');
+VALUES (15, '2:37', 'Unknown', '3699_6_TePapaWira.m4a');
 
 --A Maru Rāua Ko Poro
 INSERT INTO audio (item_id, duration, artist, audio_location)
-VALUES (16, '5:03', 'Unknown', '/files/3699_9_AMaruRauaKoPoro.m4a');
+VALUES (16, '5:03', 'Unknown', '3699_9_AMaruRauaKoPoro.m4a');
 
 --Te Taitama
 INSERT INTO audio (item_id, duration, artist, audio_location)
-VALUES (17, '11:54', 'Unknown', '/files/5733_1_TeTaitama.m4a');
+VALUES (17, '11:54', 'Unknown', '5733_1_TeTaitama.m4a');
 
 --Ko Māui me te Rā
 INSERT INTO audio (item_id, duration, artist, audio_location)
-VALUES (18, '6:51', 'Unknown', '/files/3699_2_KoMauiMeTeRa.m4a');
+VALUES (18, '6:51', 'Unknown', '3699_2_KoMauiMeTeRa.m4a');
 
 INSERT INTO audio (item_id, duration, artist, audio_location)
-VALUES (18, '5:34', 'Unknown', '/files/3699_2_MauiAndTheSun.m4a');
+VALUES (18, '5:34', 'Unknown', '3699_2_MauiAndTheSun.m4a');
 
 --Ko Taku taka rangatira ko taku reo Māori
 INSERT INTO audio (item_id, duration, artist, audio_location)
-VALUES (19, '9:45', 'Unknown', '/files/3731_1_TeTautoko13.m4a');
+VALUES (19, '9:45', 'Unknown', '3731_1_TeTautoko13.m4a');
 
 --Aue, He Atua!
 INSERT INTO audio (item_id, duration, artist, audio_location)
-VALUES (20, '17:58', 'Unknown', '/files/3726_1_AueHeAtua.m4a');
+VALUES (20, '17:58', 'Unknown', '3726_1_AueHeAtua.m4a');
 
 
 INSERT INTO audio (item_id, duration, artist, audio_location)
-VALUES (20, '2:37', 'Unknown', '/files/3726_2_AueHeAtua.m4a');
+VALUES (20, '2:37', 'Unknown', '3726_2_AueHeAtua.m4a');
 
 
 --Maori Kuki Airani
 --Avaiki
 INSERT INTO audio (item_id, duration, artist, audio_location)
-VALUES (21, '1:20', 'Unknown', '/files/avaiki.m4a');
+VALUES (21, '1:20', 'Unknown', 'avaiki.m4a');

@@ -32,7 +32,7 @@
                 <% var source = ""%>
                 <% for (var j = 0; j < audio.length; j++){ %>
                     <% if (items[i].id == audio[j].item_id){ %>
-                        <% source = audio[j].audio_location %>
+                        <% source = '/files/' + audio[j].audio_location %>
                         <% break; %>
                     <% } %>
                 <% } %>
