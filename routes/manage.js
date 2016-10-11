@@ -37,29 +37,6 @@ var storage = multer.diskStorage({
     }
 });
 
-//filter out unsupported audio formats
-var audioFilter = function (req, file, cb) {
-    if (mime.extension(file.mimetype) != "mp3" /*&& mime.extension(file.mimetype) != "jpg" */) {
-        console.log("Invalid audio format");
-        cb(null, false);
-    }
-    else {
-        // To accept the file pass `true`, like so:
-        cb(null, true)
-    }
-};
-
-//filter out unsupported image formats
-var imageFilter = function (req, file, cb) {
-    if (mime.extension(file.mimetype) != "jpg" && mime.extension(file.mimetype) != "png") {
-        console.log("Invalid image format");
-        cb(null, false);
-    }
-    else {
-        // To accept the file pass `true`, like so:
-        cb(null, true)
-    }
-};
 
 //filter out unsupported files
 var fileFilter = function(req, file, cb){
@@ -123,10 +100,6 @@ router.post('/addItem/', multer({storage: storage, fileFilter: fileFilter}).fiel
             });
         });
     });
-
-router.get('/:id/destroy/', function (req, res) {
-    res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
-});
 
 router.post('/:id/edit', helper.isAuthenicated, multer({storage: storage, fileFilter: fileFilter}).fields([{
         name: 'audioFile', maxCount: 10

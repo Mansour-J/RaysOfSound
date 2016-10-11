@@ -7,19 +7,11 @@ var nodemailer = require('nodemailer');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    console.log(req.user);
     db.Category.findAll().then(function(categories){
         res.render('home.ejs', { title: 'Rays of Sound', data: categories, user: req.user});
     });
 });
 
-
-//TET Routes
-router.get('/test', function(req, res, next){
-    db.Category.findAll().then(function(categories){
-        res.send(categories);
-    });
-});
 
 //Contact Us Routes
 router.get('/contactus', function(req, res, next){
@@ -78,17 +70,7 @@ router.get('/login', function(req, res, next){
     db.Category.findAll().then(function(categories){
             res.render('login.ejs', {title:'Login', data: categories, user: req.user});
     });
-})
-
-
-
-// //Individual Item Route
-// router.get('/individual', function(req, res, next){
-//     db.Category.findAll().then(function(categories){
-//         res.render('IndividualItem.ejs', { title: 'Express'});
-//     });
-// });
-
+});
 
 
 /* GET users listing. */
@@ -106,15 +88,16 @@ router.post('/registration', function(req, res, next){
     }).then(function (){
         //successfull
         db.User.findAll().then(function (users) {
-            res.render('index.ejs', {title: 'Rays of Sound', user: req.user});
+            res.redirect('/');
         });
     })
 });
 
 
 
+//Need to rename to bunch of random characters or get rid of entirely
 //Registration Route
-router.get('/registration', function(req, res, next){
+router.get('/kadgnkauadf33321866mnpqwr', function(req, res, next){ 
     db.Category.findAll().then(function(categories){
         res.render('registration.ejs', { title: 'Registration', user: req.user, data: categories});
     });
@@ -125,15 +108,6 @@ router.get('/logout', function(req, res){
     req.logout();
     res.redirect('/');
 });
-
-// //Individual Item Route
-// router.get('/additem', function(req, res, next){
-//     db.Category.findAll().then(function(categories){
-//         res.render('addItem.ejs', { title: 'Express', data:categories});
-//     });
-// });
-
-
 
 //404 Routes
 router.get('*', function(req, res, next){
