@@ -7,8 +7,9 @@ var nodemailer = require('nodemailer');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+    console.log(req.user);
     db.Category.findAll().then(function(categories){
-        res.render('home.ejs', { title: 'Express', data: categories});
+        res.render('home.ejs', { title: 'Rays of Sound', data: categories, user: req.user});
     });
 });
 
@@ -23,7 +24,7 @@ router.get('/test', function(req, res, next){
 //Contact Us Routes
 router.get('/contactus', function(req, res, next){
     db.Category.findAll().then(function(categories){
-        res.render('contactus.ejs', { title: 'Express', data: categories});
+        res.render('contactus.ejs', { title: 'Contact Us', user: req.user, data: categories});
     });
 });
 
@@ -31,7 +32,7 @@ router.get('/contactus', function(req, res, next){
 //Contact Us Routes
 router.post('/contactus/', function(req, res, next){
     db.Category.findAll().then(function(categories){
-        res.render('contactus.ejs', { title: 'Express', data: categories});
+        res.render('contactus.ejs', { title: 'Express', user: req.user, data: categories});
 
         var transporter = nodemailer.createTransport({
             service: 'Gmail',
@@ -73,23 +74,21 @@ router.post('/contactus/', function(req, res, next){
     });
 });
 
-
-
-
-//Individual Item Route
-router.get('/individual', function(req, res, next){
+router.get('/login', function(req, res, next){
     db.Category.findAll().then(function(categories){
-        res.render('IndividualItem.ejs', { title: 'Express'});
+            res.render('login.ejs', {title:'Login', data: categories, user: req.user});
     });
-});
+})
 
 
-//Encryption Route
-router.get('/encryption', function(req, res, next){
-    db.Category.findAll().then(function(categories){
-        res.render('encryption.ejs', { title: 'Express', data: categories, hashed:  JSON.stringify(hashedPassword)});
-    });
-});
+
+// //Individual Item Route
+// router.get('/individual', function(req, res, next){
+//     db.Category.findAll().then(function(categories){
+//         res.render('IndividualItem.ejs', { title: 'Express'});
+//     });
+// });
+
 
 
 /* GET users listing. */
@@ -107,7 +106,7 @@ router.post('/registration', function(req, res, next){
     }).then(function (){
         //successfull
         db.User.findAll().then(function (users) {
-            res.render('index.ejs', { title: 'Rays of Sound'});
+            res.render('index.ejs', {title: 'Rays of Sound', user: req.user});
         });
     })
 });
@@ -117,8 +116,14 @@ router.post('/registration', function(req, res, next){
 //Registration Route
 router.get('/registration', function(req, res, next){
     db.Category.findAll().then(function(categories){
-        res.render('registration.ejs', { title: 'Express', data: categories});
+        res.render('registration.ejs', { title: 'Registration', user: req.user, data: categories});
     });
+});
+
+
+router.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('/');
 });
 
 // //Individual Item Route
