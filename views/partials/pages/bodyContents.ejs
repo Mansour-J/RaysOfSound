@@ -12,7 +12,7 @@
 
             <div class="thumbnail" style="height: 100%;">
 
-                <a href="/item/<%= items[i].id %>"><img src="/<%= items[i].image %>" alt="ItemImage"></a>
+                <a href="/item/<%= items[i].id %>"><img src="<%= '/files/' + items[i].image %>" alt="ItemImage"></a>
                 <div class="caption" style=" position: relative;" >
                     <span class="thumbnailTitle" style="font-size: 20px; display: block;"><a href="/item/<%= items[i].id %>"> <%= items[i].item_name %> </a></span>
 
