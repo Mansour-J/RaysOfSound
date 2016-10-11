@@ -3,6 +3,7 @@ var router = express.Router();
 var db = require('../lib/db');
 var passwordHash = require('password-hash');
 var nodemailer = require('nodemailer');
+var helper = require('../lib/helper');
 
 
 /* GET home page. */
@@ -75,7 +76,7 @@ router.get('/login', function(req, res, next){
 
 /* GET users listing. */
 //Registration Route
-router.post('/registration', function(req, res, next){
+router.post('/registration', helper.authedOrLogin, function(req, res, next){
     var hashedPassword = passwordHash.generate(req.body.password1);
 
     db.User.create({
@@ -97,7 +98,7 @@ router.post('/registration', function(req, res, next){
 
 //Need to rename to bunch of random characters or get rid of entirely
 //Registration Route
-router.get('/kadgnkauadf33321866mnpqwr', function(req, res, next){ 
+router.get('/kadgnkauadf33321866mnpqwr', helper.authedOrLogin, function(req, res, next){ 
     db.Category.findAll().then(function(categories){
         res.render('registration.ejs', { title: 'Registration', user: req.user, data: categories});
     });
