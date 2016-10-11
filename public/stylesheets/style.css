@@ -307,6 +307,37 @@ textarea.form-control.contentTextArea{
 .adminTile a:hover{
     text-decoration: none !important;
 }
+/* categories */
+.category {
+}
+.category h1 {
+    text-align: center;
+    font-size: 30px;
+    margin: 10px 0px 10px 0px;
+}
+.category h2 {
+    color: #000000 !important;
+    text-decoration: none !important;
+    font-size: 30px !important;
+    position: relative;
+    top:60px;
+}
+.categoryTile {
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    background: #FFFFFF;
+    border-radius: 20px;
+    border: solid #000000;
+    margin: 10px 10px 10px 10px;
+}
+
+.categoryTile:hover{
+    background-color: #def8df;
+}
+.categoryTile a:hover{
+    text-decoration: none !important;
+}
 
 /********* item list ***********/
 .itemList {
@@ -324,6 +355,13 @@ textarea.form-control.contentTextArea{
 }
 .itemList td {
     padding-left: 20px;
+}
+#itemList_edit {
+    background-color: #e1e1e1;
+    color: #000000;
+    font-size: 20px;
+    cursor: default;
+    padding: 5px 10px 5px 5px;
 }
 table.sortable tbody {
     counter-reset: sortabletablescope;
