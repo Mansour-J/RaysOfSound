@@ -15,10 +15,9 @@ node_modules
 #npm logging
 npm-debug.log
 
-#tempUploads
-uploads
-files/**
-
+#Uploads
+public/files/**
+!public/files/placeholder.txt
 
 #testCoverage
 coverage
