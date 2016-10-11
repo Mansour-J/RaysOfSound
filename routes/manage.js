@@ -107,8 +107,6 @@ router.post('/addItem/', multer({storage: storage, fileFilter: fileFilter}).fiel
                 user_id: 1
             }).then(function (item) {
                 itemID = item.id;
-                // console.log(req.files);
-                // console.log(req.files.audioFile[0].filename);
                 req.files.audioFile.forEach(function (it, index, array){
                     db.Audio.create({
                         item_id: item.id,
@@ -118,7 +116,7 @@ router.post('/addItem/', multer({storage: storage, fileFilter: fileFilter}).fiel
                     });
                 });
 
-            }).then(function(results){
+            }).then(function(){
                 res.redirect("../item/" + itemID);
             });
         });
@@ -128,52 +126,70 @@ router.get('/:id/destroy/', function (req, res) {
     res.render(/*TODO replce*/ 'index.ejs', {title: "Uploaded"});
 });
 
-
-router.post('/addAudio/:id', multer({storage: storage, fileFilter: fileFilter}).fields([{
-        name: 'audioFile', maxCount: 1
+router.post('/:id/edit', helper.isAuthenicated, multer({storage: storage, fileFilter: fileFilter}).fields([{
+        name: 'audioFile', maxCount: 10
+    }, {
+        name: 'imageFile', maxCount: 1
     }]),
     function (req, res) {
-        console.log("WE GOT HERE");
-        console.log(req.params.id);
-        console.log("SSSS" + req.files);
-        db.Audio.create({
-            item_id: req.params.id,
-            duration: "3:00",
-            artist: "tempArtist",
-            audio_location: "some shit"
-            // audio_location: req.body.ItemAudio
-        });
-        console.log("WE GOT HERE ASWELL");
-    });
+        var loggedIn;
+        var itemID;
+        db.Category.findOne({where: {title: req.body.ItemCategory}
+        }).then(function(category){
+            db.Item.findById(req.params.id)
+                .then(function (item) {
+                    if(req.files.imageFile != null) {
+                        db.Item.update({
+                                category_id: category.id,
+                                item_name: req.body.ItemTitle,
+                                location: req.body.ItemInfo,
+                                description: req.body.ItemContent,
+                                metadata: req.body.ItemData,
+                                image: req.files.imageFile[0].filename
+                            },
+                            {
+                                where: {id: item.id}
+                            })
+                    }
+                    else {
+                        db.Item.update({
+                                category_id: category.id,
+                                item_name: req.body.ItemTitle,
+                                location: req.body.ItemInfo,
+                                description: req.body.ItemContent,
+                                metadata: req.body.ItemData
+                            },
+                            {
+                                where: {id: item.id}
+                            })
+                    }
+                    var removeList = req.body.RemoveList.split(",");
 
-router.post('/:id/edit', helper.isAuthenicated, function(req, res, next) {
-    var loggedIn;
-    db.Category.findOne({
-        where: {title: req.body.ItemCategory}
-    }).then(function (category) {
-        db.Item.findById(req.params.id)
-            .then(function (item) {
-                db.Item.update({
-                        category_id: category.id,
-                        item_name: req.body.ItemTitle,
-                        location: req.body.ItemInfo,
-                        description: req.body.ItemContent,
-                        image: req.body.ItemImage,
-                        metadata: req.body.ItemData
-                    },
-                    {
-                        where: {id: item.id}
+                    removeList.pop();
+                    console.log(removeList);
+
+                    removeList.forEach(function (it, index, array) {
+                        db.Audio.destroy({
+                            where: {
+                                id: it
+                            }
+                        })
                     })
-            }).then(function () {
-            db.Item.findOne({
-                where: {
-                    id: req.params.id
-                }
-            }).then(function () {
-                res.redirect('../../item/' + req.params.id);
-            });
-        });
+
+                    itemID = item.id;
+                    if(req.files.audioFile != null){
+                        req.files.audioFile.forEach(function (it, index, array) {
+                            db.Audio.create({
+                                item_id: item.id,
+                                duration: "3:00",
+                                artist: "tempArtist",
+                                audio_location: it.filename
+                            });
+                        });
+                    }
+                    res.redirect("../../item/" + itemID);
+                });
+        })
     });
-});
 
 module.exports = router;
