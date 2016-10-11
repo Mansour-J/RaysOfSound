@@ -13,7 +13,7 @@ describe('GET view Maori', function() {
   it('load Maori page', function(done) {
     this.timeout('10000');
     request(app)
-        .get('/category/2/view')
+        .get('/category/2/view/1')
         .expect(200)
         .end(function(err, res){   
            if (err) done(err);
@@ -27,7 +27,7 @@ describe('GET view Samo', function() {
   it('load Samoan page', function(done) {
     this.timeout('10000');
     request(app)
-        .get('/category/1/view')
+        .get('/category/1/view/1')
         .expect(200)
         .end(function(err, res){   
            if (err) done(err);
@@ -41,7 +41,7 @@ describe('GET view Kuki Airani', function() {
   it('load Kuki Airani page', function(done) {
     this.timeout('10000');
     request(app)
-        .get('/category/4/view')
+        .get('/category/4/view/1')
         .expect(200)
         .end(function(err, res){   
            if (err) done(err);
@@ -55,7 +55,7 @@ describe('GET view Cook islands', function() {
   it('load cook islands page', function(done) {
     this.timeout('10000');
     request(app)
-        .get('/category/3/view')
+        .get('/category/3/view/1')
         .expect(200)
         .end(function(err, res){   
            if (err) done(err);
@@ -69,7 +69,7 @@ describe('GET view false category', function() {
   it('load 404 page', function(done) {
     this.timeout('10000');
     request(app)
-        .get('/category/0/view')
+        .get('/category/0/view/1')
         .expect(302)
         .end(function(err, res){   
            if (err) done(err);

@@ -4,10 +4,12 @@ var mime = require('mime-types');
 var db = require('../lib/db');
 var router = express.Router();
 var helper = require('../lib/helper');
+const fs = require('fs');
 
 
 var images = [];
 var audio = [];
+var fileLocation = "./public/files/";
 
 var storage = multer.diskStorage({
     // console.log("setting up image storage");
@@ -169,11 +171,20 @@ router.post('/:id/edit', helper.isAuthenicated, multer({storage: storage, fileFi
                     console.log(removeList);
 
                     removeList.forEach(function (it, index, array) {
+                        db.Audio.findById(it).then(function(audio){
+                            console.log(audio);
+                            fs.unlink(fileLocation + audio.audio_location, (err) => {
+                                if (err) throw err;
+                                console.log('successfully deleted');
+                            });
+                            
+                        })
                         db.Audio.destroy({
                             where: {
                                 id: it
                             }
                         })
+
                     })
 
                     itemID = item.id;
