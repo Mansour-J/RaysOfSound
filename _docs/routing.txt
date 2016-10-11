@@ -1,0 +1,12 @@
+/
+
+/contactus
+
+view/cat/[cat_id]
+view/item/[item_id]
+
+admin/
+admin/add/item
+admin/edit/item/[item_id]
+admin/manage/categories
+admin/view/allitems

@@ -1,0 +1,1 @@
+- Changing category name may affect the order in which categories are displayed, such as in the top navigation bar.
