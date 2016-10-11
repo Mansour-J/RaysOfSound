@@ -19,7 +19,7 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-12"
                 style="text-align: center;">
-            <button onclick="edit()" class="btn btn-info">Edit categories</button>
+            <button onclick="edit()" type="button" class="btn btn-info">Edit categories</button>
             <button type="submit" class="btn btn-success">Submit changes</button>
             </div>
         </div>
@@ -31,7 +31,6 @@
 <script>
     function edit() {
         var cats = document.getElementById("cats");
-        console.log(cats);
         cats.removeAttribute('disabled');
     }
 </script>
