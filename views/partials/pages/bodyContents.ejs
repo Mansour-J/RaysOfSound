@@ -8,7 +8,7 @@
         <!-----------------------------------  ITEMS START  ------------------------------------------------->
 
     <% for (var i = 0; i < items.length; i++) { %>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" style="padding-top: 30px;height: 690px !important; " >
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" style="padding-top: 30px;height: 100% !important; " >
 
             <div class="thumbnail" style="height: 100%;">
 
@@ -28,7 +28,7 @@
                     </p>
                     <br>
                 </div>
-                <audio style=" position:absolute; width: 88% !important; bottom: 10px; margin: auto;" controls="controls" preload="metadata">
+                <audio style=" position:absolute; width: 88% !important; bottom: 30px; margin: auto;" controls="controls" preload="metadata">
                 <% var source = ""%>
                 <% for (var j = 0; j < audio.length; j++){ %>
                     <% if (items[i].id == audio[j].item_id){ %>
