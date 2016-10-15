@@ -1,0 +1,47 @@
+<---Test that non logged in users cant add or edit items ----->
+curl -X POST -I "localhost:3000/addItem/create"
+
+curl -X POST -I "localhost:3000/admin/manage/categories"
+
+curl -X POST -I "localhost:3000/contactus"
+
+IMPORTANT: Otherwise if someone found the route to this page and 
+curl -X POST -I "localhost:3000/registration"
+
+
+
+<-----Tests using a valid session cookie should all return 200/OK status codes. Testing authorization ----->
+curl -X GET -H "Cookie: token=s%3AKC-9M6FQHz5j3DE2pmEAXInlUnODuDJP.JfjjQJPHnUbdJ8O%2FiAA525Z%2FHFmXeICVU5iZ2fn4yaY" -I "localhost:3000/addItem"
+
+curl -X GET -H "Cookie: token=s%3AKC-9M6FQHz5j3DE2pmEAXInlUnODuDJP.JfjjQJPHnUbdJ8O%2FiAA525Z%2FHFmXeICVU5iZ2fn4yaY" -I "localhost:3000/admin/view/allitems"
+
+
+curl -X GET -H "Cookie: token=s%3AKC-9M6FQHz5j3DE2pmEAXInlUnODuDJP.JfjjQJPHnUbdJ8O%2FiAA525Z%2FHFmXeICVU5iZ2fn4yaY" -I "localhost:3000/admin"
+
+
+curl -X GET -H "Cookie: token=s%3AKC-9M6FQHz5j3DE2pmEAXInlUnODuDJP.JfjjQJPHnUbdJ8O%2FiAA525Z%2FHFmXeICVU5iZ2fn4yaY" -I "localhost:3000/admin/manage/categories"
+
+
+curl -X GET -H "Cookie: token=s%3AKC-9M6FQHz5j3DE2pmEAXInlUnODuDJP.JfjjQJPHnUbdJ8O%2FiAA525Z%2FHFmXeICVU5iZ2fn4yaY" -I "localhost:3000/item/4/edit"
+
+
+curl -X GET -H "Cookie: token=s%3AKC-9M6FQHz5j3DE2pmEAXInlUnODuDJP.JfjjQJPHnUbdJ8O%2FiAA525Z%2FHFmXeICVU5iZ2fn4yaY" -I "localhost:3000/addItem"
+
+
+
+<--------Tests should all return a 302 redirect to '/' because the user doesnt have a valid session to access these parts of the site ------->
+curl -X GET -I "localhost:3000/addItem"
+
+curl -X GET -I "localhost:3000/admin/view/allitems"
+
+
+curl -X GET -I "localhost:3000/admin"
+
+
+curl -X GET -I "localhost:3000/admin/manage/categories"
+
+
+curl -X GET -I "localhost:3000/item/4/edit"
+
+
+curl -X GET -I "localhost:3000/addItem"

@@ -8,7 +8,9 @@ router.get('/:id', function(req, res, next) {
   }).then(function (items) {
     db.Audio.findAll({where: {item_id: req.params.id}
     }).then(function (audios) {
-      db.Category.findAll().then(function(categories){
+      db.Category.findAll({
+        order: 'id ASC'
+      }).then(function(categories){
         res.render('IndividualItem.ejs', {
           title: "Uploaded",
           data: categories,
