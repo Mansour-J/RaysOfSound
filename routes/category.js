@@ -27,6 +27,7 @@ router.get('/:id/view/:page', function(req, res, next) {
             }).then(function (itemAll) {
             itemLength = itemAll.length;
 
+
         db.Audio.findAll().then(function (audio){
             db.Item.findAll({
                 where: {
@@ -43,7 +44,7 @@ router.get('/:id/view/:page', function(req, res, next) {
                         res.render('category.ejs', { title: 'Express', itemLength: itemLength, items: items, audio: audio, data: categories, user:req.user});
                     }
                     else {
-                        res.redirect('/error');
+                        res.redirect('/noItem');
                     }
                 });
             });

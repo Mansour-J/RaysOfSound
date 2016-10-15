@@ -15,6 +15,12 @@ router.get('/', function(req, res, next) {
     });
 });
 
+//No Item Route
+router.get('/noItem', function(req, res, next){
+    res.render('noItem');
+
+    console.log("======================== HERE BEFORE ERROR ===================");
+});
 
 //Contact Us Routes
 router.get('/contactus', function(req, res, next){
@@ -119,6 +125,7 @@ router.get('/logout', function(req, res){
     req.logout();
     res.redirect('/');
 });
+
 
 //404 Routes
 router.get('*', function(req, res, next){
