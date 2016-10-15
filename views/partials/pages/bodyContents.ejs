@@ -61,12 +61,13 @@
                     </li>
                     <%
                     var numbers = Math.ceil(itemLength/6);
+                    console.log("Before EROR");
                     console.log(numbers);
                     for (var i = 0; i < numbers; i++) {
 
                     %>
-                    <li><a href="/category/<%=items[i].category_id%>/view/<%= i+1 %>"><%= i+1 %></a></li>
-                    <% } %>
+                    <li><a href="/category/<%=items[0].category_id%>/view/<%= i+1 %>"><%= i+1 %></a></li>
+                    <% }  %>
 
                     <!--<li>
                         <a href="#" aria-label="Next">
