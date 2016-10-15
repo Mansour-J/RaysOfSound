@@ -18,8 +18,12 @@ router.get('/:id/view/:page', function(req, res, next) {
     var itemPerPage = 6;
     var start = (page - 1) * 6;
 
+    console.log(page);
+    console.log("REQ:" + req.params.id);
+
     var itemLength = 0;
     if(!isNaN(page)){
+        console.log(page);
         db.Item.findAll({
                 where: {
                     category_id: req.params.id
@@ -37,6 +41,7 @@ router.get('/:id/view/:page', function(req, res, next) {
             }).then(function (items){
                 db.Category.findAll().then(function(categories){
                     if (items.length != 0){
+                        console.log("HIE");
                         res.render('category.ejs', { title: 'Express', itemLength: itemLength, items: items, audio: audio, data: categories, user:req.user});
                     }
                     else {
@@ -48,7 +53,7 @@ router.get('/:id/view/:page', function(req, res, next) {
 
         });
     }
-
+    console.log(page);
 });
 
 module.exports = router;
