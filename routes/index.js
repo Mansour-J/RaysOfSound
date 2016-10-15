@@ -8,7 +8,9 @@ var helper = require('../lib/helper');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    db.Category.findAll().then(function(categories){
+    db.Category.findAll({
+        order: 'id ASC'
+      }).then(function(categories){
         res.render('home.ejs', { title: 'Rays of Sound', data: categories, user: req.user});
     });
 });
@@ -16,7 +18,9 @@ router.get('/', function(req, res, next) {
 
 //Contact Us Routes
 router.get('/contactus', function(req, res, next){
-    db.Category.findAll().then(function(categories){
+    db.Category.findAll({
+        order: 'id ASC'
+      }).then(function(categories){
         res.render('contactus.ejs', { title: 'Contact Us', user: req.user, data: categories});
     });
 });
@@ -24,7 +28,9 @@ router.get('/contactus', function(req, res, next){
 
 //Contact Us Routes
 router.post('/contactus/', function(req, res, next){
-    db.Category.findAll().then(function(categories){
+    db.Category.findAll({
+        order: 'id ASC'
+      }).then(function(categories){
         //res.render('contactus.ejs', { title: 'Express', user: req.user, data: categories});
 
         var transporter = nodemailer.createTransport({
@@ -68,7 +74,9 @@ router.post('/contactus/', function(req, res, next){
 });
 
 router.get('/login', function(req, res, next){
-    db.Category.findAll().then(function(categories){
+    db.Category.findAll({
+        order: 'id ASC'
+      }).then(function(categories){
             res.render('login.ejs', {title:'Login', data: categories, user: req.user});
     });
 });
@@ -99,7 +107,9 @@ router.post('/registration', helper.authedOrLogin, function(req, res, next){
 //Need to rename to bunch of random characters or get rid of entirely
 //Registration Route
 router.get('/kadgnkauadf33321866mnpqwr', helper.authedOrLogin, function(req, res, next){ 
-    db.Category.findAll().then(function(categories){
+    db.Category.findAll({
+        order: 'id ASC'
+      }).then(function(categories){
         res.render('registration.ejs', { title: 'Registration', user: req.user, data: categories});
     });
 });

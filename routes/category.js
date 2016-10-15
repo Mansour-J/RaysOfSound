@@ -3,7 +3,9 @@ var router = express.Router();
 var db = require('../lib/db');
 
 router.get('/', function(req, res, next) {
-    db.Category.findAll().then(function(categories){
+    db.Category.findAll({
+        order: 'id ASC'
+      }).then(function(categories){
         res.render('allCategories.ejs', {data: categories, user:req.user});
     });
 });
@@ -39,7 +41,9 @@ router.get('/:id/view/:page', function(req, res, next) {
                 limit: itemPerPage,
                 offset: start
             }).then(function (items){
-                db.Category.findAll().then(function(categories){
+                db.Category.findAll({
+                order: 'id ASC'
+                }).then(function(categories){
                     if (items.length != 0){
                         console.log("HIE");
                         res.render('category.ejs', { title: 'Express', itemLength: itemLength, items: items, audio: audio, data: categories, user:req.user});

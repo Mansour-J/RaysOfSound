@@ -5,7 +5,9 @@ var helper = require('../lib/helper');
 
 //Individual Item Route
 router.get('/',helper.authedOrLogin, function(req, res, next){
-    db.Category.findAll().then(function(categories){
+    db.Category.findAll({
+        order: 'id ASC'
+      }).then(function(categories){
         res.render('addItem.ejs', { title: 'Add Item', user: req.user,  data:categories });
     });
 });
