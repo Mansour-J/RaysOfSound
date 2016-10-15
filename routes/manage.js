@@ -146,10 +146,9 @@ router.post('/:id/edit', helper.isAuthenicated, multer({storage: storage, fileFi
                     removeList.forEach(function (it, index, array) {
                         db.Audio.findById(it).then(function(audio){
                             console.log(audio);
-                            fs.unlink(fileLocation + audio.audio_location, (err) => {
-                                if (err) throw err;
+                            // fs.unlink(fileLocation + audio.audio_location, (err) => {
+                            //     if (err) throw err;
                                 console.log('successfully deleted');
-                            });
                             
                         })
                         db.Audio.destroy({
