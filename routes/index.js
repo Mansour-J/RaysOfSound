@@ -25,7 +25,7 @@ router.get('/contactus', function(req, res, next){
 //Contact Us Routes
 router.post('/contactus/', function(req, res, next){
     db.Category.findAll().then(function(categories){
-        res.render('contactus.ejs', { title: 'Express', user: req.user, data: categories});
+        //res.render('contactus.ejs', { title: 'Express', user: req.user, data: categories});
 
         var transporter = nodemailer.createTransport({
             service: 'Gmail',
@@ -40,9 +40,9 @@ router.post('/contactus/', function(req, res, next){
 
         var mailOptions = {
 
-            from: 'Mansour Javaher <swen302raysofsound@gmail.com>',
-            to: 'javaher.mansour@gmail.com', // Bailants email
-            subject: 'Contact US',
+            from: 'Rays of sound user contact<swen302raysofsound@gmail.com>',
+            to: 'ENTER EMAIL HERE', // Bailants email
+            subject: 'Contact Us',
             text: 'You have a contact us email with the following details... ',
             html: '<div style="border: 5px solid #e5e8ff;border-top: 20px solid #e5e8ff !important; padding: 20px 0px 0px 10px; border-radius: 5px;">' +
             '<p> You have a <strong> contact us  </strong> email with the following details...  </p>'+
