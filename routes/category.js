@@ -2,19 +2,13 @@ var express = require('express');
 var router = express.Router();
 var db = require('../lib/db');
 
-router.get('/', function(req, res, next) {
-    db.Category.findAll({
-        order: 'id ASC'
-      }).then(function(categories){
-        res.render('allCategories.ejs', {data: categories, user:req.user});
-    });
-});
-
+//Gets the category page where its id = the parameter given. This displays all of the items within the category
 router.get('/:id/view', function(req, res, next) {
     res.redirect('/category/' + req.params.id +  '/view/1');
 
 });
 
+//If a category has more than 6 items the items are split into individual pages
 router.get('/:id/view/:page', function(req, res, next) {
     var page = req.params.page;
     var itemPerPage = 6;

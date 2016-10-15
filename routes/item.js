@@ -3,6 +3,7 @@ var router = express.Router();
 var db = require('../lib/db');
 var helper = require('../lib/helper');
 
+//Displays an individual item 
 router.get('/:id', function(req, res, next) {
   db.Item.findAll({where: {id: req.params.id}
   }).then(function (items) {
@@ -23,6 +24,7 @@ router.get('/:id', function(req, res, next) {
   });
 });
 
+//Displays the individual item as an editable page
 router.get('/:id/edit', helper.authedOrLogin, function(req, res, next) {
   var loggedIn;
   db.Item.findAll({where: {id: req.params.id}
@@ -44,6 +46,7 @@ router.get('/:id/edit', helper.authedOrLogin, function(req, res, next) {
   });
 });
 
+//deletes an audio from the database
 router.delete('/audio/:id', helper.isAuthenicated, function (req,res,next) {
   db.Audio.destroy({where: {
     id: req.params.id
@@ -51,7 +54,7 @@ router.delete('/audio/:id', helper.isAuthenicated, function (req,res,next) {
   });
 });
 
-
+//deletes an entire item from the databaes
 router.delete('/:id', helper.isAuthenicated, function(req, res, next){
   console.log(req.params.id);
   db.Item.destroy({

@@ -3,6 +3,7 @@ var router = express.Router();
 var db = require('../lib/db');
 var helper = require('../lib/helper');
 
+//Gets the main admin page that displays all the admin features
 router.get('/', helper.authedOrLogin, function(req, res, next) {
     db.Category.findAll({
         order: 'id ASC'
@@ -12,7 +13,7 @@ router.get('/', helper.authedOrLogin, function(req, res, next) {
 });
 
 
-
+//Gets the allItems page that shows all items that have been created along with their basic data
 router.get('/view/allitems', helper.authedOrLogin, function(req, res, next) {
     db.Category.findAll({
         order: 'id ASC'
@@ -25,6 +26,7 @@ router.get('/view/allitems', helper.authedOrLogin, function(req, res, next) {
     });
 });
 
+//Gets the manage categories page that shows all categories and allows the usre to edit the names
 router.get('/manage/categories', helper.authedOrLogin, function(req, res, next) {
     db.Category.findAll({
         order: 'id ASC'
@@ -33,6 +35,7 @@ router.get('/manage/categories', helper.authedOrLogin, function(req, res, next) 
     });
 });
 
+//Posts the changes the user makes to the category names to the database
 router.post('/manage/categories', helper.isAuthenicated, function (req, res, next) {
         var loggedIn;
 

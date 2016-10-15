@@ -12,6 +12,8 @@ router.get('/',helper.authedOrLogin, function(req, res, next){
     });
 });
 
+
+//POST Method to create the item and add it to the database
 router.post('/create', helper.authedOrLogin, function(req, res, next){
     db.Category.findOne({where: {title: req.body.ItemCategory}
     }).then(function(category)

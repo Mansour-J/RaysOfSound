@@ -26,7 +26,7 @@ router.get('/contactus', function(req, res, next){
 });
 
 
-//Contact Us Routes
+//Route to handle a user using the contact us form. This sends an email to the specified user (Balint) with the message given in the form
 router.post('/contactus/', function(req, res, next){
     db.Category.findAll({
         order: 'id ASC'
@@ -73,6 +73,7 @@ router.post('/contactus/', function(req, res, next){
     });
 });
 
+//Route to the login page so the user can access admin features
 router.get('/login', function(req, res, next){
     db.Category.findAll({
         order: 'id ASC'
@@ -104,8 +105,7 @@ router.post('/registration', helper.authedOrLogin, function(req, res, next){
 
 
 
-//Need to rename to bunch of random characters or get rid of entirely
-//Registration Route
+//Registration Route url kept a secret so that if needed later on in the project we can add more 
 router.get('/kadgnkauadf33321866mnpqwr', helper.authedOrLogin, function(req, res, next){ 
     db.Category.findAll({
         order: 'id ASC'
@@ -114,7 +114,7 @@ router.get('/kadgnkauadf33321866mnpqwr', helper.authedOrLogin, function(req, res
     });
 });
 
-
+//Logout of the site, destroys the session 
 router.get('/logout', function(req, res){
     req.logout();
     res.redirect('/');
