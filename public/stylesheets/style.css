@@ -445,6 +445,9 @@ table.sortable tbody tr:nth-child(2n+1) td {
     nav .container{
         width: 100% !important;
     }
+    .thumbnail{
+        height: 100% !important;
+    }
 
 }
 
