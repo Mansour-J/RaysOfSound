@@ -17,9 +17,11 @@ router.get('/', function(req, res, next) {
 
 //No Item Route
 router.get('/noItem', function(req, res, next){
-    res.render('noItem');
-
-    console.log("======================== HERE BEFORE ERROR ===================");
+    db.Category.findAll({
+        order: 'id ASC'
+    }).then(function(categories){
+        res.render('noItem.ejs', { title: 'Rays of Sound', data: categories, user: req.user});
+    });
 });
 
 //Contact Us Routes
